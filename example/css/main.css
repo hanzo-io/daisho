@@ -1,0 +1,42 @@
+header,
+footer{
+  width:100%;
+  position:fixed;
+}
+header,
+footer,
+nav,
+section{
+  box-sizing:border-box;
+  border:1px solid #000;
+}
+header{
+  height:3rem;
+  top:0;
+}
+footer{
+  height:2rem;
+  bottom:0;
+}
+body{
+  position:relative;
+}
+nav{
+  width:15rem;
+  height:100%;
+  position:absolute;
+  left:0;
+  top:0;
+}
+body.collapsed nav{
+  left:-15rem;
+}
+section{
+  min-height:800px;
+  margin-top:3rem;
+  margin-bottom:2rem;
+  margin-left:15rem;
+}
+body.collapsed section{
+  margin-left:0;
+}/*# sourceMappingURL=main.css.map */

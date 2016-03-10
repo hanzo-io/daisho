@@ -1,0 +1,67 @@
+//
+// Structural Elements:
+//
+
+header
+footer
+  width: 100%
+  position:fixed
+
+header
+footer
+nav
+section
+  box-sizing: border-box
+  border 1px solid black
+
+//
+// Header:
+// `header` - Fixed Top Header Bar
+//
+
+header
+  height: 3rem
+  top: 0
+
+//
+// Footer:
+// `footer` - Fixed Bottom Footer Bar
+//
+
+footer
+  height: 2rem
+  bottom: 0
+
+//
+// Navigation
+// `nav` - Collapsible Left Menu Bar
+//
+
+body
+  position: relative
+
+nav
+  width: 15rem
+  height: 100%
+  position: absolute
+  left: 0
+  top: 0
+
+body.collapsed
+  nav
+    left: -15rem
+
+//
+// Navigation
+// `section` - Main Content Section
+//
+
+section
+  min-height: 800px
+  margin-top: 3rem
+  margin-bottom: 2rem
+  margin-left: 15rem
+
+body.collapsed
+  section
+    margin-left: 0

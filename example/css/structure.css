@@ -1,0 +1,8 @@
+header {
+  width: 100%;
+  height: 3rem;
+}
+header,
+footer {
+  border: 1px solid #ffc0cb;
+}
