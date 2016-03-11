@@ -12,16 +12,62 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://raw.github.com/daneden/animate.css/master/animate.css">
     </head>
     <body>
       <header>HEADER</header>
 
       <nav>NAVIGATION</nav>
 
-      <section>SECTION</section>
+      <section>
+        <div class="grid">
+          <div class="grid-item narrow middle">
+            <div>
+              GRID ELEMENT 1
+            </div>
+          </div>
+          <div class="grid-item medium short">
+            <div>
+              GRID ELEMENT 2
+            </div>
+          </div>
+          <div class="grid-item narrow short">
+            <div>
+              GRID ELEMENT 3
+            </div>
+          </div>
+          <div class="grid-item narrow short">
+            <div>
+              GRID ELEMENT 4
+            </div>
+          </div>
+          <div class="grid-item wide short">
+            <div>
+              GRID ELEMENT 5
+            </div>
+          </div>
+        </div>
+      </section>
 
       <footer>FOOTER</footer>
 
-      <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/2.0.0/packery.pkgd.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/draggabilly/2.1.0/draggabilly.pkgd.js"></script>
+
+      <script>
+        var $grid = $('.grid').packery({
+          itemSelector: '.grid-item',
+          gutter: 0,
+          columnWidth: 360
+        })
+
+        // make all grid-items draggable
+        $grid.find('.grid-item').each( function( i, gridItem ) {
+          var draggie = new Draggabilly( gridItem );
+          // bind drag events to Packery
+          $grid.packery( 'bindDraggabillyEvents', draggie );
+        });
+      </script>
     </body>
 </html>

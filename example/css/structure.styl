@@ -1,18 +1,28 @@
+headerHeight = 4rem
+footerHeight = 3rem
+
+header
+footer
+nav
+section
+  border: 1px solid black
+
 //
 // Structural Elements:
 //
 
 header
 footer
-  width: 100%
-  position:fixed
+nav
+section
+  box-sizing:   border-box
+  transition:   all 0.2s ease-in-out
+  padding:      1rem
 
 header
 footer
-nav
-section
-  box-sizing: border-box
-  border 1px solid black
+  width:    100%
+  position: fixed
 
 //
 // Header:
@@ -20,8 +30,8 @@ section
 //
 
 header
-  height: 3rem
-  top: 0
+  height:   headerHeight
+  top:      0
 
 //
 // Footer:
@@ -29,8 +39,8 @@ header
 //
 
 footer
-  height: 2rem
-  bottom: 0
+  height:   footerHeight
+  bottom:   0
 
 //
 // Navigation
@@ -41,11 +51,11 @@ body
   position: relative
 
 nav
-  width: 15rem
-  height: 100%
+  width:    15rem
+  height:   100%
   position: absolute
-  left: 0
-  top: 0
+  left:     0
+  top:      0
 
 body.collapsed
   nav
@@ -57,10 +67,10 @@ body.collapsed
 //
 
 section
-  min-height: 800px
-  margin-top: 3rem
-  margin-bottom: 2rem
-  margin-left: 15rem
+  min-height:       800px
+  margin-top:       headerHeight
+  margin-bottom:    footerHeight
+  margin-left:  15rem
 
 body.collapsed
   section

@@ -1,21 +1,29 @@
 header,
-footer{
-  width:100%;
-  position:fixed;
+footer,
+nav,
+section{
+  border:1px solid #000;
 }
 header,
 footer,
 nav,
 section{
   box-sizing:border-box;
-  border:1px solid #000;
+  -webkit-transition:all 0.2s ease-in-out;
+  transition:all 0.2s ease-in-out;
+  padding:1rem;
+}
+header,
+footer{
+  width:100%;
+  position:fixed;
 }
 header{
-  height:3rem;
+  height:4rem;
   top:0;
 }
 footer{
-  height:2rem;
+  height:3rem;
   bottom:0;
 }
 body{
@@ -33,10 +41,50 @@ body.collapsed nav{
 }
 section{
   min-height:800px;
-  margin-top:3rem;
-  margin-bottom:2rem;
+  margin-top:4rem;
+  margin-bottom:3rem;
   margin-left:15rem;
 }
 body.collapsed section{
   margin-left:0;
+}
+.grid .grid-item > *{
+  border:1px solid #000;
+}
+.grid .grid-item{
+  position:relative;
+  display:inline-block;
+}
+.grid .grid-item > *{
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:1rem;
+  padding:1rem;
+}
+.grid .grid-item.narrow{
+  width:360px;
+}
+.grid .grid-item.medium{
+  width:720px;
+}
+.grid .grid-item.wide{
+  width:1080px;
+}
+.grid .grid-item.short:before{
+  content:"";
+  display:block;
+  padding-top:360px;
+}
+.grid .grid-item.middle:before{
+  content:"";
+  display:block;
+  padding-top:720px;
+}
+.grid .grid-item.tall:before{
+  content:"";
+  display:block;
+  padding-top:1080px;
 }/*# sourceMappingURL=main.css.map */
