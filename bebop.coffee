@@ -24,7 +24,7 @@ compileCoffee = (src) ->
       fs.writeFileSync 'example/js/index.js', bundle.toString(), 'utf8'
       console.log 'compiled example/js/index.js'
 
-  else if /^example\/fixtures|example\/fixtures\/user\/1.0.0\/user.coffee$/.test src
+  else if /^example\/fixtures|example\/fixtures\/user-v1.0.0\/main.coffee$/.test src
 
     requisite.bundle
       entry: 'example/fixtures/user-v1.0.0/main.coffee'

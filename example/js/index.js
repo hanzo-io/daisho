@@ -57,7 +57,7 @@
   // Generate URL for module
   require.urlFor = function (file) {
     var url = file.replace(/^\.?\//, '');
-    if (/\.js$/.test(url))
+    if (!/\.js$/.test(url))
       url = url + '.js';
     return require.basePath + url
   };

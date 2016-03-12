@@ -1,6 +1,9 @@
 Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = require 'broken'
 
+require.urlFor = (file)->
+  return '/example/fixtures/' + file
+
 module.exports =
   # init takes the url of the modules.json and downloads it
   init: (@modulesUrl)->
@@ -29,11 +32,11 @@ module.exports =
 
       do (m)->
         m.definition = module
-        require module.repository + '/' + module.version + '/' + module.js, (js)->
+        require module.name + '-v' + module.version + '/bundle.js', (js)->
           m.js = js
           waits--
 
-        m.css = module.repository + '/' + module.version + '/' + module.css
+        m.css = module.name + '-v' + module.version + '/bundle.css'
 
       @modules.push m
 

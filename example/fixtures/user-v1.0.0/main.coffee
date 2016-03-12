@@ -1,7 +1,7 @@
 {
   Page
   Module
-} = require '../../../../src/sdk'
+} = require '../../../src/sdk'
 
 module.exports = class User extends Module
   routes:
