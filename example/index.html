@@ -54,6 +54,7 @@
       <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/2.0.0/packery.pkgd.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/draggabilly/2.1.0/draggabilly.pkgd.js"></script>
+      <script src="../daisho.js"></script>
 
       <script>
         var $grid = $('.grid').packery({
@@ -66,8 +67,12 @@
         $grid.find('.grid-item').each( function( i, gridItem ) {
           var draggie = new Draggabilly( gridItem );
           // bind drag events to Packery
-          $grid.packery( 'bindDraggabillyEvents', draggie );
+          $grid.packery( 'bindDraggabillyEvents', draggie )
         });
+
+        Daisho.module.init( '/example/fixtures/modules.json' ).then(function(){
+          Daisho.module.load( ['user'] )
+        })
       </script>
     </body>
 </html>

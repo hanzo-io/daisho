@@ -4,15 +4,38 @@ exec      = require('executive').interactive
 requisite = require 'requisite'
 
 compileCoffee = (src) ->
-  return unless /^src|src\/browser.coffee$/.test src
+  if /^src|src\/index.coffee$/.test src
 
-  requisite.bundle
-    entry: 'src/browser.coffee'
-    globalRequire: true
-  , (err, bundle) ->
-    return console.error err if err?
-    fs.writeFileSync 'daisho.js', bundle.toString(), 'utf8'
-    console.log 'compiled daisho.js'
+    requisite.bundle
+      entry: 'src/index.coffee'
+      globalRequire: true
+    , (err, bundle) ->
+      return console.error err if err?
+      fs.writeFileSync 'daisho.js', bundle.toString(), 'utf8'
+      console.log 'compiled daisho.js'
+
+  else if /^example\/js|example\/js\/index.coffee$/.test src
+
+    requisite.bundle
+      entry: 'example/js/index.coffee'
+      globalRequire: true
+    , (err, bundle) ->
+      return console.error err if err?
+      fs.writeFileSync 'example/js/index.js', bundle.toString(), 'utf8'
+      console.log 'compiled example/js/index.js'
+
+  else if /^example\/fixtures|example\/fixtures\/user\/1.0.0\/user.coffee$/.test src
+
+    requisite.bundle
+      entry: 'example/fixtures/user-v1.0.0/main.coffee'
+      globalRequire: true
+      prelude: false
+      async: true
+      requireAs: 'user-v1.0.0/bundle.js'
+    , (err, bundle) ->
+      return console.error err if err?
+      fs.writeFileSync 'example/fixtures/user-v1.0.0/bundle.js', bundle.toString(), 'utf8'
+      console.log 'compiled example/fixtures/user-v1.0.0/bundle.js'
 
 module.exports =
   port: 4242

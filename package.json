@@ -58,7 +58,7 @@
     "postmortem": "^0.2.3",
     "poststylus": "0.2.3",
     "random-token": "0.0.8",
-    "requisite": "1.14.12",
+    "requisite": "1.18.0",
     "rucksack-css": "0.8.5",
     "rupture": "0.6.1",
     "serve-static": "^1.10.0",
@@ -67,6 +67,7 @@
     "uglify-js": "^2.6.1"
   },
   "dependencies": {
-    "broken": "^0.1.1"
+    "broken": "0.1.2",
+    "xhr-promise-es6": "1.2.7"
   }
 }
