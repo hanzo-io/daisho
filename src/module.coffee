@@ -1,10 +1,20 @@
+Promise     = require 'broken'
 Xhr         = require 'xhr-promise-es6'
-Xhr.Promise = require 'broken'
+Xhr.Promise = Promise
 
 require.urlFor = (file)->
   return '/example/fixtures/' + file
 
 module.exports =
+  # Master list of modules
+  moduleDefinitions:    []
+
+  # List of modules required by name
+  modulesRequired:      []
+
+  # List of modules required and loaded
+  modules:              []
+
   # init takes the url of the modules.json and downloads it
   init: (@modulesUrl)->
     opts =
@@ -21,24 +31,34 @@ module.exports =
 
   # load takes an array of module names, looks them up in the saved module.json and requires them in
   load: (@modulesRequired)->
-    waits = 0
-    @modules = []
-    for moduleRequired in @modulesRequired
-      module = @_getModule moduleRequired
+    return new Promise (resolve, reject)=>
+      timeoutId = setTimeout ()->
+        reject(new Error "Loading Timed Out")
+      , 10000
 
-      m = {}
+      waits = 0
 
-      waits++
+      @modules = modules = []
+      for moduleRequired in @modulesRequired
+        module = @_getModule moduleRequired
 
-      do (m)->
-        m.definition = module
-        require module.name + '-v' + module.version + '/bundle.js', (js)->
-          m.js = js
-          waits--
+        m = {}
 
-        m.css = module.name + '-v' + module.version + '/bundle.css'
+        waits++
 
-      @modules.push m
+        do (m, modules)->
+          m.definition = module
+          require module.name + '-v' + module.version + '/bundle.js', (js)->
+            m.js = js
+            waits--
+            clearTimeout timeoutId
+            resolve(modules) if waits == 0
+
+          m.css = module.name + '-v' + module.version + '/bundle.css'
+
+        modules.push m
+
+      p.resolve(@modules) if waits == 0
 
   # _getModule takes
   _getModule: (moduleName)->

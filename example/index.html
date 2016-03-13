@@ -15,41 +15,8 @@
         <link rel="stylesheet" href="https://raw.github.com/daneden/animate.css/master/animate.css">
     </head>
     <body>
-      <header>HEADER</header>
-
-      <nav>NAVIGATION</nav>
-
-      <section>
-        <div class="grid">
-          <div class="grid-item narrow middle">
-            <div>
-              GRID ELEMENT 1
-            </div>
-          </div>
-          <div class="grid-item medium short">
-            <div>
-              GRID ELEMENT 2
-            </div>
-          </div>
-          <div class="grid-item narrow short">
-            <div>
-              GRID ELEMENT 3
-            </div>
-          </div>
-          <div class="grid-item narrow short">
-            <div>
-              GRID ELEMENT 4
-            </div>
-          </div>
-          <div class="grid-item wide short">
-            <div>
-              GRID ELEMENT 5
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer>FOOTER</footer>
+      <dashboard>
+      </dashboard>
 
       <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/2.0.0/packery.pkgd.js"></script>
@@ -57,22 +24,11 @@
       <script src="../daisho.js"></script>
 
       <script>
-        var $grid = $('.grid').packery({
-          itemSelector: '.grid-item',
-          gutter: 0,
-          columnWidth: 360
+        Daisho.module.init( '/example/fixtures/modules.json' )
+        .then(function() {
+            return Daisho.module.load( ['user'] )
         })
-
-        // make all grid-items draggable
-        $grid.find('.grid-item').each( function( i, gridItem ) {
-          var draggie = new Draggabilly( gridItem );
-          // bind drag events to Packery
-          $grid.packery( 'bindDraggabillyEvents', draggie )
-        });
-
-        Daisho.module.init( '/example/fixtures/modules.json' ).then(function(){
-          Daisho.module.load( ['user'] )
-        })
+        .then(Daisho.start)
       </script>
     </body>
 </html>
