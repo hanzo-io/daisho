@@ -7,13 +7,15 @@ bundles = [
     dest:          'daisho.js'
     entry:         'src/index.coffee'
     regex:         /src\//
+    requireAs:     'daisho'
     globalRequire: true
     includeAsync:  true
   ,
-    dest:    'example/js/app.js'
-    entry:   'example/js/app.coffee'
-    regex:   /example\/js/
-    bare:    true
+    dest:      'example/js/app.js'
+    entry:     'example/js/app.coffee'
+    requireAs: 'app'
+    regex:     /example\/js/
+    bare:      true
   ,
     dest:      'example/fixtures/user-v1.0.0/bundle.js'
     entry:     'example/fixtures/user-v1.0.0/main.coffee'
