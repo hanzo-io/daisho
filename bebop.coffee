@@ -3,44 +3,43 @@ path      = require 'path'
 exec      = require('executive').interactive
 requisite = require 'requisite'
 
-bundles = [
-    dest:          'daisho.js'
+bundles =
+  'daisho.js':
     entry:         'src/index.coffee'
-    regex:         /src\//
-    requireAs:     'daisho'
     globalRequire: true
     includeAsync:  true
-  ,
-    dest:      'example/js/app.js'
-    entry:     'example/js/app.coffee'
-    requireAs: 'app'
-    regex:     /example\/js/
-    bare:      true
-  ,
-    dest:      'example/fixtures/user-v1.0.0/bundle.js'
-    entry:     'example/fixtures/user-v1.0.0/main.coffee'
-    regex:     /example\/fixtures\/user-v1.0.0/
-    requireAs: 'user-v1.0.0/bundle.js'
-    bare:      true
-    async:     true
-  ,
-    dest:      'example/fixtures/home-v1.0.0/bundle.js'
-    entry:     'example/fixtures/home-v1.0.0/main.coffee'
-    regex:     /example\/fixtures\/home-v1.0.0/
-    requireAs: 'home-v1.0.0/bundle.js'
-    bare:      true
-    async:     true
-]
+    regex:         /src\//
+    requireAs:     'daisho'
+
+  'example/js/app.js':
+    bare:          true
+    entry:         'example/js/app.coffee'
+    regex:         /example\/js/
+    requireAs:     'app'
+
+  'example/fixtures/user-v1.0.0/bundle.js':
+    async:         true
+    bare:          true
+    entry:         'example/fixtures/user-v1.0.0/main.coffee'
+    regex:         /example\/fixtures\/user-v1.0.0/
+    requireAs:     'user-v1.0.0/bundle.js'
+
+  'example/fixtures/home-v1.0.0/bundle.js':
+    async:          true
+    bare:           true
+    entry:          'example/fixtures/home-v1.0.0/main.coffee'
+    regex:          /example\/fixtures\/home-v1.0.0/
+    requireAs:      'home-v1.0.0/bundle.js'
 
 compileCoffee = (src) ->
   src = src.replace process.cwd(), ''
 
-  for opts in bundles
+  for dest, opts of bundles
     if opts.regex.test src
       return requisite.bundle opts, (err, bundle) ->
         return console.error err if err?
-        fs.writeFileSync opts.dest, bundle.toString(), 'utf8'
-        console.log 'compiled ' + opts.dest
+        fs.writeFileSync dest, bundle.toString(), 'utf8'
+        console.log 'compiled ' + dest
 
 module.exports =
   port: 4242
