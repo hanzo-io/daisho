@@ -21,14 +21,20 @@
       <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/2.0.0/packery.pkgd.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/draggabilly/2.1.0/draggabilly.pkgd.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.17/riot.js"></script>
       <script src="../daisho.js"></script>
+      <script src="js/index.js"></script>
 
       <script>
-        Daisho.module.init( '/example/fixtures/modules.json' )
+        Daisho.module.init('/example/fixtures/modules.json')
         .then(function() {
-            return Daisho.module.load( ['user'] )
+          return Daisho.module.load(['home', 'user'])
         })
-        .then(Daisho.start)
+        .then(function(modules) {
+          return riot.mount('dashboard', {
+            modules: modules
+          })
+        })
       </script>
     </body>
 </html>

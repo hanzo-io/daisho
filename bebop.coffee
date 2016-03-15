@@ -27,7 +27,7 @@ compileCoffee = (src) ->
       fs.writeFileSync 'example/js/index.js', bundle.toString(), 'utf8'
       console.log 'compiled example/js/index.js'
 
-  else if /^example\/fixtures|example\/fixtures\/user-v1.0.0\/main.coffee$/.test src
+  else if /^example\/fixtures/.test src
 
     requisite.bundle
       bare: true
@@ -38,6 +38,17 @@ compileCoffee = (src) ->
       return console.error err if err?
       fs.writeFileSync 'example/fixtures/user-v1.0.0/bundle.js', bundle.toString(), 'utf8'
       console.log 'compiled example/fixtures/user-v1.0.0/bundle.js'
+
+    requisite.bundle
+      entry: 'example/fixtures/home-v1.0.0/main.coffee'
+      globalRequire: true
+      prelude: false
+      async: true
+      requireAs: 'home-v1.0.0/bundle.js'
+    , (err, bundle) ->
+      return console.error err if err?
+      fs.writeFileSync 'example/fixtures/home-v1.0.0/bundle.js', bundle.toString(), 'utf8'
+      console.log 'compiled example/fixtures/home-v1.0.0/bundle.js'
 
 module.exports =
   port: 4242
