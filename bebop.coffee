@@ -15,17 +15,17 @@ compileCoffee = (src) ->
       fs.writeFileSync 'daisho.js', bundle.toString(), 'utf8'
       console.log 'compiled daisho.js'
 
-  else if /^example\/js|example\/js\/index.coffee$/.test src
+  else if /^example\/js|example\/js\/app.coffee$/.test src
 
     requisite.bundle
       bare: true
-      async: true
-      entry: 'example/js/index.coffee'
+      entry: 'example/js/app.coffee'
       required: true
+      prelude: true
     , (err, bundle) ->
       return console.error err if err?
-      fs.writeFileSync 'example/js/index.js', bundle.toString(), 'utf8'
-      console.log 'compiled example/js/index.js'
+      fs.writeFileSync 'example/js/app.js', bundle.toString(), 'utf8'
+      console.log 'compiled example/js/app.js'
 
   else if /^example\/fixtures/.test src
 
@@ -40,10 +40,9 @@ compileCoffee = (src) ->
       console.log 'compiled example/fixtures/user-v1.0.0/bundle.js'
 
     requisite.bundle
-      entry: 'example/fixtures/home-v1.0.0/main.coffee'
-      globalRequire: true
-      prelude: false
+      bare: true
       async: true
+      entry: 'example/fixtures/home-v1.0.0/main.coffee'
       requireAs: 'home-v1.0.0/bundle.js'
     , (err, bundle) ->
       return console.error err if err?
