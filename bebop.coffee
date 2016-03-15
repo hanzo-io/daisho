@@ -9,6 +9,7 @@ compileCoffee = (src) ->
     requisite.bundle
       entry: 'src/index.coffee'
       globalRequire: true
+      includeAsync: true
     , (err, bundle) ->
       return console.error err if err?
       fs.writeFileSync 'daisho.js', bundle.toString(), 'utf8'
@@ -17,8 +18,10 @@ compileCoffee = (src) ->
   else if /^example\/js|example\/js\/index.coffee$/.test src
 
     requisite.bundle
+      bare: true
+      async: true
       entry: 'example/js/index.coffee'
-      globalRequire: true
+      required: true
     , (err, bundle) ->
       return console.error err if err?
       fs.writeFileSync 'example/js/index.js', bundle.toString(), 'utf8'
@@ -27,10 +30,9 @@ compileCoffee = (src) ->
   else if /^example\/fixtures|example\/fixtures\/user-v1.0.0\/main.coffee$/.test src
 
     requisite.bundle
-      entry: 'example/fixtures/user-v1.0.0/main.coffee'
-      globalRequire: true
-      prelude: false
+      bare: true
       async: true
+      entry: 'example/fixtures/user-v1.0.0/main.coffee'
       requireAs: 'user-v1.0.0/bundle.js'
     , (err, bundle) ->
       return console.error err if err?

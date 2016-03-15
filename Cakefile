@@ -16,37 +16,10 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', (cb) ->
-  todo = 2
-  done = (err) ->
-    throw err if err?
-    cb() if --todo is 0
-
-  exec 'coffee -bcm -o lib/ src/', done
-
-  opts =
-    entry:      'src/browser.coffee'
-    stripDebug: true
-
-  requisite.bundle opts, (err, bundle) ->
-    return done err if err?
-
-    # Strip out unnecessary api bits
-    bundle.moduleCache['./blueprints/browser'].walkAst (node) ->
-      if (node.type == 'ObjectExpression') and (Array.isArray node.properties)
-
-        node.properties = node.properties.filter (prop) ->
-          if prop?.key?.name == 'method' and prop?.value?.value == 'POST'
-            return false
-          if prop?.key?.name == 'expects' and prop?.value?.name == 'statusOk'
-            return false
-          true
-
-      false
-
-    fs.writeFile 'daisho.js', (bundle.toString opts), 'utf8', done
+  exec 'bebop -c'
 
 task 'build-min', 'build project', ['build'], ->
-  exec 'uglifyjs daisho.js --compress --mangle --lint=false > daisho.min.js'
+  exec 'PRODUCTION=1 bebop -c'
 
 server = do require 'connect'
 
