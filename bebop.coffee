@@ -3,51 +3,42 @@ path      = require 'path'
 exec      = require('executive').interactive
 requisite = require 'requisite'
 
+bundles = [
+    dest:          'daisho.js'
+    entry:         'src/index.coffee'
+    regex:         /src\//
+    globalRequire: true
+    includeAsync:  true
+  ,
+    dest:    'example/js/app.js'
+    entry:   'example/js/app.coffee'
+    regex:   /example\/js/
+    bare:    true
+  ,
+    dest:      'example/fixtures/user-v1.0.0/bundle.js'
+    entry:     'example/fixtures/user-v1.0.0/main.coffee'
+    regex:     /example\/fixtures\/user-v1.0.0/
+    requireAs: 'user-v1.0.0/bundle.js'
+    bare:      true
+    async:     true
+  ,
+    dest:      'example/fixtures/home-v1.0.0/bundle.js'
+    entry:     'example/fixtures/home-v1.0.0/main.coffee'
+    regex:     /example\/fixtures\/home-v1.0.0/
+    requireAs: 'home-v1.0.0/bundle.js'
+    bare:      true
+    async:     true
+]
+
 compileCoffee = (src) ->
-  if /^src|src\/index.coffee$/.test src
+  src = src.replace process.cwd(), ''
 
-    requisite.bundle
-      entry: 'src/index.coffee'
-      globalRequire: true
-      includeAsync: true
-    , (err, bundle) ->
-      return console.error err if err?
-      fs.writeFileSync 'daisho.js', bundle.toString(), 'utf8'
-      console.log 'compiled daisho.js'
-
-  else if /^example\/js|example\/js\/app.coffee$/.test src
-
-    requisite.bundle
-      bare: true
-      entry: 'example/js/app.coffee'
-      required: true
-      prelude: true
-    , (err, bundle) ->
-      return console.error err if err?
-      fs.writeFileSync 'example/js/app.js', bundle.toString(), 'utf8'
-      console.log 'compiled example/js/app.js'
-
-  else if /^example\/fixtures/.test src
-
-    requisite.bundle
-      bare: true
-      async: true
-      entry: 'example/fixtures/user-v1.0.0/main.coffee'
-      requireAs: 'user-v1.0.0/bundle.js'
-    , (err, bundle) ->
-      return console.error err if err?
-      fs.writeFileSync 'example/fixtures/user-v1.0.0/bundle.js', bundle.toString(), 'utf8'
-      console.log 'compiled example/fixtures/user-v1.0.0/bundle.js'
-
-    requisite.bundle
-      bare: true
-      async: true
-      entry: 'example/fixtures/home-v1.0.0/main.coffee'
-      requireAs: 'home-v1.0.0/bundle.js'
-    , (err, bundle) ->
-      return console.error err if err?
-      fs.writeFileSync 'example/fixtures/home-v1.0.0/bundle.js', bundle.toString(), 'utf8'
-      console.log 'compiled example/fixtures/home-v1.0.0/bundle.js'
+  for opts in bundles
+    if opts.regex.test src
+      return requisite.bundle opts, (err, bundle) ->
+        return console.error err if err?
+        fs.writeFileSync opts.dest, bundle.toString(), 'utf8'
+        console.log 'compiled ' + opts.dest
 
 module.exports =
   port: 4242
