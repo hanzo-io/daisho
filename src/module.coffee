@@ -30,7 +30,7 @@ module.exports =
         console.log 'ERROR:', res
 
   # load takes an array of module names, looks them up in the saved module.json and requires them in
-  load: (@modulesRequired)->
+  load: (@modulesRequired, @defaultModule)->
     return new Promise (resolve, reject)=>
       timeoutId = setTimeout ()->
         reject(new Error "Loading Timed Out")
