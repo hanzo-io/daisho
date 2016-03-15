@@ -69,6 +69,7 @@
   "dependencies": {
     "broken": "0.1.2",
     "crowdcontrol": "2.0.12",
+    "page": "1.7.0",
     "riot": "2.3.17",
     "xhr-promise-es6": "1.2.7"
   }

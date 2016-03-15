@@ -1,8 +1,8 @@
-module.export = class Module
+module.exports = class Module
   # json of the module.json definition file
   json: null
 
-  constructor: (@json)->
+  constructor: ()->
 
   # Load everything associated with this module
   load: ()->
@@ -10,3 +10,4 @@ module.export = class Module
   # Unload everything associated with this module
   unload: ()->
 
+  #

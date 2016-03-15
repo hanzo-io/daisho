@@ -11,6 +11,9 @@ module.exports = class Page
   # Load everything associated with this page
   load: ()->
 
+  # Render this page
+  render: ()->
+
   # Unload everything associated with this page
   unload: ()->
 
