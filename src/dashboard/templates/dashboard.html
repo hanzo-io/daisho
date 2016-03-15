@@ -1,6 +1,12 @@
 <header>HEADER</header>
 
-<nav>NAVIGATION</nav>
+<nav>
+  <span>NAVIGATION</span>
+  <ul>
+    <li>Home</li>
+    <li each="{ k, v in modules }" onclick="{ route(k) }">{ k }</li>
+  </ul>
+</nav>
 
 <section>
   <div class="grid">

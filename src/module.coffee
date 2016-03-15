@@ -12,8 +12,8 @@ module.exports =
   # List of modules required by name
   modulesRequired:      []
 
-  # List of modules required and loaded
-  modules:              []
+  # Indexed map of modules required and loaded
+  modules:              {}
 
   # init takes the url of the modules.json and downloads it
   init: (@modulesUrl)->
@@ -38,25 +38,24 @@ module.exports =
 
       waits = 0
 
-      @modules = modules = []
+      @modules = modules = {}
       for moduleRequired in @modulesRequired
         module = @_getModule moduleRequired
 
-        m = {}
-
         waits++
 
-        do (m, modules)->
+        do (modules)->
+          m = {}
           m.definition = module
           require module.name + '-v' + module.version + '/bundle.js', (js)->
             m.js = js
             waits--
             clearTimeout timeoutId
+
+            modules[js.name] = js
             resolve(modules) if waits == 0
 
           m.css = module.name + '-v' + module.version + '/bundle.css'
-
-        modules.push m
 
       p.resolve(@modules) if waits == 0
 
