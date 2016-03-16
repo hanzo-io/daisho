@@ -85,6 +85,9 @@ exports =
 
                   if @activePageInstance?.unload
                     @activePageInstance.unload()
+                    while @renderElement.firstChild?
+                      @renderElement.removeChild @renderElement.firstChild
+
                   @activePageInstance = (new p @renderElement, @activeModuleInstance)
                   @activePageInstance.load()
                   @activePageInstance.render()

@@ -12,10 +12,10 @@ bundles =
     requireAs:     'daisho'
 
   'example/js/app.js':
-    bare:          true
     entry:         'example/js/app.coffee'
     regex:         /example\/js/
     requireAs:     'app'
+    globalRequire: true
 
   'example/fixtures/user-v1.0.0/bundle.js':
     async:         true

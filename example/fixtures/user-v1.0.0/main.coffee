@@ -7,6 +7,6 @@ module.exports = class User extends Module
   @name: 'User'
 
   routes:
-    '/':        null
-    '/create':  null
-    '/edit':    null
+    '/':        Page
+    '/create':  Page
+    '/edit':    Page
