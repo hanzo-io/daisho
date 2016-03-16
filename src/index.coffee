@@ -23,6 +23,9 @@ exports =
   # Element with which to render the dashboard pages into
   renderElement: null
 
+  # Whether or not page.js is initialized
+  started: false
+
   # init sets up the router using basepath and takes the url of the modules.json and downloads it
   init: (@basePath, @modulesUrl)->
     page.base @basePath
@@ -87,7 +90,6 @@ exports =
                   @activePageInstance.render()
 
             if waits == 0
-              page()
               resolve(modules)
 
           m.css = module.name + '-v' + module.version + '/bundle.css'
@@ -96,6 +98,10 @@ exports =
 
   # change page route
   route: (route)->
+    if !@started
+      @started = true
+      page()
+
     page @basePath + '/' + route
 
   # _getModule takes

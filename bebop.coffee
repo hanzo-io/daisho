@@ -44,6 +44,8 @@ compileCoffee = (src) ->
 module.exports =
   port: 4242
 
+  fallback: 'example/index.html'
+
   cwd: process.cwd()
 
   exclude: [

@@ -67,6 +67,7 @@
     "uglify-js": "^2.6.1"
   },
   "dependencies": {
+    "bebop": "1.8.3",
     "broken": "0.1.2",
     "crowdcontrol": "2.0.12",
     "page": "1.7.0",
