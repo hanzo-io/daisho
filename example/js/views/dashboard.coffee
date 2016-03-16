@@ -6,27 +6,4 @@ module.exports = class Dashboard extends View
   tag: 'dashboard'
   html: require '../templates/dashboard.html'
 
-  init: ()->
-
-    @on 'updated', ()->
-      $grid = $(@root).find('.grid')
-
-      if !$grid[0].$grid?
-        $grid.packery
-          itemSelector: '.grid-item',
-          gutter: 0,
-          columnWidth: 360
-
-        $grid[0].$grid = $grid
-
-      # make all grid-items draggable
-      $grid.find('.grid-item').each (i, gridItem )->
-        if gridItem.draggie?
-          return
-
-        draggie = new Draggabilly gridItem
-        gridItem.draggie = draggie
-
-        # bind drag events to Packery
-        $grid.packery 'bindDraggabillyEvents', draggie
-
+  route: ()->

@@ -60,7 +60,7 @@ exports =
         do (module, modules)=>
           m = {}
           m.definition = module
-          require module.name + '-v' + module.version + '/bundle.js', (js)->
+          require module.name + '-v' + module.version + '/bundle.js', (js)=>
             m.name  = js.name
             m.js    = js
 
@@ -96,7 +96,7 @@ exports =
 
   # change page route
   route: (route)->
-    page route
+    page @basePath + '/' + route
 
   # _getModule takes
   _getModule: (moduleName)->

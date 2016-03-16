@@ -11,11 +11,14 @@ if window?
 
   Daisho.init '/example', '/example/fixtures/modules.json'
   .then () ->
-    return Daisho.load ['home', 'user']
+    return Daisho.load [
+      'home'
+      'user'
+    ]
   .then (modules)->
     return riot.mount 'dashboard',
       modules: modules
-
   .then ()->
-    # Daisho.route 'home'
+    Daisho.setRenderElement $('dashboard > section')[0]
+    Daisho.route 'home'
 
