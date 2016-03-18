@@ -20,6 +20,9 @@ exports =
   # Indexed map of modules required and loaded
   modules:              {}
 
+  # List of modules in the order they were specified in load()
+  moduleList:  []
+
   # Element with which to render the dashboard pages into
   renderElement: null
 
@@ -54,50 +57,57 @@ exports =
 
       waits = 0
 
-      @modules = modules = {}
+      @modules      = modules       = {}
+      @moduleList   = moduleList    = []
+
       for moduleRequired in @modulesRequired
         module = @_getModule moduleRequired
 
         waits++
 
-        do (module, modules)=>
+        do (module, modules, moduleList)=>
           m = {}
           m.definition = module
-          require module.name + '-v' + module.version + '/bundle.js', (js)=>
-            m.name  = js.name
-            m.js    = js
+          moduleList.push m
+          modules[module.name] = m
 
-            waits--
-            clearTimeout timeoutId
+          do (m)=>
+            require module.name + '-v' + module.version + '/bundle.js', (js)=>
+              m.name  = js.name
+              m.js    = js
+              m.key   = module.name
 
-            modules[module.name] = m
+              waits--
+              clearTimeout timeoutId
 
-            for r, p of js.prototype.routes
-              r = '' if r == '/'
-              do (r, p)=>
-                page '/' + module.name + r, ()=>
-                  moduleInstance = (new js)
-                  if @activeModuleInstance != moduleInstance
-                    if @activeModuleInstance?.unload
-                      @activeModuleInstance.unload()
-                    @activeModuleInstance = moduleInstance
-                    @activeModuleInstance.load()
 
-                  if @activePageInstance?.unload
-                    @activePageInstance.unload()
-                    while @renderElement.firstChild?
-                      @renderElement.removeChild @renderElement.firstChild
+              for r, p of js.prototype.routes
+                r = '' if r == '/'
+                do (r, p)=>
+                  page '/' + module.name + r, ()=>
+                    moduleInstance = (new js)
+                    if @activeModuleInstance != moduleInstance
+                      if @activeModuleInstance?.unload
+                        @activeModuleInstance.unload()
+                      @activeModuleInstance = moduleInstance
+                      @activeModuleInstance.load()
 
-                  @activePageInstance = (new p @renderElement, @activeModuleInstance)
-                  @activePageInstance.load()
-                  @activePageInstance.render()
+                    if @activePageInstance?.unload
+                      @activePageInstance.unload()
+                      while @renderElement.firstChild?
+                        @renderElement.removeChild @renderElement.firstChild
 
-            if waits == 0
-              resolve(modules)
+                    @activePageInstance = (new p @renderElement, @activeModuleInstance)
+                    @activePageInstance.load()
+                    @activePageInstance.render()
 
-          m.css = module.name + '-v' + module.version + '/bundle.css'
+              if waits == 0
+                resolve { modules: @modules, moduleList: @moduleList }
 
-      p.resolve(@modules) if waits == 0
+            m.css = module.name + '-v' + module.version + '/bundle.css'
+
+       if waits == 0
+         p.resolve { modules: @modules, moduleList: @moduleList }
 
   # change page route
   route: (route)->

@@ -3,7 +3,7 @@
 <nav>
   <span>NAVIGATION</span>
   <ul>
-    <li each="{ k, v in modules }" onclick="{ route(k) }">{ v.name }</li>
+    <li each="{ m in moduleList }" onclick="{ route(m.key) }">{ m.name }</li>
   </ul>
 </nav>
 

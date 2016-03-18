@@ -7,6 +7,7 @@ m           = require './mediator'
 Views       = require './views'
 Controls    = require './controls'
 Events      = require './events'
+store       = require './utils/store'
 
 window.Dashboard =
   Views: Views
@@ -22,11 +23,21 @@ client = new Api
   endpoint: 'https://api-dot-hanzo-staging.appspot.com'
 
 client.addBlueprints k,v for k,v of blueprints
-data = refer
-  key: ''
+
+d = store.get 'data'
+if !d?
+  data = refer
+    key: ''
+else
+  data = refer d
 
 Daisho.init '/example', '/example/fixtures/modules.json'
 .then ->
+
+  key = data.get 'key'
+  if key
+    return key
+
   p = new Promise (resolve, reject) ->
     riot.mount 'login',
       client:   client
@@ -34,20 +45,26 @@ Daisho.init '/example', '/example/fixtures/modules.json'
 
     m.on Events.LoginSuccess, (res)->
       data.set 'key', res.access_token
+      store.set 'data', data.get()
+
       riot.update()
-      resolve()
+      resolve res.access_token
 
   return p
-.then ->
+
+.then (key)->
+  client.setKey key
+
   # Emulate how we would query the modules out of the org we logged into
   return Daisho.load [
     'home'
     'user'
   ]
-.then (modules) ->
 
+.then (data) ->
   riot.mount 'dashboard',
-    modules: modules
+    modules:    data.modules
+    moduleList: data.moduleList
     api:     client
 
 .then ->
