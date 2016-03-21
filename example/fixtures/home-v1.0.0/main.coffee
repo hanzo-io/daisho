@@ -13,7 +13,10 @@ class Widgets extends Page
     grid = document.createElement 'GRID'
     @el.appendChild grid
 
-    return riot.mount 'grid', {}
+    @tag = (riot.mount 'grid', {})[0]
+
+  unload: ()->
+    @tag.unmount()
 
 module.exports = class Home extends Module
   @name: 'Home'

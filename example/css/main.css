@@ -31,10 +31,11 @@ body{
 }
 nav{
   width:15rem;
-  height:100%;
   position:absolute;
   left:0;
-  top:0;
+  top:4rem;
+  bottom:3rem;
+  overflow:scroll;
 }
 nav ul{
   list-style-type:none;
@@ -44,16 +45,26 @@ nav ul li{
   cursor:pointer;
 }
 body.collapsed nav{
-  left:-15rem;
+  left:-navWidth;
 }
 section{
-  min-height:800px;
-  margin-top:4rem;
-  margin-bottom:3rem;
-  margin-left:15rem;
+  top:4rem;
+  bottom:3rem;
+  left:15rem;
+  position:absolute;
+  right:0;
+  overflow:scroll;
 }
 body.collapsed section{
   margin-left:0;
+}
+dashboard{
+  height:100%;
+  bottom:0;
+  left:0;
+  right:0;
+  top:0;
+  position:fixed;
 }
 .grid .grid-item > *{
   border:1px solid #000;

@@ -1,5 +1,6 @@
-headerHeight = 4rem
-footerHeight = 3rem
+headerHeight    = 4rem
+footerHeight    = 3rem
+navWidth        = 15rem
 
 header
 footer
@@ -51,11 +52,12 @@ body
   position: relative
 
 nav
-  width:    15rem
-  height:   100%
+  width:    navWidth
   position: absolute
   left:     0
-  top:      0
+  top:      headerHeight
+  bottom:   footerHeight
+  overflow: scroll
 
   ul
     list-style-type: none
@@ -66,7 +68,7 @@ nav
 
 body.collapsed
   nav
-    left: -15rem
+    left: -navWidth
 
 //
 // Navigation
@@ -74,10 +76,12 @@ body.collapsed
 //
 
 section
-  min-height:       800px
-  margin-top:       headerHeight
-  margin-bottom:    footerHeight
-  margin-left:  15rem
+  top:      4rem
+  bottom:   3rem
+  left:     15rem
+  position: absolute
+  right:    0
+  overflow: scroll
 
 body.collapsed
   section
