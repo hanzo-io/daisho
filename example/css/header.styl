@@ -1,0 +1,30 @@
+//
+// Structural Elements
+//
+header
+  padding: 0
+
+  .branding
+    width:      navWidth + defaultPadding
+    height:     100%
+    padding:    .8em
+
+//
+//  Logo - Image logo icon and adjacent logo text
+//
+//  @example
+//  div.branding
+//      img.logo(src="https://placebear.com/200/200")
+//      span
+//          | Bear Corp
+//      span
+//          | Unrelated Non-Text
+//
+
+img.logo
+  width: 1.5em
+
+  & + *
+    position: relative
+    top: -.4em
+    left: .4em

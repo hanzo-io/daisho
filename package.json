@@ -30,7 +30,7 @@
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
     "autoprefixer": "6.3.3",
-    "bebop": "1.8.2",
+    "bebop": "1.8.3",
     "cake-publish": "0.1.1",
     "cake-version": "0.1.3",
     "chai": "^3.4.1",
@@ -67,11 +67,10 @@
     "uglify-js": "^2.6.1"
   },
   "dependencies": {
-    "bebop": "1.8.3",
     "broken": "0.1.2",
-    "cookie-js": "0.0.1",
     "cookies-js": "1.2.2",
     "crowdcontrol": "2.0.12",
+    "daisho-riot": "1.0.0",
     "page": "1.7.0",
     "raf": "3.2.0",
     "riot": "2.3.17",

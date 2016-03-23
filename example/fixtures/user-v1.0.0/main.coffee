@@ -1,7 +1,7 @@
 {
   Page
   Module
-} = require '../../../src/sdk'
+} = require 'daisho-sdk'
 
 module.exports = class User extends Module
   @name: 'User'

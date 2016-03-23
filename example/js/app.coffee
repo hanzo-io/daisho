@@ -5,7 +5,10 @@ refer       = require 'referential'
 
 m           = require './mediator'
 Views       = require './views'
-Controls    = require './controls'
+{
+  Controls
+} = require '../node_modules/daisho-riot'
+
 Events      = require './events'
 store       = require './utils/store'
 
@@ -68,5 +71,5 @@ Daisho.init '/example', '/example/fixtures/modules.json'
     api:     client
 
 .then ->
-  Daisho.setRenderElement $('dashboard > section')[0]
+  Daisho.setRenderElement $('dashboard > main')[0]
   Daisho.route 'home'

@@ -1,22 +1,16 @@
 {
-  Page
   Module
-} = require '../../../src/sdk'
+} = require 'daisho-sdk'
+
+{ RiotPage } = require 'daisho-riot'
 
 riot = require 'riot'
 
 Grid = require './grid'
 Grid.register()
 
-class Widgets extends Page
-  render: ()->
-    grid = document.createElement 'GRID'
-    @el.appendChild grid
-
-    @tag = (riot.mount 'grid', {})[0]
-
-  unload: ()->
-    @tag.unmount()
+class Widgets extends RiotPage
+  tag: 'grid'
 
 module.exports = class Home extends Module
   @name: 'Home'
