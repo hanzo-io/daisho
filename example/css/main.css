@@ -20,6 +20,9 @@ nav > ul > li:hover{
 nav > ul > li:hover *{
   background-color:#fff;
 }
+nav > ul > li:hover .name:after{
+  background-color:#fff;
+}
 search{
   color:#000;
   background-color:#fff;
@@ -111,19 +114,23 @@ header .branding{
   top:-0.4em;
   left:0.4em;
 }
+.username,
+.orgname{
+  padding:0.8em 1.2em;
+  float:right;
+}
 .username span,
 .orgname span{
   position:relative;
   top:0.25em;
-  left:0.4em;
 }
-.username{
-  width:195px;
-  float:right;
+.username .avatar{
+  width:1.5em;
+  border-radius:50%;
 }
-.orgname{
-  width:135px;
-  float:right;
+.username span{
+  top:-0.4em;
+  padding:0 0 0 0.4em;
 }
 search{
   box-shadow:0.1em 0.1em 1em #888;
@@ -157,14 +164,24 @@ nav > ul > li .name{
   height:55px;
   overflow:hidden;
 }
+nav > ul > li .name:after{
+  content:'';
+  height:100%;
+  width:10px;
+  display:block;
+  position:absolute;
+  left:-10px;
+  top:0;
+}
 nav > ul > li:hover .icon{
   background-image:url("../img/nav-item-active.png");
 }
 nav > ul > li:hover .name{
   width:100px;
-  padding:1em 1.25em;
+  padding:1em 1.25em 1em 0;
   line-height:1.6em;
   box-shadow:0.1em 0.1em 1em #888;
+  overflow:visible;
 }
 login{
   position:fixed;

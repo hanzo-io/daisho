@@ -14,6 +14,16 @@ nav
 //
 
 nav
+  // &:before
+  //   content:    ''
+  //   display:    block
+  //   color:      black
+  //   width:      100%
+  //   height:     10px
+  //   position:   absolute
+  //   top: 0
+  //   left: 0
+
   > ul
     list-style-type: none
     margin: 0
@@ -39,12 +49,22 @@ nav
         height: 55px
         overflow: hidden
 
+        &:after
+          content: '';
+          height: 100%;
+          width: 10px;
+          display: block;
+          position: absolute;
+          left: -10px;
+          top: 0;
+
       &:hover
         .icon
           background-image: url(../img/nav-item-active.png)
         .name
-          width: navHoverWidth
-          padding:  1em 1.25em
-          line-height: 1.6em
-          box-shadow: .1em .1em 1em #888
+          width:        navHoverWidth
+          padding:      1em 1.25em 1em 0
+          line-height:  1.6em
+          box-shadow:   .1em .1em 1em #888
+          overflow:     visible
 
