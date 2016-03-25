@@ -5384,7 +5384,7 @@
   });
   // source: example/js/templates/dashboard.html
   require.define('./templates/dashboard', function (module, exports, __dirname, __filename, process) {
-    module.exports = '<main>\n</main>\n<header>\n  <div class="branding">\n    <img class="logo" src="img/logo.png">\n    <span>hanzo</span>\n  </div>\n  <div class="username">\n    <span>Your Name</span>\n  </div>\n  <div class="orgname">\n    <span>Your Org</span>\n  </div>\n</header>\n<nav>\n  <ul>\n    <li each="{ m in moduleList }" onclick="{ route(m.key) }">\n      <div class="icon"></div>\n      <div class="name">\n        { m.name }\n      </div>\n    </li>\n  </ul>\n</nav>\n<search>SEARCH</search>\n\n<footer>FOOTER</footer>\n\n'
+    module.exports = '<main>\n</main>\n<header>\n  <div class="branding">\n    <img class="logo" src="img/logo.png">\n    <span>hanzo</span>\n  </div>\n  <div class="orgname">\n    <span>Your Org</span>\n  </div>\n  <div class="username">\n    <span>Your Name</span>\n  </div>\n</header>\n<nav>\n  <ul>\n    <li each="{ m in moduleList }" onclick="{ route(m.key) }">\n      <div class="icon"></div>\n      <div class="name">\n        { m.name }\n      </div>\n    </li>\n  </ul>\n</nav>\n<search>SEARCH</search>\n\n<footer>FOOTER</footer>\n\n'
   });
   // source: example/js/views/login.coffee
   require.define('./views/login', function (module, exports, __dirname, __filename, process) {
