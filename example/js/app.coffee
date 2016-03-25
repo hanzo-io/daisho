@@ -1,14 +1,10 @@
-riot          = require 'riot'
-window.riot   = riot
-
+window.riot = require 'riot'
+{Controls}  = require 'daisho-riot'
 refer       = require 'referential'
 
 m           = require './mediator'
-Views       = require './views'
-{
-  Controls
-} = require '../node_modules/daisho-riot'
 
+Views       = require './views'
 Events      = require './events'
 store       = require './utils/store'
 
