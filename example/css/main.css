@@ -133,7 +133,7 @@ header .branding{
   padding:0 0 0 0.4em;
 }
 search{
-  box-shadow:0.1em 0.1em 1em #888;
+  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.7);
 }
 nav{
   padding:0;
@@ -157,7 +157,7 @@ nav > ul > li .icon{
 }
 nav > ul > li .name{
   white-space:nowrap;
-  left:70px;
+  left:60px;
   position:absolute;
   top:0;
   width:0;
@@ -177,10 +177,10 @@ nav > ul > li:hover .icon{
   background-image:url("../img/nav-item-active.png");
 }
 nav > ul > li:hover .name{
-  width:100px;
-  padding:1em 1.25em 1em 0;
+  width:110px;
+  padding:1em 1.25em 1em 10px;
   line-height:1.6em;
-  box-shadow:0.1em 0.1em 1em #888;
+  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.7);
   overflow:visible;
 }
 login{
@@ -272,7 +272,7 @@ button,
   border:0;
   color:#fff;
   padding:0.5em 1em;
-  box-shadow:0.1em 0.1em 1em #888;
+  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.7);
   outline:none;
   -webkit-transition:all 0.5s ease;
   transition:all 0.5s ease;
@@ -288,7 +288,7 @@ button:disabled,
 }
 button:hover,
 .button:hover{
-  box-shadow:0.1em 0.3em 1em #888;
+  box-shadow:0.1em 0.3em 1em rgba(0,0,0,0.7);
 }
 footer{
   display:none;
