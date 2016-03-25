@@ -9,7 +9,6 @@ nav
 main
   position:     absolute
   transition:   all 0.2s ease-in-out
-  padding:      1rem
 
 dashboard *
   box-sizing:   border-box
@@ -74,19 +73,12 @@ footer
 //
 
 nav
-  width:    navWidth
-  position: absolute
-  left:     0
-  top:      headerHeight + searchHeight
-  bottom:   footerHeight
-  overflow: scroll
-
-  ul
-    list-style-type: none
-    padding: 0
-
-    li
-      cursor: pointer
+  width:        navWidth
+  position:     absolute
+  left:         0
+  top:          headerHeight + searchHeight
+  bottom:       footerHeight
+  overflow-x:   visible
 
 body.collapsed
   nav

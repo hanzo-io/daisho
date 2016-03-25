@@ -5,9 +5,17 @@ header{
 header .branding{
   border-right:1px solid #fff;
 }
+header .username,
+header .orgname{
+  border-left:1px solid #fff;
+}
 nav{
   color:#fff;
   background-color:#362a49;
+}
+nav > ul > li .name{
+  color:#935de1;
+  background-color:#fff;
 }
 search{
   color:#000;
@@ -25,7 +33,6 @@ main{
   position:absolute;
   -webkit-transition:all 0.2s ease-in-out;
   transition:all 0.2s ease-in-out;
-  padding:1rem;
 }
 dashboard *{
   box-sizing:border-box;
@@ -63,14 +70,7 @@ nav{
   left:0;
   top:120px;
   bottom:0px;
-  overflow:scroll;
-}
-nav ul{
-  list-style-type:none;
-  padding:0;
-}
-nav ul li{
-  cursor:pointer;
+  overflow-x:visible;
 }
 body.collapsed nav{
   left:-navWidth;
@@ -92,16 +92,76 @@ header{
 }
 header .branding{
   width:106px;
+}
+.branding,
+.username,
+.orgname{
+  display:inline-block;
   height:100%;
   padding:0.8em;
 }
-img.logo{
+.branding .logo{
   width:1.5em;
 }
-img.logo + *{
+.branding .logo + *{
   position:relative;
   top:-0.4em;
   left:0.4em;
+}
+.username span,
+.orgname span{
+  position:relative;
+  top:0.3em;
+  left:0.4em;
+}
+.username{
+  width:195px;
+  float:right;
+}
+.orgname{
+  width:135px;
+  float:right;
+}
+search{
+  box-shadow:0.1em 0.1em 1em #888;
+}
+nav{
+  padding:0;
+}
+nav > ul{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+nav > ul > li{
+  cursor:pointer;
+  height:55px;
+  padding:1em 1.25em;
+  position:relative;
+}
+nav > ul > li .icon{
+  width:1.5em;
+  height:1.5em;
+  background-image:url("../img/nav-item.png");
+  background-size:contain;
+}
+nav > ul > li .name{
+  white-space:nowrap;
+  left:70px;
+  position:absolute;
+  top:0;
+  width:0;
+  height:55px;
+  overflow:hidden;
+}
+nav > ul > li:hover .icon{
+  background-image:url("../img/nav-item-active.png");
+}
+nav > ul > li:hover .name{
+  width:100px;
+  padding:1em 1.25em;
+  line-height:1.6em;
+  box-shadow:0.1em 0.1em 1em #888;
 }
 login{
   position:fixed;
@@ -174,7 +234,7 @@ text-control input{
   border:0;
   border-bottom:solid #252525 1px;
   outline:none;
-  -webkit-box-shadow:0 0 0px 1000px #fff inset;
+  box-shadow:0 0 0px 1000px #fff inset;
 }
 text-control input.filled ~ label,
 text-control input:focus ~ label{

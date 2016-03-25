@@ -19,6 +19,7 @@ textAccentColor = primaryColor2
 mainBackgroundColor     = #F2F2F2
 searchBackgroundColor   = #FFF
 dividerColor            = #FFF
+navHoverColor           = #FFF
 
 //
 // Color Assignments
@@ -31,9 +32,16 @@ header
   .branding
     border-right:   1px solid dividerColor
 
+  .username, .orgname
+    border-left:    1px solid dividerColor
+
 nav
   color:            textLightColor
   background-color: primaryColor1
+
+  > ul > li .name
+    color:              primaryColor2
+    background-color:   navHoverColor
 
 search
   color:            textDarkColor

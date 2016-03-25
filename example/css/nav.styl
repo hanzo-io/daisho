@@ -1,0 +1,50 @@
+//
+// Structural Elements
+//
+nav
+  padding: 0
+
+//
+//  Nav Item: Object representing a navigation option
+//
+//  @example
+//  nav
+//      ul
+//          li Navigation
+//
+
+nav
+  > ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+
+    > li
+      cursor:   pointer
+      height:   navHeight
+      padding:  1em 1.25em
+      position: relative
+
+      .icon
+        width:  1.5em
+        height: 1.5em
+        background-image: url(../img/nav-item.png)
+        background-size: contain
+      .name
+        white-space: nowrap
+        left: 70px
+        position: absolute
+        top: 0
+        width: 0
+        height: 55px
+        overflow: hidden
+
+      &:hover
+        .icon
+          background-image: url(../img/nav-item-active.png)
+        .name
+          width: navHoverWidth
+          padding:  1em 1.25em
+          line-height: 1.6em
+          box-shadow: .1em .1em 1em #888
+
