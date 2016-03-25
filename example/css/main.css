@@ -254,7 +254,7 @@ text-control input{
   border:0;
   border-bottom:solid #252525 1px;
   outline:none;
-  -webkit-box-shadow:0 0 0px 1000px #fff inset;
+  box-shadow:0 0 0px 1000px #fff inset;
 }
 text-control input.filled ~ label,
 text-control input:focus ~ label{
