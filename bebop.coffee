@@ -13,9 +13,10 @@ bundles =
 
   'example/js/app.js':
     entry:         'example/js/app.coffee'
+    globalRequire: true
+    includeAsync:  true
     regex:         /example\/js/
     requireAs:     'app'
-    globalRequire: true
 
   'example/fixtures/user-v1.0.0/bundle.js':
     async:         true
