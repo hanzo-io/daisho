@@ -49,7 +49,7 @@ exports =
   setRenderElement: (@renderElement)->
 
   # load takes an array of module names, looks them up in the saved module.json and requires them in
-  load: (@modulesRequired, @defaultModule)->
+  load: (@modulesRequired, opts)->
     return new Promise (resolve, reject)=>
       timeoutId = setTimeout ()->
         reject(new Error "Loading Timed Out")
@@ -90,7 +90,7 @@ exports =
                       if @activeModuleInstance?.unload
                         @activeModuleInstance.unload()
                       @activeModuleInstance = moduleInstance
-                      @activeModuleInstance.load()
+                      @activeModuleInstance.load(opts)
 
                     if @activePageInstance?.unload
                       @activePageInstance.unload()
@@ -98,7 +98,7 @@ exports =
                         @renderElement.removeChild @renderElement.firstChild
 
                     @activePageInstance = (new p @renderElement, @activeModuleInstance)
-                    @activePageInstance.load()
+                    @activePageInstance.load(opts)
                     @activePageInstance.render()
 
               if waits == 0

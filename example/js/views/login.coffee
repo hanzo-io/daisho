@@ -11,6 +11,8 @@ module.exports = class LoginForm extends CrowdControl.Views.Form
   tag: 'login'
   html: require '../templates/login.html'
 
+  client: null
+
   configs:
     'email':            [ isRequired, isEmail ]
     'password':         [ isPassword ]

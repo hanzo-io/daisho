@@ -1,5 +1,5 @@
 window.riot = require 'riot'
-{Controls}  = require 'daisho-riot'
+DaishoRiot  = require 'daisho-riot'
 refer       = require 'referential'
 
 m           = require './mediator'
@@ -12,7 +12,7 @@ window.Dashboard =
   Views: Views
 
 Views.register()
-Controls.register()
+DaishoRiot.register()
 
 { Api }     = require 'hanzo.js'
 blueprints  = require './blueprints'
@@ -58,13 +58,16 @@ Daisho.init '/example', '/example/fixtures/modules.json'
   return Daisho.load [
     'home'
     'user'
-  ]
+  ],
+  {
+    client: client
+  }
 
 .then (data) ->
   riot.mount 'dashboard',
     modules:    data.modules
     moduleList: data.moduleList
-    api:     client
+    api:        client
 
 .then ->
   Daisho.setRenderElement $('dashboard > main')[0]
