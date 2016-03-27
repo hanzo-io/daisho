@@ -290,6 +290,26 @@ button:hover,
 .button:hover{
   box-shadow:0.1em 0.3em 1em rgba(0,0,0,0.7);
 }
+table-widget{
+  display:table;
+  width:100%;
+}
+table-widget .table-head{
+  display:table-header-group;
+  width:100%;
+}
+table-widget .table-body{
+  display:table-row-group;
+  width:100%;
+}
+table-widget .table-row{
+  display:table-row;
+  width:100%;
+}
+table-widget .table-row > *,
+table-widget .table-cell{
+  display:table-cell;
+}
 footer{
   display:none;
 }/*# sourceMappingURL=main.css.map */

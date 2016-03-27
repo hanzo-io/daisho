@@ -71,4 +71,8 @@ Daisho.init '/example', '/example/fixtures/modules.json'
 
 .then ->
   Daisho.setRenderElement $('dashboard > main')[0]
-  Daisho.route 'home'
+  lastRoute = Daisho.lastRoute()
+  if !lastRoute
+    Daisho.route 'home'
+  else
+    Daisho.route lastRoute

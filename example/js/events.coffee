@@ -5,4 +5,3 @@ module.exports =
     'login-success'
   LoginFailed:
     'login-failed'
-

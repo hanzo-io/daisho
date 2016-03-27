@@ -3,6 +3,7 @@ Xhr         = require 'xhr-promise-es6'
 Xhr.Promise = Promise
 
 page        = require 'page'
+store       = require './utils/store'
 
 require.urlFor = (file)->
   return '/example/fixtures/' + file
@@ -28,6 +29,9 @@ exports =
 
   # Whether or not page.js is initialized
   started: false
+
+  # Current Route
+  currentRoute: ''
 
   # init sets up the router using basepath and takes the url of the modules.json and downloads it
   init: (@basePath, @modulesUrl)->
@@ -110,12 +114,20 @@ exports =
          p.resolve { modules: @modules, moduleList: @moduleList }
 
   # change page route
-  route: (route)->
+  route: (route = '')->
+    if route == @currentRoute
+      return
+
     if !@started
       @started = true
       page()
 
+    @currentRoute = route
+    store.set 'route', route
     page @basePath + '/' + route
+
+  lastRoute: ()->
+    return store.get 'route'
 
   # _getModule takes
   _getModule: (moduleName)->
