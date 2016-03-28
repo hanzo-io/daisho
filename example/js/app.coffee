@@ -6,7 +6,7 @@ m           = require './mediator'
 
 Views       = require './views'
 Events      = require './events'
-cookies     = require 'cookie-js'
+cookie      = require 'js-cookie'
 
 window.Dashboard =
   Views: Views
@@ -23,12 +23,12 @@ client = new Api
 
 client.addBlueprints k,v for k,v of blueprints
 
-d = store.get 'data'
+d = cookie.get 'data'
 if !d?
   data = refer
     key: ''
 else
-  data = refer d
+  data = refer JSON.parse d
 
 Daisho.init '/example', '/example/fixtures/modules.json'
 .then ->
@@ -44,7 +44,8 @@ Daisho.init '/example', '/example/fixtures/modules.json'
 
     m.on Events.LoginSuccess, (res)->
       data.set 'key', res.access_token
-      store.set 'data', data.get()
+      cookie.set 'data', JSON.stringify(data.get()),
+        expires: res.expires_in / 3600 / 24
 
       riot.update()
       resolve res.access_token

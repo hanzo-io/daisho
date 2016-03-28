@@ -31,7 +31,7 @@
   "dependencies": {
     "broken": "0.1.2",
     "crowdcontrol": "2.0.12",
-    "daisho-riot": "1.0.8",
+    "daisho-riot": "1.0.9",
     "daisho-sdk": "1.0.2",
     "hanzo.js": "2.2.11",
     "js-cookie": "2.1.0",
