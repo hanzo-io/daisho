@@ -17,22 +17,27 @@ module.exports = class UserList extends View
         {
           id:   'email'
           name: 'Email'
+          tag:  'daisho-static-text'
         }
         {
           id:   'firstName'
           name: 'First Name'
+          tag:  'daisho-static-text'
         }
         {
           id:   'lastName'
           name: 'Last Name'
+          tag:  'daisho-static-text'
         }
         {
           id:   'createdAt'
           name: 'Created On'
+          tag:  'daisho-static-text'
         }
         {
           id:   'updatedAt'
           name: 'Last Updated'
+          tag:  'daisho-static-text'
         }
       ]
       items:    []
@@ -40,6 +45,13 @@ module.exports = class UserList extends View
       count:    0
       display:  10
       sort:     '-UpdatedAt'
+
+    @configs =
+      email:        null
+      firstName:    null
+      lastName:     null
+      createdAt:    null
+      updatedAt:    null
 
     @client.user.list
       page:     @data.get 'page'
