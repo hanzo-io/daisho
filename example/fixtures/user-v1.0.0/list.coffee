@@ -32,12 +32,12 @@ module.exports = class UserList extends View
         {
           id:   'createdAt'
           name: 'Created On'
-          tag:  'daisho-static-text'
+          tag:  'daisho-static-date'
         }
         {
           id:   'updatedAt'
           name: 'Last Updated'
-          tag:  'daisho-static-text'
+          tag:  'daisho-static-ago'
         }
       ]
       items:    []
