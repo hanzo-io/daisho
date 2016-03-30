@@ -311,7 +311,7 @@ daisho-table-widget .table-body:before{
   left:0;
   bottom:0;
   right:0;
-  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
+  box-shadow:0.1em 0.1em 1em tableDropShadowColor;
 }
 daisho-table-widget .table-body .table-row:first-child > *,
 daisho-table-widget .table-body daisho-table-row:first-child > *{
