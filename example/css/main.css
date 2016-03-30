@@ -38,7 +38,7 @@ nav,
 main{
   position:absolute;
   -webkit-transition:all 0.2s ease-in-out;
-  transition:all 0.2s ease-in-out;
+          transition:all 0.2s ease-in-out;
 }
 dashboard *{
   box-sizing:border-box;
@@ -209,7 +209,7 @@ daisho-text-control label{
   padding:1.6em 0 0.6em 0em;
   position:absolute;
   -webkit-transition:all 0.15s ease;
-  transition:all 0.15s ease;
+          transition:all 0.15s ease;
   width:100%;
 }
 daisho-text-control input{
@@ -238,7 +238,7 @@ button,
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.5);
   outline:none;
   -webkit-transition:all 0.5s ease;
-  transition:all 0.5s ease;
+          transition:all 0.5s ease;
 }
 button.disabled,
 .button.disabled,
@@ -311,7 +311,7 @@ daisho-table-widget .table-body:before{
   left:0;
   bottom:0;
   right:0;
-  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
+  box-shadow:0.1em 0.1em 1em tableDropShadowColor;
 }
 daisho-table-widget .table-body .table-row:first-child > *,
 daisho-table-widget .table-body daisho-table-row:first-child > *{
