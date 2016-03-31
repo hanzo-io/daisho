@@ -7,6 +7,7 @@ m           = require './mediator'
 Views       = require './views'
 Events      = require './events'
 cookie      = require 'js-cookie'
+raf         = require 'raf'
 
 window.Dashboard =
   Views: Views

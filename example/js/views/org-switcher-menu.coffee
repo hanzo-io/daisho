@@ -12,9 +12,9 @@ module.exports = class OrgSwitcherMenu extends View
   <yield if="{ data.get('options').length > 0 }"></yield>
   <daisho-menu-widget data="{ data }" if="{ data.get('options').length > 0 }"></daisho-menu-widget>
   '''
-
+  orgs: []
   dashboardData: null
-  init: ()->
+  init: ->
     @dashboardData = refer {} if !@dashboardData?
     @data = refer
       filter: ''
@@ -23,15 +23,20 @@ module.exports = class OrgSwitcherMenu extends View
     super
 
     @client.account.organization().then((res)=>
-      for org, i in res.organizations
-        do (i, org)=>
-          @data.set 'options.' + i,
-            name: org
-            action: ()->
-              m.trigger Events.SwitchOrg, org
+      @orgs = res.organizations
       @update()
     ).catch (err)=>
       console.log err.message
       @update()
 
+    @on 'update', =>
+      @data.set 'options', []
+      i = 0
+      for org in @orgs
+        if org != @dashboardData.get 'organization'
+          do (i, org)=>
+            @data.set 'options.' + i++,
+              name: org
+              action: ()->
+                m.trigger Events.SwitchOrg, org
 
