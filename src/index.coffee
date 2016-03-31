@@ -126,6 +126,9 @@ exports =
     store.set 'route', route
     page @basePath + '/' + route
 
+  refresh: ()->
+    page @basePath + '/' + @currentRoute
+
   lastRoute: ()->
     return store.get 'route'
 

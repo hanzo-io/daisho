@@ -1,6 +1,6 @@
-<main>
+<main if="{ data.get('loggedIn') }">
 </main>
-<nav>
+<nav if="{ data.get('loggedIn') }">
   <ul>
     <li each="{ m in moduleList }" onclick="{ route(m.key) }">
       <div class="icon"></div>
@@ -10,20 +10,22 @@
     </li>
   </ul>
 </nav>
-<search>SEARCH</search>
-<header>
+<search if="{ data.get('loggedIn') }">SEARCH</search>
+<header if="{ data.get('loggedIn') }">
   <div class="branding">
     <img class="logo" src="img/logo.png">
     <span>hanzo</span>
   </div>
   <div class="orgname">
     <span>Your Org</span>
+    <org-switcher-menu client="{ client }" dashboardData="{ data }" class="menu">
+      <div>Switch Organization</div>
+    </org-switcher-menu>
   </div>
   <div class="username">
     <img class="avatar" src="https://placebear.com/g/200/200">
     <span>Your Name</span>
   </div>
 </header>
-
-<footer>FOOTER</footer>
+<footer if="{ data.get('loggedIn') }">FOOTER</footer>
 

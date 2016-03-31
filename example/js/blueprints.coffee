@@ -50,6 +50,11 @@ blueprints =
       method:   'POST'
       url:      '/auth'
 
+  account:
+    organization:
+      method:   'GET'
+      url:      '/_/account/organizations'
+
 models = [
   'user'
 ]

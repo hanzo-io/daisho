@@ -105,6 +105,7 @@ header .branding{
   display:inline-block;
   height:100%;
   padding:0.8em;
+  position:relative;
 }
 .branding .logo{
   width:1.5em;
@@ -131,6 +132,16 @@ header .branding{
 .username span{
   top:-0.4em;
   padding:0 0 0 0.4em;
+}
+.menu{
+  position:absolute;
+  top:100%;
+  right:0;
+  display:block;
+  max-height:500px;
+  min-width:200px;
+  overflow-y:auto;
+  background-color:#f00;
 }
 search{
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);

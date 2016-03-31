@@ -23,18 +23,17 @@ client = new Api
 
 client.addBlueprints k,v for k,v of blueprints
 
-d = cookie.get 'data'
-if !d?
-  data = refer
-    key: ''
-else
-  data = refer JSON.parse d
+data = refer
+  loggedIn:     false
+  organization: null
 
 Daisho.init '/example', '/example/fixtures/modules.json'
 .then ->
 
-  key = data.get 'key'
+  key= cookie.get 'key'
   if key
+    data.set 'organization', cookie.get 'organization'
+    data.set 'loggedIn', true
     return key
 
   p = new Promise (resolve, reject) ->
@@ -43,9 +42,17 @@ Daisho.init '/example', '/example/fixtures/modules.json'
       data:     data
 
     m.on Events.LoginSuccess, (res)->
-      data.set 'key', res.access_token
-      cookie.set 'data', JSON.stringify(data.get()),
-        expires: res.expires_in / 3600 / 24
+      organization = data.get 'organization'
+      expires = res.expires_in / 3600 / 24
+
+      data.set 'loggedIn', true
+      cookie.set 'key', res.access_token,
+        expires: expires
+      cookie.set organization + '-key', res.access_token,
+        expires: expires
+
+      cookie.set 'organization', organization,
+        expires: expires
 
       riot.update()
       resolve res.access_token
@@ -61,14 +68,30 @@ Daisho.init '/example', '/example/fixtures/modules.json'
     'user'
   ],
   {
-    client: client
+    organization:   data.get 'organization'
+    client:         client
   }
 
-.then (data) ->
+.then (moduleData) ->
   riot.mount 'dashboard',
-    modules:    data.modules
-    moduleList: data.moduleList
-    api:        client
+    data:       data
+    modules:    moduleData.modules
+    moduleList: moduleData.moduleList
+    client:     client
+
+    m.on Events.SwitchOrg, (org)->
+      data.set 'organization', org
+      cookie.set 'organization', org,
+        expires: 7
+      key = cookie.get org + '-key'
+      if key
+        cookie.set 'key', key
+        client.setKey key
+        Daisho.refresh()
+      else
+        data.set 'loggedIn', false
+
+      riot.update()
 
 .then ->
   Daisho.setRenderElement $('dashboard > main')[0]

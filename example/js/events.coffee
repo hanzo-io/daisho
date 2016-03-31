@@ -5,3 +5,6 @@ module.exports =
     'login-success'
   LoginFailed:
     'login-failed'
+
+  SwitchOrg:
+    'switch-organization'

@@ -20,6 +20,9 @@ module.exports = class LoginForm extends CrowdControl.Views.Form
 
   errorMessage: null
 
+  init: ()->
+    super
+
   _submit: (event)->
     opts =
       username:     @data.get 'email'
@@ -32,6 +35,7 @@ module.exports = class LoginForm extends CrowdControl.Views.Form
     m.trigger Events.Login
     @client.oauth.auth(opts).then((res)=>
       m.trigger Events.LoginSuccess, res
+      @data.set 'password', ''
       @update()
     ).catch (err)=>
       @errorMessage = err.message

@@ -1,4 +1,4 @@
-<form onsubmit={submit} if="{ !data.get('key') }">
+<form onsubmit={submit} if="{ !data.get('loggedIn') }">
   <daisho-text-control lookup="organization" placeholder="Organization"></daisho-text-control>
   <daisho-text-control lookup="email" placeholder="Email"></daisho-text-control>
   <daisho-text-control lookup="password" type="password" placeholder="Password"></daisho-text-control>
