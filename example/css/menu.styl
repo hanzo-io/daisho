@@ -1,19 +1,49 @@
 //
-// Menu: Header Menu
+//  Menu: Header Menu
 //
-// @example
-// .menu
+//  @example
+//  .menu
 //      ul
 //          li Option 1
 //      ul
 //          li Option 2
 //
+
+menuTitlePadding    = 40px
+menuSectionHeight   = 60px
+menuMinWidth        = 250px
+menuMaxItemsHeight  = 365px
+
 .menu
+  display: none
   position: absolute
   top: 100%
   right: 0
-  display: block
-  max-height: 500px
-  min-width: 200px
+  min-width: menuMinWidth
   overflow-y: auto
-  background-color: red
+  box-shadow: .1em .1em 1em dropShadowColor
+
+  .menu-title
+    font-size: 1.3em
+    padding: 0 menuTitlePadding
+    height: menuSectionHeight
+    white-space: nowrap
+    text-align: center
+    line-height: 3em
+
+  > ul
+    max-height: menuMaxItemsHeight
+
+.menu-toggle
+  display: none
+
+  &:checked
+    & + *
+      .menu
+        display: block
+  & + *
+    cursor: pointer
+
+    > *
+      cursor: default
+

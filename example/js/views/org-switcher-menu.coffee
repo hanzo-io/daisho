@@ -9,8 +9,8 @@ Events = require '../events'
 module.exports = class OrgSwitcherMenu extends View
   tag: 'org-switcher-menu'
   html: '''
-  <yield if="{ data.get('options').length > 0 }"></yield>
-  <daisho-menu-widget data="{ data }" if="{ data.get('options').length > 0 }"></daisho-menu-widget>
+  <yield></yield>
+  <daisho-menu-widget data="{ data }" }" filter-placeholder="Find an organization"></daisho-menu-widget>
   '''
   orgs: []
   dashboardData: null

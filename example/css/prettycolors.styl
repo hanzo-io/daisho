@@ -2,15 +2,18 @@
 // PrimaryColor
 //
 primaryColor1   = #362A49
-primaryColor2   = #935DE1
+primaryColor2   = #6529A4
+primaryColor3   = #2D2849
 
 //
 // Text Colors
 //
 
-textLightColor  = #FFF
-textDarkColor   = #000
-textAccentColor = primaryColor2
+textLightColor      = #FFF
+textDarkColor       = #000
+textAccentColor     = primaryColor2
+textDarkAccentColor = primaryColor3
+menuOptionColor     = #606060
 
 //
 // Special Colors
@@ -18,8 +21,17 @@ textAccentColor = primaryColor2
 
 mainBackgroundColor     = #F2F2F2
 searchBackgroundColor   = #FFF
-dividerColor            = #FFF
-navHoverColor           = #FFF
+
+dividerColor    = #FFF
+navHoverColor   = #FFF
+
+menuSelectedBackgroundColor = #FFF
+menuBackgroundColor         = #FFF
+menuDividerColor            = #F0F0F0
+menuItemHighlightColor      = #F1F3F4
+
+tableRowHighlightColor      = menuItemHighlightColor
+
 dropShadowColor         = rgba(0,0,0,0.3)
 
 //
@@ -56,3 +68,34 @@ search
 main
   color:            textDarkColor
   background-color: mainBackgroundColor
+
+.menu-toggle
+  &:checked
+    & + *
+      background-color: menuSelectedBackgroundColor
+      color:            primaryColor3
+
+  & + *:hover
+    background-color: menuSelectedBackgroundColor
+    color:            primaryColor2
+
+.menu
+  color:            menuOptionColor
+  background-color: menuBackgroundColor
+
+  .menu-title
+    color:          textAccentColor
+
+daisho-menu-widget
+  daisho-inline-text-control
+    border-top:     1px solid menuDividerColor
+    border-bottom:  1px solid menuDividerColor
+
+  > ul
+    > li
+      &:hover
+        color:              textAccentColor
+        background-color:   menuItemHighlightColor
+
+daisho-table-row:hover *
+  background-color: tableRowHighlightColor

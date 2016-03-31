@@ -16,12 +16,15 @@
     <img class="logo" src="img/logo.png">
     <span>hanzo</span>
   </div>
-  <div class="orgname">
-    <span>Your Org</span>
-    <org-switcher-menu client="{ client }" dashboard-data="{ data }" class="menu">
-      <div>Switch Organization</div>
+
+  <input type="checkbox" id="org-switcher" class="menu-toggle">
+  <label for="org-switcher" class="orgname" onclick="{ resetMenus }">
+    <span>{ data.get('organization') }</span>
+    <org-switcher-menu client="{ client }" dashboard-data="{ data }" class="menu" onclick="{ ignore }">
+      <div class="menu-title">Switch Organization</div>
     </org-switcher-menu>
-  </div>
+  </label>
+
   <div class="username">
     <img class="avatar" src="https://placebear.com/g/200/200">
     <span>Your Name</span>
