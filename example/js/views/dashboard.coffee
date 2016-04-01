@@ -3,6 +3,7 @@
 } = require('crowdcontrol').Views
 
 Daisho = require '../../../src/index.coffee'
+$ = require 'jquery'
 
 module.exports = class Dashboard extends View
   tag: 'dashboard'
@@ -18,6 +19,9 @@ module.exports = class Dashboard extends View
   route: (route)->
     return ()->
       Daisho.route route
+
+  currentRoute: ()->
+    return Daisho.currentRoute
 
   resetMenus: (event)->
     if event?

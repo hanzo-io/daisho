@@ -13,7 +13,7 @@ textLightColor      = #FFF
 textDarkColor       = #000
 textAccentColor     = primaryColor2
 textDarkAccentColor = primaryColor3
-menuOptionColor     = #606060
+textMediumColor     = #606060
 
 //
 // Special Colors
@@ -32,7 +32,7 @@ menuItemHighlightColor      = #F1F3F4
 
 tableRowHighlightColor      = menuItemHighlightColor
 
-dropShadowColor         = rgba(0,0,0,0.3)
+dropShadowColor             = rgba(0,0,0,0.3)
 
 //
 // Color Assignments
@@ -52,7 +52,7 @@ nav
   color:            textLightColor
   background-color: primaryColor1
 
-  > ul > li:hover
+  > ul > li:hover, li.active
     color: primaryColor2
     background-color: navHoverColor
     *
@@ -80,22 +80,41 @@ main
     color:            primaryColor2
 
 .menu
-  color:            menuOptionColor
+  color:            textMediumColor
   background-color: menuBackgroundColor
 
   .menu-title
     color:          textAccentColor
 
 daisho-menu-widget
+daisho-table-filter-menu-widget
   daisho-inline-text-control
-    border-top:     1px solid menuDividerColor
-    border-bottom:  1px solid menuDividerColor
+    border-top:     2px solid menuDividerColor
+    border-bottom:  2px solid menuDividerColor
 
   > ul
     > li
-      &:hover
+      &:not(.no-results):hover
         color:              textAccentColor
         background-color:   menuItemHighlightColor
 
 daisho-table-row:hover *
   background-color: tableRowHighlightColor
+
+daisho-table-filter-widget
+  color: textMediumColor
+
+.table-filter-count, .table-filter-sort
+  color: textAccentColor
+
+.table-filter-option.button
+  background-color: primaryColor2
+
+  &:hover
+    background-color: menuSelectedBackgroundColor
+
+.menu-toggle
+  &:checked
+    & + .table-filter-option
+      background-color: menuSelectedBackgroundColor
+

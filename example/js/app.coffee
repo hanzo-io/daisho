@@ -8,6 +8,7 @@ Views       = require './views'
 Events      = require './events'
 cookie      = require 'js-cookie'
 raf         = require 'raf'
+$           = require 'jquery'
 
 window.Dashboard =
   Views: Views

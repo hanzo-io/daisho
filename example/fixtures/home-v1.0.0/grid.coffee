@@ -1,6 +1,7 @@
 {
   View
 } = require('crowdcontrol').Views
+$ = require 'jquery'
 
 module.exports = class Grid extends View
   tag: 'grid'

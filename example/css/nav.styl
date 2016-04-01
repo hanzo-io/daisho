@@ -60,11 +60,15 @@ nav
 
       &:hover
         .icon
-          background-image: url(../img/nav-item-active.png)
+          background-image: url(../img/nav-item-hover.png)
         .name
           width:        navHoverWidth + 10px
           padding:      1em 1.25em 1em 10px
           line-height:  1.6em
           box-shadow:   .1em .1em 1em dropShadowColor
           overflow:     visible
+
+      &.active
+        .icon
+          background-image: url(../img/nav-item-active.png)
 

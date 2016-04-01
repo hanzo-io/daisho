@@ -13,6 +13,7 @@ menuTitlePadding    = 40px
 menuSectionHeight   = 60px
 menuMinWidth        = 250px
 menuMaxItemsHeight  = 365px
+menuZIndex          = 1000
 
 .menu
   display: none
@@ -22,17 +23,20 @@ menuMaxItemsHeight  = 365px
   min-width: menuMinWidth
   overflow-y: auto
   box-shadow: .1em .1em 1em dropShadowColor
+  z-index: menuZIndex
 
   .menu-title
-    font-size: 1.3em
+    font-size: 1.2em
     padding: 0 menuTitlePadding
     height: menuSectionHeight
     white-space: nowrap
     text-align: center
     line-height: 3em
 
-  > ul
+  ul
     max-height: menuMaxItemsHeight
+    > .no-results
+      cursor: default
 
 .menu-toggle
   display: none
@@ -46,4 +50,3 @@ menuMaxItemsHeight  = 365px
 
     > *
       cursor: default
-

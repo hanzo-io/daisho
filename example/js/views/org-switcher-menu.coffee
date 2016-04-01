@@ -10,14 +10,19 @@ module.exports = class OrgSwitcherMenu extends View
   tag: 'org-switcher-menu'
   html: '''
   <yield></yield>
-  <daisho-menu-widget data="{ data }" }" filter-placeholder="Find an organization"></daisho-menu-widget>
+  <daisho-menu-widget data="{ data }" }" filter-data="{ filterData }" filter-placeholder="Find an organization"></daisho-menu-widget>
   '''
   orgs: []
+
   dashboardData: null
+
   init: ->
     @dashboardData = refer {} if !@dashboardData?
+
     @data = refer
       filter: ''
+
+    @filterData = refer
       options: []
 
     super
@@ -35,7 +40,7 @@ module.exports = class OrgSwitcherMenu extends View
       for org in @orgs
         if org != @dashboardData.get 'organization'
           do (i, org)=>
-            @data.set 'options.' + i++,
+            @filterData.set 'options.' + i++,
               name: org
               action: ()->
                 m.trigger Events.SwitchOrg, org

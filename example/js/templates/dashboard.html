@@ -2,7 +2,7 @@
 </main>
 <nav if="{ data.get('loggedIn') }">
   <ul>
-    <li each="{ m in moduleList }" onclick="{ route(m.key) }">
+<li each="{ m in moduleList }" onclick="{ route(m.key) }" class="{ active: parent.currentRoute() == m.key }">
       <div class="icon"></div>
       <div class="name">
         { m.name }

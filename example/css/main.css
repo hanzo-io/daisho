@@ -13,14 +13,17 @@ nav{
   color:#fff;
   background-color:#362a49;
 }
-nav > ul > li:hover{
+nav > ul > li:hover,
+nav li.active{
   color:#6529a4;
   background-color:#fff;
 }
-nav > ul > li:hover *{
+nav > ul > li:hover *,
+nav li.active *{
   background-color:#fff;
 }
-nav > ul > li:hover .name:after{
+nav > ul > li:hover .name:after,
+nav li.active .name:after{
   background-color:#fff;
 }
 search{
@@ -46,16 +49,34 @@ main{
 .menu .menu-title{
   color:#6529a4;
 }
-daisho-menu-widget daisho-inline-text-control{
-  border-top:1px solid #f0f0f0;
-  border-bottom:1px solid #f0f0f0;
+daisho-menu-widget daisho-inline-text-control,
+daisho-table-filter-menu-widget daisho-inline-text-control{
+  border-top:2px solid #f0f0f0;
+  border-bottom:2px solid #f0f0f0;
 }
-daisho-menu-widget > ul > li:hover{
+daisho-menu-widget > ul > li:not(.no-results):hover,
+daisho-table-filter-menu-widget > ul > li:not(.no-results):hover{
   color:#6529a4;
   background-color:#f1f3f4;
 }
 daisho-table-row:hover *{
   background-color:#f1f3f4;
+}
+daisho-table-filter-widget{
+  color:#606060;
+}
+.table-filter-count,
+.table-filter-sort{
+  color:#6529a4;
+}
+.table-filter-option.button{
+  background-color:#6529a4;
+}
+.table-filter-option.button:hover{
+  background-color:#fff;
+}
+.menu-toggle:checked + .table-filter-option{
+  background-color:#fff;
 }
 header,
 search,
@@ -169,17 +190,21 @@ header .branding{
   min-width:250px;
   overflow-y:auto;
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
+  z-index:1000;
 }
 .menu .menu-title{
-  font-size:1.3em;
+  font-size:1.2em;
   padding:0 40px;
   height:60px;
   white-space:nowrap;
   text-align:center;
   line-height:3em;
 }
-.menu > ul{
+.menu ul{
   max-height:365px;
+}
+.menu ul > .no-results{
+  cursor:default;
 }
 .menu-toggle{
   display:none;
@@ -235,7 +260,7 @@ nav > ul > li .name:after{
   top:0;
 }
 nav > ul > li:hover .icon{
-  background-image:url("../img/nav-item-active.png");
+  background-image:url("../img/nav-item-hover.png");
 }
 nav > ul > li:hover .name{
   width:110px;
@@ -243,6 +268,23 @@ nav > ul > li:hover .name{
   line-height:1.6em;
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
   overflow:visible;
+}
+nav > ul > li.active .icon{
+  background-image:url("../img/nav-item-active.png");
+}
+.table-filter-summary:before{
+  content:'';
+  width:20px;
+  height:20px;
+  display:inline-block;
+  background-image:url("../img/nav-item-active.png");
+  background-size:contain;
+  margin-top:4px;
+  margin-right:8px;
+}
+.table-filter-summary > *{
+  position:relative;
+  top:-3px;
 }
 login{
   position:fixed;
@@ -300,6 +342,7 @@ button,
   outline:none;
   -webkit-transition:all 0.5s ease;
   transition:all 0.5s ease;
+  cursor:pointer;
 }
 button.disabled,
 .button.disabled,
@@ -345,7 +388,7 @@ daisho-table-widget daisho-table-row{
 daisho-table-widget .table-row > *,
 daisho-table-widget daisho-table-row > *{
   position:relative;
-  line-height:4em;
+  line-height:3.8em;
 }
 daisho-table-widget .table-row > *:first-child,
 daisho-table-widget daisho-table-row > *:first-child{
@@ -409,28 +452,33 @@ daisho-table-widget .table-body .table-row > *:last-child:after,
 daisho-table-widget .table-body daisho-table-row > *:last-child:after{
   right:32px;
 }
-daisho-menu-widget{
+daisho-menu-widget,
+daisho-table-filter-menu-widget{
   display:block;
   padding-bottom:15px;
 }
-daisho-menu-widget daisho-inline-text-control{
+daisho-menu-widget daisho-inline-text-control,
+daisho-table-filter-menu-widget daisho-inline-text-control{
   height:60px;
   display:block;
   padding:17px 20px;
 }
-daisho-menu-widget daisho-inline-text-control input{
+daisho-menu-widget daisho-inline-text-control input,
+daisho-table-filter-menu-widget daisho-inline-text-control input{
   width:100%;
-  font-size:1.2em;
+  font-size:1.1em;
   border:0;
   outline:none;
 }
-daisho-menu-widget > ul{
+daisho-menu-widget > ul,
+daisho-table-filter-menu-widget > ul{
   overflow-y:scroll;
   list-style:none;
   padding:0;
   margin:0;
 }
-daisho-menu-widget > ul > li{
+daisho-menu-widget > ul > li,
+daisho-table-filter-menu-widget > ul > li{
   padding:20px;
   cursor:pointer;
 }
@@ -479,4 +527,34 @@ daisho-table-widget{
   content:"";
   display:block;
   padding-top:1080px;
+}
+daisho-table-controls-widget{
+  height:60px;
+  background-color:#fff;
+  display:block;
+  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
+  padding:14px 16px;
+  position:relative;
+}
+daisho-table-controls-widget .menu{
+  margin-top:16px;
+}
+daisho-table-controls-widget .menu .menu-title{
+  padding-left:20px;
+  text-align:left;
+}
+.table-filter-summary{
+  font-size:1.2em;
+  line-height:1.6em;
+  display:inline-block;
+}
+.table-filter-option{
+  float:right;
+  height:100%;
+  margin-left:14px;
+  padding-top:0.45em;
+  padding-bottom:0.45em;
+}
+.table-filter-option > span{
+  pointer-events:none;
 }/*# sourceMappingURL=main.css.map */

@@ -19,6 +19,7 @@
 @import "menu.styl"
 @import "search.styl"
 @import "nav.styl"
+@import "table.styl"
 
 //
 // Login Styles
@@ -43,3 +44,35 @@
 //
 
 @import "module-stuff.styl"
+
+tableFilterHeight = 60px
+
+daisho-table-controls-widget
+  height: tableFilterHeight
+  background-color: #FFF
+  display: block
+  box-shadow: .1em .1em 1em dropShadowColor
+  padding: 14px 16px
+  position: relative
+
+  .menu
+    margin-top: 16px
+
+    .menu-title
+      padding-left: 20px
+      text-align: left
+
+.table-filter-summary
+  font-size: 1.2em
+  line-height: 1.6em
+  display: inline-block
+
+.table-filter-option
+  float: right
+  height: 100%
+  margin-left: 14px
+  padding-top: 0.45em
+  padding-bottom: 0.45em
+
+  > span
+    pointer-events:none
