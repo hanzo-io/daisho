@@ -62,7 +62,7 @@ daisho-table-filter-menu-widget > ul > li:not(.no-results):hover{
 daisho-table-row:hover *{
   background-color:#f1f3f4;
 }
-daisho-table-filter-widget{
+daisho-table-controls-widget{
   color:#606060;
 }
 .table-filter-count,
@@ -189,7 +189,7 @@ header .branding{
   right:0;
   min-width:250px;
   overflow-y:auto;
-  box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
+  box-shadow:0.1em 0.5em 1em rgba(0,0,0,0.3);
   z-index:1000;
 }
 .menu .menu-title{
@@ -331,6 +331,7 @@ daisho-text-control input:focus ~ label{
 daisho-text-control label{
   color:#252525;
   padding:1.5em 0;
+  pointer-events:none;
 }
 button,
 .button{

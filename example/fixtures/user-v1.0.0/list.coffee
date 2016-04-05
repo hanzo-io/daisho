@@ -45,8 +45,22 @@ module.exports = class UserList extends View
       count:    0
       display:  10
       sort:     '-UpdatedAt'
+      filter:   ''
+
+    @filterData = refer
+      options: [
+        {
+          name: 'Email'
+          id:   'email'
+          tag:  'daisho-text-control'
+          options:
+            placeholder: 'Email'
+            lookup: 'email'
+        }
+      ]
 
     @configs =
+      filter:       null
       email:        null
       firstName:    null
       lastName:     null
