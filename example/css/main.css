@@ -348,8 +348,11 @@ org-switcher-menu .menu-title{
   height:60px !important;
 }
 org-switcher-menu daisho-menu-widget{
-  font-size:10px;
+  font-size:0.9em !important;
   padding:0px !important;
+}
+org-switcher-menu daisho-inline-text-control{
+  padding:19px 20px !important;
 }
 login{
   position:fixed;
