@@ -14,11 +14,12 @@ module.exports = class Grid extends View
     @on 'updated', ()->
       $grid = $(@root).find('.grid')
 
-      if !$grid[0].$grid?
-        $grid.packery
-          itemSelector: '.grid-item',
-          gutter: 0,
-          columnWidth: 360
+      unless $grid[0].$grid?
+        if $grid.packery?
+          $grid.packery
+            itemSelector: '.grid-item'
+            gutter: 0
+            columnWidth: 360
 
         $grid[0].$grid = $grid
 
@@ -31,6 +32,7 @@ module.exports = class Grid extends View
         gridItem.draggie = draggie
 
         # bind drag events to Packery
-        $grid.packery 'bindDraggabillyEvents', draggie
+        if $grid.packery?
+          $grid.packery 'bindDraggabillyEvents', draggie
 
 

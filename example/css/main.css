@@ -1,3 +1,6 @@
+html{
+  font-family:Usual;
+}
 header{
   color:#fff;
   background-color:#362a49;
@@ -151,8 +154,13 @@ header .branding{
 .orgname{
   display:inline-block;
   height:100%;
-  padding:0.8em;
+  padding:1em;
   position:relative;
+  font-size:0.8em;
+}
+.branding{
+  font-size:1em;
+  padding:0.8em;
 }
 .branding .logo{
   width:1.5em;
@@ -162,9 +170,11 @@ header .branding{
   top:-0.4em;
   left:0.4em;
 }
+header .username{
+  padding:1.2em !important;
+}
 .username,
 .orgname{
-  padding:0.8em 1.2em;
   float:right;
 }
 .username span,
@@ -221,6 +231,50 @@ header .branding{
 search{
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
 }
+search .message{
+  color:#d3d3d3;
+  font-weight:300;
+  text-align:center;
+  white-space:nowrap;
+}
+search span.icon{
+  background-image:url("../img/search.png") !important;
+  margin-bottom:-1px;
+  margin-right:10px;
+  background:top right no-repeat;
+  display:inline-block;
+  height:16px;
+  width:16px;
+  background-size:16px;
+}
+search .message:hover{
+  -webkit-animation-name:search-hover;
+          animation-name:search-hover;
+  -webkit-animation-timing-function:ease-in-out;
+          animation-timing-function:ease-in-out;
+  -webkit-animation-duration:0.5s;
+          animation-duration:0.5s;
+  -webkit-animation-iteration-count:1;
+          animation-iteration-count:1;
+  -webkit-animation-fill-mode:forwards;
+          animation-fill-mode:forwards;
+}
+@-webkit-keyframes search-hover{
+  0%{
+    width:100%;
+  }
+  100%{
+    width:0%;
+  }
+}
+@keyframes search-hover{
+  0%{
+    width:100%;
+  }
+  100%{
+    width:0%;
+  }
+}
 nav{
   padding:0;
 }
@@ -243,7 +297,7 @@ nav > ul > li .icon{
 }
 nav > ul > li .name{
   white-space:nowrap;
-  left:60px;
+  left:70px;
   position:absolute;
   top:0;
   width:0;
@@ -263,9 +317,10 @@ nav > ul > li:hover .icon{
   background-image:url("../img/nav-item-hover.png");
 }
 nav > ul > li:hover .name{
+  font-size:0.9em;
+  font-weight:400;
   width:110px;
-  padding:1em 1.25em 1em 10px;
-  line-height:1.6em;
+  padding:1.3em;
   box-shadow:0.1em 0.1em 1em rgba(0,0,0,0.3);
   overflow:visible;
 }
@@ -281,10 +336,20 @@ nav > ul > li.active .icon{
   background-size:contain;
   margin-top:4px;
   margin-right:8px;
+  line-height:2em;
 }
 .table-filter-summary > *{
   position:relative;
   top:-3px;
+}
+org-switcher-menu .menu-title{
+  font-size:1.1em !important;
+  padding:10px !important;
+  height:60px !important;
+}
+org-switcher-menu daisho-menu-widget{
+  font-size:10px;
+  padding:0px !important;
 }
 login{
   position:fixed;
@@ -487,7 +552,7 @@ footer{
   display:none;
 }
 daisho-table-widget{
-  font-size:0.82rem;
+  font-size:0.75rem;
 }
 .grid .grid-item > *{
   border:1px solid #000;
@@ -546,7 +611,7 @@ daisho-table-controls-widget .menu .menu-title{
 }
 .table-filter-summary{
   font-size:1.2em;
-  line-height:1.6em;
+  line-height:2em;
   display:inline-block;
 }
 .table-filter-option{
