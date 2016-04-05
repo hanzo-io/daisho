@@ -2,6 +2,7 @@
   View
 } = require('crowdcontrol').Views
 $ = require 'jquery'
+Packery = require 'packery'
 
 module.exports = class Grid extends View
   tag: 'grid'
@@ -13,15 +14,15 @@ module.exports = class Grid extends View
 
     @on 'updated', ()->
       $grid = $(@root).find('.grid')
+      grid = $grid[0]
 
-      unless $grid[0].$grid?
-        if $grid.packery?
-          $grid.packery
-            itemSelector: '.grid-item'
-            gutter: 0
-            columnWidth: 360
+      unless grid.packery
+        p = new Packery grid,
+          itemSelector: '.grid-item'
+          gutter: 0
+          columnWidth: 360
 
-        $grid[0].$grid = $grid
+        $grid[0].packery = p
 
       # make all grid-items draggable
       $grid.find('.grid-item').each (i, gridItem )->
@@ -32,7 +33,7 @@ module.exports = class Grid extends View
         gridItem.draggie = draggie
 
         # bind drag events to Packery
-        if $grid.packery?
-          $grid.packery 'bindDraggabillyEvents', draggie
+        if grid.packery?
+          grid.packery.bindDraggabillyEvents draggie
 
 

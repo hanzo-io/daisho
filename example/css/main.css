@@ -554,6 +554,10 @@ footer{
 daisho-table-widget{
   font-size:0.75rem;
 }
+daisho-table-widget .table-row > *,
+daisho-table-widget daishow-table-row > *{
+  line-height:4.2em;
+}
 .grid .grid-item > *{
   border:1px solid #000;
 }

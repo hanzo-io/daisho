@@ -102,3 +102,4 @@ Daisho.init '/example', '/example/fixtures/modules.json'
     Daisho.route 'home'
   else
     Daisho.route lastRoute
+  riot.update()
