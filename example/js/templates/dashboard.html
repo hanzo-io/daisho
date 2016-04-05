@@ -10,7 +10,9 @@
     </li>
   </ul>
 </nav>
-<search if="{ data.get('loggedIn') }">SEARCH</search>
+<search if="{ data.get('loggedIn') }">
+  <div class="message"><span class="icon"></span>Start typing</div>
+</search>
 <header if="{ data.get('loggedIn') }">
   <div class="branding">
     <img class="logo" src="img/logo.png">
