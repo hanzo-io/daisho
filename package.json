@@ -57,6 +57,7 @@
     "pug": "2.0.0-beta11",
     "raf": "3.3.0",
     "riot": "3.3.0",
+    "riot-observable": "3.0.0",
     "selectize": "0.12.4"
   }
 }

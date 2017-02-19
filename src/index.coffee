@@ -1,5 +1,8 @@
-window.$ = require 'jquery'
+window?.$ = require 'jquery'
 require 'selectize'
+
+window?.riot = require 'riot'
+riot.observable = require 'riot-observable'
 
 # patch raf
 window.requestAnimationFrame = require 'raf'
@@ -24,3 +27,4 @@ module.exports =
   Views: Views
   Events: require './events'
   Mediator: require './mediator'
+  Riot: riot
