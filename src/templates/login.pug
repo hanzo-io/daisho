@@ -1,0 +1,6 @@
+login
+  #{ 'yield' }
+    text.input(lookup='{ email }', placeholder='Email')
+    password.input(lookup='{ password }', placeholder='Password')
+    .error.message(if='{ error }')
+      | { error }
