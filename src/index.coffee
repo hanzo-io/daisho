@@ -18,3 +18,9 @@ CrowdControl.Views.View.register = ()->
 
 Views = require './views'
 Views.register()
+
+module.exports =
+  CrowdControl: CrowdControl
+  Views: Views
+  Events: require './events'
+  Mediator: require './mediator'

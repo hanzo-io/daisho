@@ -4,3 +4,4 @@ login
     password.input(lookup='{ password }', placeholder='Password')
     .error.message(if='{ error }')
       | { error }
+    .button.submit(onclick='{ submit }')
