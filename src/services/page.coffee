@@ -29,14 +29,14 @@ module.exports = class PageService
       page.root = @current.stop @
 
     if !page.root
-      page.root = page.enter @, ->
-        page.root = page.start @, =>
-          if @debug
-            console.log '---PAGE SERVICE---\nDone serving page ' + id
+      page.root = page.enter @
+      page.root = page.start @
+      if @debug
+        console.log '---PAGE SERVICE---\nDone serving page ' + id
     else
-      page.root = page.start @, =>
-        if @debug
-          console.log '---PAGE SERVICE---\nDone serving page ' + id
+      page.root = page.start @
+      if @debug
+        console.log '---PAGE SERVICE---\nDone serving page ' + id
 
     @current = page.root
     return @current

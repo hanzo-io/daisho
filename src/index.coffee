@@ -66,7 +66,7 @@ module.exports = class Daisho
       if typeof module == 'string'
         # do something
       else
-        new module @services.page, @services.menu
+        new module @, @services.page, @services.menu
 
     @services.menu.start()
 
@@ -80,7 +80,11 @@ module.exports = class Daisho
     if !opts.services
       opts.services = @services
 
-    riot.mount tag, opts
+    if typeof tag == 'string'
+      riot.mount tag, opts
+    else if tag instanceof HTMLElement
+      riot.mount tag, tag.tagName.toLowerCase(), opts
 
   update: ->
-    riot.update.apply riot, arguments
+    requestAnimationFrame ()->
+      riot.update.apply riot, arguments

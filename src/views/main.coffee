@@ -26,9 +26,9 @@ module.exports = class Main extends CrowdControl.Views.Form
       current = @services.page.current
       if current?
         $el = $(current)
-        $root = $(@root)
-        $root.html('').append $el
-        current.update()
+        $page = $(@root).find '#page'
+        $page.html('').append $el
+        current?.update?()
 
     m.on Events.Change, (name, val)=>
       if name == 'activeOrg'
