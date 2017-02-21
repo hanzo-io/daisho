@@ -3,12 +3,18 @@ module.exports =
 
   List: require './list'
   ListItem: require './list-item'
+
   Login: require './login'
+  Main: require './main'
+  Menu: require './menu'
 
   register: ->
-    Controls.register()
+    @Controls.register()
 
-    List.register()
-    ListItem.register()
-    Login.register()
+    @List.register()
+    @ListItem.register()
+
+    @Login.register()
+    @Main.register()
+    @Menu.register()
 

@@ -1,7 +1,7 @@
-login
-  #{ 'yield' }
-    text.input(lookup='{ email }', placeholder='Email')
-    password.input(lookup='{ password }', placeholder='Password')
-    .error.message(if='{ error }')
-      | { error }
-    .button.submit(onclick='{ submit }')
+#{ 'yield' }
+  text-control.input(lookup='account.email', placeholder='Email')
+  password-control.input(lookup='account.password', placeholder='Password')
+  .error.message(if='{ error }')
+    | { error }
+  div(onclick='{ submit }',class='{ disabled: disabled, button: true, submit: true }')
+    | Login

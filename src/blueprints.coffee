@@ -58,7 +58,12 @@ blueprints =
   dashv2:
     login:
       method:   'POST'
-      url:      '/v2/login'
+      url:      '/dashv2/login'
+
+  counter:
+    search:
+      method:   'POST'
+      url:      '/counter'
 
 models = [
   'user'

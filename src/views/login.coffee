@@ -10,35 +10,47 @@ m = require '../mediator'
 Events = require '../events'
 
 module.exports = class Login extends CrowdControl.Views.Form
-  tag: 'login'
+  tag: 'daisho-login'
   html: require '../templates/login'
 
-  client: null
-
   configs:
-    'email':            [ isRequired, isEmail ]
-    'password':         [ isPassword ]
+    'account.email':    [ isRequired, isEmail ]
+    'account.password': [ isPassword ]
 
   error: null
+  disabled: false
 
-  init: ()->
+  init: ->
+    if !@data.get 'account'
+      @data.set 'account',
+        email: ''
+        password: ''
+
     super
 
   _submit: (event)->
     opts =
-      username:     @data.get 'email'
-      password:     @data.get 'password'
+      email:        @data.get 'account.email'
+      password:     @data.get 'account.password'
       # client_id:    @data.get 'organization'
       # grant_type:   'password'
 
     @error = null
 
     m.trigger Events.Login
+    @disabled = true
+    @update()
+
     @client.dashv2.login(opts).then((res)=>
+      @disabled = false
+      @data.set 'account.password', ''
+      @data.set 'account', res.user
+      @data.set 'orgs', res.organizations
+      @data.set 'activeOrg', 0
       m.trigger Events.LoginSuccess, res
-      @data.set 'password', ''
       @update()
     ).catch (err)=>
+      @disabled = false
       @error = err.message
       m.trigger Events.LoginFailed, err
       @update()

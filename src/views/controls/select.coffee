@@ -23,6 +23,8 @@ module.exports = class Select extends Text
   events:
     updated: ()->
       @onUpdated()
+    mount: ()->
+      @onUpdated()
 
   getValue: (event)->
     return $(event.target).val()?.trim().toLowerCase()

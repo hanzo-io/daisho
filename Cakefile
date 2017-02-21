@@ -17,12 +17,13 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', (cb) ->
-  todo = 3
+  todo = 4
   done = (err) ->
     throw err if err?
     cb() if --todo is 0
 
   exec 'coffee -bcm -o lib/ src/', done
+  exec 'rm -rf lib/templates', done
   exec 'cp -r src/templates lib/templates', done
 
   opts =
