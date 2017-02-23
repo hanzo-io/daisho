@@ -30,16 +30,19 @@ Services = require './services'
 module.exports = class Daisho
   @CrowdControl:    CrowdControl
   @Views:           Views
-  @Service:         Services
+  @Services:         Services
   @Events:          require './events'
   @Mediator:        require './mediator'
-  @Riot: riot
+  @Riot:            riot
+  @util:            require './util'
 
   client: null
   data: null
   modules: null
   debug: false
   services: null
+
+  util: Daisho.util
 
   constructor: (url, modules, @data, debug = false)->
     @client = new HanzoJS.Api
@@ -79,6 +82,9 @@ module.exports = class Daisho
 
     if !opts.services
       opts.services = @services
+
+    if !opts.daisho
+      opts.daisho = @
 
     if typeof tag == 'string'
       riot.mount tag, opts
