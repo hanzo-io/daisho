@@ -12,3 +12,6 @@ module.exports =
     'daisho.login.success'
   LoginFailed:
     'daisho.login.failed'
+
+  Logout:
+    'daisho.logout'

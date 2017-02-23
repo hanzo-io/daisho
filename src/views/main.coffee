@@ -33,6 +33,12 @@ module.exports = class Main extends CrowdControl.Views.Form
     m.on Events.Change, (name, val)=>
       if name == 'activeOrg'
         @client.setKey @data.get('orgs')[val]['live-secret-key']
+        window.location.reload()
+
+  logout: ()->
+    m.trigger Events.Logout, res
+    window.location.reload()
+
 
   _submit: (event)->
 
