@@ -15,6 +15,8 @@ module.exports = class Main extends CrowdControl.Views.Form
   orgs: null
 
   init: ()->
+    @data = @parentData
+
     super
     @orgs = {}
     for i, org of @data.get 'orgs'
@@ -38,7 +40,6 @@ module.exports = class Main extends CrowdControl.Views.Form
   logout: ()->
     m.trigger Events.Logout, res
     window.location.reload()
-
 
   _submit: (event)->
 

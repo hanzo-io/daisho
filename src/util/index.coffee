@@ -1,4 +1,3 @@
 module.exports =
-  numeral:  require 'numeral'
-  moment:   require 'moment-timezone'
-  akasha:   require 'akasha'
+  time:
+    rfc3339: 'YYYY-MM-DDTHH:mm:ssZ'

@@ -11,6 +11,13 @@ riot.observable = require 'riot-observable'
 window.requestAnimationFrame = require 'raf'
 
 CrowdControl = require 'crowdcontrol'
+Tween        = require 'tween.js'
+
+animate = (time)->
+  requestAnimationFrame animate
+  Tween.update time
+
+requestAnimationFrame animate
 
 reservedTags = {}
 
@@ -30,7 +37,8 @@ Services = require './services'
 module.exports = class Daisho
   @CrowdControl:    CrowdControl
   @Views:           Views
-  @Services:         Services
+  @Graphics:        Views.Graphics
+  @Services:        Services
   @Events:          require './events'
   @Mediator:        require './mediator'
   @Riot:            riot
@@ -74,11 +82,22 @@ module.exports = class Daisho
     @services.menu.start()
 
   mount: (tag, opts = {})->
+    isHTML = tag instanceof HTMLElement
+    if isHTML
+      tagName = tag.tagName.toLowerCase()
+    else
+      tagName = tag
+
     if !opts.client
       opts.client = @client
 
     if !opts.data
-      opts.data = @data
+      if  @data.get tagName
+        @data.set tagName, {}
+      opts.data = @data.ref tagName
+
+    if !opts.parentData
+      opts.parentData = @data
 
     if !opts.services
       opts.services = @services
@@ -88,8 +107,8 @@ module.exports = class Daisho
 
     if typeof tag == 'string'
       riot.mount tag, opts
-    else if tag instanceof HTMLElement
-      riot.mount tag, tag.tagName.toLowerCase(), opts
+    else if isHTML
+      riot.mount tag, tagName, opts
 
   update: ->
     requestAnimationFrame ()->

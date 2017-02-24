@@ -51,16 +51,15 @@
   "dependencies": {
     "akasha": "0.0.3",
     "crowdcontrol": "2.0.18",
+    "d3": "4.6.0",
     "hanzo.js": "2.2.25",
     "is-object": "1.0.1",
     "jquery": "3.1.1",
-    "moment": "2.17.1",
-    "moment-timezone": "0.5.11",
-    "numeral": "2.0.4",
     "pug": "2.0.0-beta11",
     "raf": "3.3.0",
     "riot": "3.3.0",
     "riot-observable": "3.0.0",
-    "selectize": "0.12.4"
+    "selectize": "0.12.4",
+    "tween.js": "16.6.0"
   }
 }
