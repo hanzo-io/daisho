@@ -13,10 +13,14 @@ module.exports =
       axis:           # axis configuration
         x:
           name: ''
-          ticks: ->   #return a d3 tick object
-            return null
+          fmt: (n)-> return n
+          scale: null
+          ticks: (n)->   #return a d3 tick object
+            return n
         y:
           name: ''
-          ticks: ->   #return a d3 tick object
-            return null
+          fmt: (n)-> return n
+          scale: null
+          ticks: (n)->   #return a d3 tick object
+            return (n)
     }

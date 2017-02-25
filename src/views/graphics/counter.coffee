@@ -1,8 +1,12 @@
 CrowdControl    = require 'crowdcontrol'
 Tween           = require 'tween.js'
 
+# --Counter--
+# A counter supports a model with 2 series.  It will display the first
+# datapoint in each series and display a comparison in the two series case or
+# just a single number
 module.exports = class Counter extends CrowdControl.Views.View
-  tag: 'daisho-ui-counter'
+  tag: 'daisho-graphics-counter'
   html: require '../../templates/graphics/counter'
   value0: 0
   value1: 0
@@ -11,7 +15,7 @@ module.exports = class Counter extends CrowdControl.Views.View
   timer: 1000
   init: ()->
     super
-    @on 'mount', ->
+
     @on 'update', =>
       data = @data
       self = @
