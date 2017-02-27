@@ -61,7 +61,7 @@ module.exports = class Chart extends CrowdControl.Views.View
   # Update?
   dataHash: ''
 
-  colorSeed: 2
+  colorSeed: 10
   colors: []
 
   nextColor: ()->
@@ -82,6 +82,12 @@ module.exports = class Chart extends CrowdControl.Views.View
       @chart = chart = svg.append 'g'
         .attr 'transform', 'translate(' + @margin.left + ',' + @margin.top + ')'
 
+      @lines = @chart.append 'g'
+        .classed 'lines', true
+
+      @points = @chart.append 'g'
+        .classed 'points-group', true
+
       @xAxis = chart.append 'g'
         .classed 'axis', true
         .classed 'x-axis', true
@@ -90,12 +96,6 @@ module.exports = class Chart extends CrowdControl.Views.View
         .classed 'axis', true
         .classed 'y-axis', true
       @yAxis.append 'text'
-
-      @lines = @chart.append 'g'
-        .classed 'lines', true
-
-      @points = @chart.append 'g'
-        .classed 'points-group', true
 
       @legend = svg.append("g")
         .classed 'legend', true
@@ -222,13 +222,13 @@ module.exports = class Chart extends CrowdControl.Views.View
 
         # line stroke tween
         # http://stackoverflow.com/questions/32789314/unrolling-line-in-d3js-linechart
-        lineLength = line.node().getTotalLength()
-
         point = @points.append 'g'
           .classed 'points', true
           .classed 'points-' + series.series, true
 
-        do (series, point, lineLength, color)=>
+        do (series, point, line, color)=>
+          lineLength = line.node().getTotalLength()
+
           tip = d3Tip()
             .attr 'class', 'tip tip-' + series.series
             .offset [-10, 0]
@@ -246,38 +246,37 @@ module.exports = class Chart extends CrowdControl.Views.View
 
           point.call tip
 
-          do (series, lineLength, color, tip)=>
-            line
-              .attr 'stroke-dashoffset', lineLength
-              .attr 'stroke-dasharray', lineLength + ' ' + lineLength
-              .transition()
-              .duration @interpolationTime
-              .attrTween 'stroke-dashoffset', (ds)=>
-                i = 0
-                len = ds.length
-                lineInterpolator = d3.interpolate lineLength, 0
-                return (t)=>
-                  if t >= i / len && ds[i]
-                    p = point.append 'circle'
-                      .classed 'point', true
-                      .classed 'point-' + series.series, true
-                      .datum ds[i]
-                      .attr 'stroke', color
-                      .attr 'stroke-width', 0
-                      .attr 'stroke-opacity', 0
-                      .attr 'fill', color
-                      .attr 'cx', (d)=> return xScale @parseTime(series.fmt.x(d[0] || 0))
-                      .attr 'cy', (d)-> yScale series.fmt.y(d[1] || 0)
-                      .on 'mouseover', tip.show
-                      .on 'mouseout', tip.hide
-                    p
-                      .transition()
-                      .duration @redrawTime
-                      .attrTween 'r', (d)=>
-                        return d3.interpolate 0, @pointRadius
-                    i++
+          line
+            .attr 'stroke-dashoffset', lineLength
+            .attr 'stroke-dasharray', lineLength + ' ' + lineLength
+            .transition()
+            .duration @interpolationTime
+            .attrTween 'stroke-dashoffset', (ds)=>
+              j = 0
+              len = ds.length
+              lineInterpolator = d3.interpolate lineLength, 0
+              return (t)=>
+                if t >= j / len && ds[j]
+                  p = point.append 'circle'
+                    .classed 'point', true
+                    .classed 'point-' + series.series, true
+                    .datum ds[j]
+                    .attr 'stroke', color
+                    .attr 'stroke-width', 0
+                    .attr 'stroke-opacity', 0
+                    .attr 'fill', color
+                    .attr 'cx', (d)=> return xScale @parseTime(series.fmt.x(d[0] || 0))
+                    .attr 'cy', (d)-> yScale series.fmt.y(d[1] || 0)
+                    .on 'mouseover', tip.show
+                    .on 'mouseout', tip.hide
+                  p
+                    .transition()
+                    .duration @redrawTime
+                    .attrTween 'r', (d)=>
+                      return d3.interpolate 0, @pointRadius
+                  j++
 
-                  return lineInterpolator t
+                return lineInterpolator t
 
 
       ordinal = d3.scaleOrdinal()
