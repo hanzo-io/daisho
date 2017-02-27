@@ -1,143 +1,119 @@
-Promise     = require 'broken'
-Xhr         = require 'xhr-promise-es6'
-Xhr.Promise = Promise
+window?.$ = require 'jquery'
+require 'selectize'
 
-page        = require 'page'
-store       = require './utils/store'
+HanzoJS = require 'hanzo.js'
+blueprints = require './blueprints'
 
-require.urlFor = (file)->
-  return '/example/fixtures/' + file
+window?.riot = require 'riot'
+riot.observable = require 'riot-observable'
 
-exports =
-  # basepath is the path of the web page
-  basePath: ''
+# patch raf
+window.requestAnimationFrame = require 'raf'
 
-  # Master list of modules
-  moduleDefinitions:    []
+CrowdControl = require 'crowdcontrol'
+Tween        = require 'tween.js'
 
-  # List of modules required by name
-  modulesRequired:      []
+animate = (time)->
+  requestAnimationFrame animate
+  Tween.update time
 
-  # Indexed map of modules required and loaded
-  modules:              {}
+requestAnimationFrame animate
 
-  # List of modules in the order they were specified in load()
-  moduleList:  []
+reservedTags = {}
 
-  # Element with which to render the dashboard pages into
-  renderElement: null
+# Monkey patch crowdcontrol so all registration can be validated
+CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ()->
+  if reservedTags[@tag]
+    throw new Error "#{@tag} is reserved:", reservedTags[@tag]
+  r = new @
+  @tag = r.tag
+  reservedTags[@tag] = @
+  return r
 
-  # Whether or not page.js is initialized
-  started: false
+Views = require './views'
+Views.register()
+Services = require './services'
 
-  # Current Route
-  currentRoute: ''
+module.exports = class Daisho
+  @CrowdControl:    CrowdControl
+  @Views:           Views
+  @Graphics:        Views.Graphics
+  @Services:        Services
+  @Events:          require './events'
+  @Mediator:        require './mediator'
+  @Riot:            riot
+  @util:            require './util'
 
-  # init sets up the router using basepath and takes the url of the modules.json and downloads it
-  init: (@basePath, @modulesUrl)->
-    page.base @basePath
+  client: null
+  data: null
+  settings: null
+  modules: null
+  debug: false
+  services: null
 
-    opts =
-      url:      @modulesUrl
-      method:   'GET'
+  util: Daisho.util
 
-    (new Xhr).send opts
-      .then (res) =>
-        @moduleDefinitions =  res.responseText
+  constructor: (url, modules, @data, @settings, debug = false)->
+    @client = new HanzoJS.Api
+      debug:    debug
+      endpoint: url
 
-        return @moduleDefinitions
-      .catch (res) ->
-        console.log 'ERROR:', res
+    @debug = debug
 
-  # set the element into which dashboard pages render
-  setRenderElement: (@renderElement)->
+    @services =
+      menu: new Services.Menu @
+      page: new Services.Page @, @data, debug
+    @services.page.mount = =>
+      @mount.apply @, arguments
+    @services.page.update = =>
+      @update.apply @, arguments
 
-  # load takes an array of module names, looks them up in the saved module.json and requires them in
-  load: (@modulesRequired, opts)->
-    return new Promise (resolve, reject)=>
-      timeoutId = setTimeout ()->
-        reject(new Error "Loading Timed Out")
-      , 10000
+    @client.addBlueprints k,v for k,v of blueprints
+    @modules = modules
 
-      waits = 0
+  start: ()->
+    modules = @modules
 
-      @modules      = modules       = {}
-      @moduleList   = moduleList    = []
+    for k, module of modules
+      if typeof module == 'string'
+        # do something
+      else
+        new module @, @services.page, @services.menu
 
-      for moduleRequired in @modulesRequired
-        module = @_getModule moduleRequired
+    @services.menu.start()
 
-        waits++
+  mount: (tag, opts = {})->
+    isHTML = tag instanceof HTMLElement
+    if isHTML
+      tagName = tag.tagName.toLowerCase()
+    else
+      tagName = tag
 
-        do (module, modules, moduleList)=>
-          m = {}
-          m.definition = module
-          moduleList.push m
-          modules[module.name] = m
+    if !opts.client
+      opts.client = @client
 
-          do (m)=>
-            require module.name + '-v' + module.version + '/bundle.js', (js)=>
-              m.name  = js.name
-              m.js    = js
-              m.key   = module.name
+    if !opts.data
+      if !@data.get tagName
+        @data.set tagName, {}
+      opts.data = @data.ref tagName
 
-              waits--
-              clearTimeout timeoutId
+    if !opts.parentData
+      opts.parentData = @data
 
+    if !opts.services
+      opts.settings = @settings
 
-              for r, p of js.prototype.routes
-                r = '' if r == '/'
-                do (r, p)=>
-                  page '/' + module.name + r, ()=>
-                    moduleInstance = (new js)
-                    if @activeModuleInstance != moduleInstance
-                      if @activeModuleInstance?.unload
-                        @activeModuleInstance.unload()
-                      @activeModuleInstance = moduleInstance
-                      @activeModuleInstance.load(opts)
+    if !opts.services
+      opts.services = @services
 
-                    if @activePageInstance?.unload
-                      @activePageInstance.unload()
-                      while @renderElement.firstChild?
-                        @renderElement.removeChild @renderElement.firstChild
+    if !opts.daisho
+      opts.daisho = @
 
-                    @activePageInstance = (new p @renderElement, @activeModuleInstance)
-                    @activePageInstance.load(opts)
-                    @activePageInstance.render()
+    if typeof tag == 'string'
+      riot.mount tag, opts
+    else if isHTML
+      riot.mount tag, tagName, opts
 
-              if waits == 0
-                resolve { modules: @modules, moduleList: @moduleList }
-
-            m.css = module.name + '-v' + module.version + '/bundle.css'
-
-       if waits == 0
-         p.resolve { modules: @modules, moduleList: @moduleList }
-
-  # change page route
-  route: (route = '')->
-    if route == @currentRoute
-      return
-
-    if !@started
-      @started = true
-      page()
-
-    @currentRoute = route
-    store.set 'route', route
-    page @basePath + '/' + route
-
-  refresh: ()->
-    page @basePath + '/' + @currentRoute
-
-  lastRoute: ()->
-    return store.get 'route'
-
-  # _getModule takes
-  _getModule: (moduleName)->
-    for module in @moduleDefinitions
-      if moduleName == module.name
-        return module
-
-window.Daisho = exports if window?
-
-module.exports = exports
+  update: ->
+    requestAnimationFrame ()->
+      riot.update.apply riot, arguments
