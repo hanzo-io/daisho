@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "akasha": "0.0.3",
-    "crowdcontrol": "2.0.18",
+    "crowdcontrol": "2.0.19",
     "d3": "4.6.0",
     "d3-svg-legend": "2.21.0",
     "d3-tip": "0.7.1",
