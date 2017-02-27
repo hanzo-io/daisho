@@ -46,13 +46,14 @@ module.exports = class Daisho
 
   client: null
   data: null
+  settings: null
   modules: null
   debug: false
   services: null
 
   util: Daisho.util
 
-  constructor: (url, modules, @data, debug = false)->
+  constructor: (url, modules, @data, @settings, debug = false)->
     @client = new HanzoJS.Api
       debug:    debug
       endpoint: url
@@ -92,12 +93,15 @@ module.exports = class Daisho
       opts.client = @client
 
     if !opts.data
-      if  @data.get tagName
+      if !@data.get tagName
         @data.set tagName, {}
       opts.data = @data.ref tagName
 
     if !opts.parentData
       opts.parentData = @data
+
+    if !opts.services
+      opts.settings = @settings
 
     if !opts.services
       opts.services = @services

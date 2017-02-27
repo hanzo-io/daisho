@@ -10,6 +10,9 @@ module.exports =
       fmt:            # formatting functions
         x: (n)-> return n
         y: (n)-> return n
+      tip:
+        x: (n)-> return n
+        y: (n)-> return n
       axis:           # axis configuration
         x:
           name: ''
