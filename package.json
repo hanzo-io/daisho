@@ -1,6 +1,6 @@
 {
   "name": "daisho",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modular Dashboard Framework",
   "main": "lib/",
   "scripts": {
