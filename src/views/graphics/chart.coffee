@@ -1,8 +1,6 @@
 CrowdControl    = require 'crowdcontrol'
 Tween           = require 'tween.js'
-d3              = require 'd3'
-d3Tip           = require 'd3-tip'
-d3LegendColor   = require('d3-svg-legend').legendColor
+d3              = require '../../vendor/d3/d3'
 randomColor     = require 'randomcolor'
 
 # # http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
@@ -229,7 +227,7 @@ module.exports = class Chart extends CrowdControl.Views.View
         do (series, point, line, color)=>
           lineLength = line.node().getTotalLength()
 
-          tip = d3Tip()
+          tip = d3.tip()
             .attr 'class', 'tip tip-' + series.series
             .offset [-10, 0]
             .html (d) ->
@@ -285,7 +283,7 @@ module.exports = class Chart extends CrowdControl.Views.View
 
       @legend.attr 'transform', 'translate(' + width + ',' + @margin.top + ')'
 
-      legendOrdinal = d3LegendColor()
+      legendOrdinal = d3.legendColor()
         .shape 'path', d3.symbol().type(d3.symbolCircle).size(150)()
         .shapePadding 10
         # .cellFilter (d)-> return d.label !== 'e'
