@@ -17,24 +17,17 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', (cb) ->
-  todo = 4
-  done = (err) ->
-    throw err if err?
-    cb() if --todo is 0
-
-  exec 'coffee -bcm -o lib/ src/', done
-  exec 'rm -rf lib/templates', done
-  exec 'cp -r src/templates lib/templates', done
-
   opts =
     entry:      'src/browser.coffee'
     compilers:
-      pug: require('pug').compile
+      pug: requisite.compilers.pug
     stripDebug: true
 
   requisite.bundle opts, (err, bundle) ->
-    return done err if err?
-    fs.writeFile pkg.name + '.js', (bundle.toString opts), 'utf8', done
+    return cb err if err?
+    fs.writeFile pkg.name + '.js', (bundle.toString opts), 'utf8', cb
+
+  return
 
 task 'build:min', 'build project', ['build'], ->
   exec "uglifyjs #{pkg.name}.js --compress --mangle --lint=false > #{pkg.name}.min.js"
