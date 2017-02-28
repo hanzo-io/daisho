@@ -34,7 +34,7 @@ task 'build', 'build project', (cb) ->
   return
 
 task 'build:min', 'build project', ['build'], ->
-  exec "uglifyjs #{pkg.name}.js --compress --mangle --lint=false > #{pkg.name}.min.js"
+  exec "uglifyjs #{pkg.name}.js > #{pkg.name}.min.js"
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
