@@ -17472,15 +17472,17 @@ var rejectClient;
 var resolveClient;
 var soon;
 
-Promise$1$1 = function(func) {
-  var me;
-  if (func) {
-    me = this;
-    func(function(arg) {
-      me.resolve(arg);
-    }, function(arg) {
-      me.reject(arg);
-    });
+Promise$1$1 = function(cb) {
+  if (cb) {
+    cb((function(_this) {
+      return function(arg) {
+        return _this.resolve(arg);
+      };
+    })(this), (function(_this) {
+      return function(arg) {
+        return _this.reject(arg);
+      };
+    })(this));
   }
 };
 

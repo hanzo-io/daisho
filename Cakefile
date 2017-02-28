@@ -64,6 +64,8 @@ task 'build', 'build project', ->
 
   bundle = yield rollup.rollup
     entry:   'src/index.coffee'
+    # external: Object.keys pkg.dependencies
+    interop:  false
     plugins:  plugins
 
   # Browser (single file)
@@ -71,12 +73,6 @@ task 'build', 'build project', ->
     dest:       pkg.name + '.js'
     format:     'iife'
     moduleName: 'Daisho'
-
-  bundle = yield rollup.rollup
-    entry:    'src/index.coffee'
-    external: Object.keys pkg.dependencies
-    interop:  false
-    plugins:  plugins
 
   # CommonJS
   bundle.write
