@@ -1,6 +1,6 @@
 CrowdControl    = require 'crowdcontrol'
 Tween           = require 'tween.js'
-d3              = require '../../vendor/d3/d3'
+d3              = require 'd3sho'
 randomColor     = require 'randomcolor'
 
 # # http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
