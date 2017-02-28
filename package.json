@@ -46,8 +46,8 @@
     "postcss-discard-comments": "2.0.4",
     "postmortem": "0.2.4",
     "poststylus": "0.2.3",
-    "requisite": "1.19.10",
-    "shortcake": "1.1.18",
+    "requisite": "1.19.12",
+    "shortcake": "1.1.19",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
   },
   "dependencies": {
