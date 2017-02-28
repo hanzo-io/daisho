@@ -67,10 +67,15 @@ blueprints =
 
 models = [
   'user'
+  'log'
 ]
 
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
+
+blueprints.log.search =
+  method:   'POST'
+  url:      '/log/search'
 
 module.exports = blueprints
