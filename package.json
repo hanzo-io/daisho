@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "akasha": "0.0.3",
-    "broken": "0.1.6",
+    "broken": "0.1.7",
     "crowdcontrol": "2.0.19",
     "d3sho": "0.1.5",
     "hanzo.js": "2.2.26",
