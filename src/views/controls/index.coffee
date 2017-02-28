@@ -1,12 +1,12 @@
 module.exports =
-  Checkbox: require './checkbox'
+  Checkbox:        require './checkbox'
   DateRangePicker: require './date-range-picker'
-  Password: require './password'
-  Select: require './select'
-  SelectCountry: require './select-country'
-  SelectState: require './select-state'
-  Text: require './text'
-  TextArea: require './textarea'
+  Password:        require './password'
+  Select:          require './select'
+  SelectCountry:   require './select-country'
+  SelectState:     require './select-state'
+  Text:            require './text'
+  TextArea:        require './textarea'
 
   register: ->
     @Checkbox.register()
@@ -17,4 +17,3 @@ module.exports =
     @SelectState.register()
     @Text.register()
     @TextArea.register()
-
