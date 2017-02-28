@@ -5,8 +5,9 @@ use 'cake-publish'
 use 'cake-version'
 
 fs        = require 'fs'
-pkg       = require './package'
 requisite = require 'requisite'
+
+pkg = require './package'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -17,6 +18,8 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', (cb) ->
+  exec 'coffee -bcm -o lib/ src/'
+
   opts =
     entry:      'src/index.coffee'
     compilers:
