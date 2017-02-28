@@ -52,9 +52,7 @@
   "dependencies": {
     "akasha": "0.0.3",
     "crowdcontrol": "2.0.19",
-    "d3": "4.6.0",
-    "d3-svg-legend": "2.21.0",
-    "d3-tip": "0.7.1",
+    "d3sho": "0.1.2",
     "hanzo.js": "2.2.25",
     "is-object": "1.0.1",
     "jquery": "3.1.1",
