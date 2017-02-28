@@ -25,6 +25,7 @@ task 'build', 'build project', (cb) ->
     compilers:
       pug: requisite.compilers.pug
     stripDebug: true
+    sourceMap:  true
 
   requisite.bundle opts, (err, bundle) ->
     return cb err if err?
