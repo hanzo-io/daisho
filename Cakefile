@@ -5,8 +5,9 @@ use 'cake-publish'
 use 'cake-version'
 
 fs        = require 'fs'
-pkg       = require './package'
 requisite = require 'requisite'
+
+pkg = require './package'
 
 option '-b', '--browser [browser]', 'browser to use for tests'
 option '-g', '--grep [filter]',     'test filter'
@@ -17,11 +18,14 @@ task 'clean', 'clean project', ->
   exec 'rm -rf lib'
 
 task 'build', 'build project', (cb) ->
+  exec 'coffee -bcm -o lib/ src/'
+
   opts =
-    entry:      'src/browser.coffee'
+    entry:      'src/index.coffee'
     compilers:
       pug: requisite.compilers.pug
     stripDebug: true
+    sourceMap:  true
 
   requisite.bundle opts, (err, bundle) ->
     return cb err if err?
@@ -30,7 +34,7 @@ task 'build', 'build project', (cb) ->
   return
 
 task 'build:min', 'build project', ['build'], ->
-  exec "uglifyjs #{pkg.name}.js --compress --mangle --lint=false > #{pkg.name}.min.js"
+  exec "uglifyjs #{pkg.name}.js > #{pkg.name}.min.js"
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'

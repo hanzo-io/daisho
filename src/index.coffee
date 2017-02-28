@@ -8,12 +8,12 @@ window?.riot = require 'riot'
 riot.observable = require 'riot-observable'
 
 # patch raf
-window.requestAnimationFrame = require 'raf'
+requestAnimationFrame = require 'raf'
 
 CrowdControl = require 'crowdcontrol'
 Tween        = require 'tween.js'
 
-animate = (time)->
+animate = (time) ->
   requestAnimationFrame animate
   Tween.update time
 
@@ -22,7 +22,7 @@ requestAnimationFrame animate
 reservedTags = {}
 
 # Monkey patch crowdcontrol so all registration can be validated
-CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ()->
+CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
   if reservedTags[@tag]
     throw new Error "#{@tag} is reserved:", reservedTags[@tag]
   r = new @
@@ -35,14 +35,14 @@ Views.register()
 Services = require './services'
 
 module.exports = class Daisho
-  @CrowdControl:    CrowdControl
-  @Views:           Views
-  @Graphics:        Views.Graphics
-  @Services:        Services
-  @Events:          require './events'
-  @Mediator:        require './mediator'
-  @Riot:            riot
-  @util:            require './util'
+  @CrowdControl: CrowdControl
+  @Views:        Views
+  @Graphics:     Views.Graphics
+  @Services:     Services
+  @Events:       require './events'
+  @Mediator:     require './mediator'
+  @Riot:         riot
+  @util:         require './util'
 
   client: null
   data: null
@@ -53,7 +53,7 @@ module.exports = class Daisho
 
   util: Daisho.util
 
-  constructor: (url, modules, @data, @settings, debug = false)->
+  constructor: (url, modules, @data, @settings, debug = false) ->
     @client = new HanzoJS.Api
       debug:    debug
       endpoint: url
@@ -71,7 +71,7 @@ module.exports = class Daisho
     @client.addBlueprints k,v for k,v of blueprints
     @modules = modules
 
-  start: ()->
+  start: ->
     modules = @modules
 
     for k, module of modules
@@ -82,7 +82,7 @@ module.exports = class Daisho
 
     @services.menu.start()
 
-  mount: (tag, opts = {})->
+  mount: (tag, opts = {}) ->
     isHTML = tag instanceof HTMLElement
     if isHTML
       tagName = tag.tagName.toLowerCase()
@@ -115,5 +115,5 @@ module.exports = class Daisho
       riot.mount tag, tagName, opts
 
   update: ->
-    requestAnimationFrame ()->
+    requestAnimationFrame ->
       riot.update.apply riot, arguments
