@@ -4,8 +4,21 @@ use 'cake-test'
 use 'cake-publish'
 use 'cake-version'
 
-fs        = require 'fs'
-requisite = require 'requisite'
+autoTransform = require 'rollup-plugin-auto-transform'
+builtins      = require 'rollup-plugin-node-builtins'
+coffee        = require 'rollup-plugin-coffee-script'
+commonjs      = require 'rollup-plugin-commonjs'
+globals       = require 'rollup-plugin-node-globals'
+json          = require 'rollup-plugin-json'
+nodeResolve   = require 'rollup-plugin-node-resolve'
+pug           = require 'rollup-plugin-pug'
+rollup        = require 'rollup'
+stylus        = require 'rollup-plugin-stylus'
+
+postcss      = require 'poststylus'
+autoprefixer = require 'autoprefixer'
+comments     = require 'postcss-discard-comments'
+lost         = require 'lost-stylus'
 
 pkg = require './package'
 
