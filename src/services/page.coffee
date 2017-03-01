@@ -1,17 +1,20 @@
 module.exports = class PageService
   cache: null
-  data: null
   daisho: null
+  debug: false
 
   current: null
 
-  constructor: (@daisho, data, @debug)->
+  constructor: (@daisho, @debug)->
     @cache = {}
 
   mount: ->
   update: ->
 
   register: (id, enterFn, startFn, stopFn)->
+    if @cache[id]
+      console.log '---PAGE SERVICE---\nCollision for ' + id
+
     @cache[id] =
       id:       id
       enter:    enterFn

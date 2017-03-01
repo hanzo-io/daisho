@@ -31,6 +31,8 @@ task 'build', 'build project', (cb) ->
     return cb err if err?
     fs.writeFile pkg.name + '.js', (bundle.toString opts), 'utf8', cb
 
+  exec 'cp -r src/templates lib/templates'
+
   return
 
 task 'build:min', 'build project', ['build'], ->

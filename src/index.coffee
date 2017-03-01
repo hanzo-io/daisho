@@ -26,23 +26,14 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
   if reservedTags[@tag]
     throw new Error "#{@tag} is reserved:", reservedTags[@tag]
   r = new @
-  @tag = r.tag
-  reservedTags[@tag] = @
-  return r
-
-Views = require './views'
-Views.register()
-Services = require './services'
-
-module.exports = class Daisho
-  @CrowdControl: CrowdControl
-  @Views:        Views
-  @Graphics:     Views.Graphics
-  @Services:     Services
-  @Events:       require './events'
-  @Mediator:     require './mediator'
-  @Riot:         riot
-  @util:         require './util'
+  @CrowdControl:    CrowdControl
+  @Views:           Views
+  @Graphics:        Views.Graphics
+  @Services:        Services
+  @Events:          require './events'
+  @mediator:        require './mediator'
+  @Riot:            riot
+  @util:            require './util'
 
   client: null
   data: null
@@ -61,8 +52,9 @@ module.exports = class Daisho
     @debug = debug
 
     @services =
-      menu: new Services.Menu @
-      page: new Services.Page @, @data, debug
+      menu:     new Services.Menu @, debug
+      page:     new Services.Page @, debug
+      command:  new Services.Command @, debug
     @services.page.mount = =>
       @mount.apply @, arguments
     @services.page.update = =>
@@ -78,7 +70,7 @@ module.exports = class Daisho
       if typeof module == 'string'
         # do something
       else
-        new module @, @services.page, @services.menu
+        new module @, @services.page, @services.menu, @services.command
 
     @services.menu.start()
 
@@ -105,6 +97,9 @@ module.exports = class Daisho
 
     if !opts.services
       opts.services = @services
+
+    if !opts.mediator
+      opts.mediator = Daisho.mediator
 
     if !opts.daisho
       opts.daisho = @

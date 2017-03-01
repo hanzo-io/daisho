@@ -5,9 +5,11 @@ module.exports =
   List:     require './list'
   ListItem: require './list-item'
 
-  Login:    require './login'
-  Main:     require './main'
-  Menu:     require './menu'
+  CommandBar:   require './command-bar'
+  Dynamic:      require './dynamic'
+  Login:        require './login'
+  Main:         require './main'
+  Menu:         require './menu'
 
   register: ->
     @Controls.register()
@@ -16,6 +18,7 @@ module.exports =
     @List.register()
     @ListItem.register()
 
+    @CommandBar.register()
     @Login.register()
     @Main.register()
     @Menu.register()

@@ -27,21 +27,36 @@ byId = (name) ->
     else
       (x) -> "/#{name}/#{x.id ? x}"
 
+statusOk        = (res) -> res.status is 200
+statusCreated   = (res) -> res.status is 201
+statusNoContent = (res) -> res.status is 204
+
+# Complete RESTful API available with secret key, so all methods are
+# exposed in server environment.
 createBlueprint = (name) ->
   endpoint = "/#{name}"
+
+  url = byId name
 
   list:
     url:    endpoint
     method: 'GET'
   get:
-    url:    byId name
-    method: 'GET'
+    url:     url
+    method:  'GET'
+    expects: statusOk
   create:
-    url:    byId name
-    method: 'POST'
+    url:     endpoint
+    method:  'POST'
+    expects: statusCreated
   update:
-    url:    byId name
-    method: 'PATCH'
+    url:     url
+    method:  'PATCH'
+    expects: statusOk
+  delete:
+    url:     url
+    method:  'DELETE'
+    expects: statusNoContent
 
 blueprints =
   oauth:
@@ -67,15 +82,16 @@ blueprints =
 
 models = [
   'user'
-  'log'
+  'order'
+  'note'
 ]
 
 for model in models
   do (model) ->
     blueprints[model] = createBlueprint model
 
-blueprints.log.search =
+blueprints.note.search =
   method:   'POST'
-  url:      '/log/search'
+  url:      '/note/search'
 
 module.exports = blueprints
