@@ -1,6 +1,5 @@
 Text = require './text'
 riot = require 'riot'
-isObject = require 'is-object'
 
 isABrokenBrowser = (window.navigator.userAgent.indexOf('MSIE') > 0 || window.navigator.userAgent.indexOf('Trident') > 0)
 
