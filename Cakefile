@@ -4,21 +4,8 @@ use 'cake-test'
 use 'cake-publish'
 use 'cake-version'
 
-autoTransform = require 'rollup-plugin-auto-transform'
-builtins      = require 'rollup-plugin-node-builtins'
-coffee        = require 'rollup-plugin-coffee-script'
-commonjs      = require 'rollup-plugin-commonjs'
-globals       = require 'rollup-plugin-node-globals'
-json          = require 'rollup-plugin-json'
-nodeResolve   = require 'rollup-plugin-node-resolve'
-pug           = require 'rollup-plugin-pug'
-rollup        = require 'rollup'
-stylus        = require 'rollup-plugin-stylus'
-
-postcss      = require 'poststylus'
-autoprefixer = require 'autoprefixer'
-comments     = require 'postcss-discard-comments'
-lost         = require 'lost-stylus'
+fs        = require 'fs'
+requisite = require 'requisite'
 
 pkg = require './package'
 
@@ -80,14 +67,9 @@ task 'build', 'build project', ->
     format:     'cjs'
     sourceMap: false
 
-  # ES module bundle
-  bundle.write
-    dest:      pkg.module
-    format:    'es'
-    sourceMap: false
 
-task 'build:min', 'build project and minify', ['build'], ->
-  exec 'uglifyjs daisho.js --compress --mangle --lint=false > daisho.min.js'
+task 'build:min', 'build project', ['build'], ->
+  exec "uglifyjs #{pkg.name}.js > #{pkg.name}.min.js"
 
 task 'watch', 'watch for changes and recompile project', ->
   exec 'coffee -bcmw -o lib/ src/'
