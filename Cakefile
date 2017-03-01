@@ -64,15 +64,9 @@ task 'build', 'build project', ->
 
   bundle = yield rollup.rollup
     entry:   'src/index.coffee'
-    # external: Object.keys pkg.dependencies
+    external: Object.keys pkg.dependencies
     interop:  false
     plugins:  plugins
-
-  # Browser (single file)
-  yield bundle.write
-    dest:       pkg.name + '.js'
-    format:     'iife'
-    moduleName: 'Daisho'
 
   # CommonJS
   bundle.write
@@ -80,9 +74,8 @@ task 'build', 'build project', ->
     format:     'cjs'
     sourceMap: false
 
-
-task 'build:min', 'build project', ['build'], ->
-  exec "uglifyjs #{pkg.name}.js > #{pkg.name}.min.js"
-
-task 'watch', 'watch for changes and recompile project', ->
-  exec 'coffee -bcmw -o lib/ src/'
+  # CommonJS
+  bundle.write
+    dest:       pkg.module
+    format:     'es'
+    sourceMap: false

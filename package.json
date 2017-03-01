@@ -63,7 +63,6 @@
     "pug": "2.0.0-beta11",
     "poststylus": "0.2.3",
     "postcss-discard-comments": "2.0.4",
-    "requisite": "1.19.12",
     "shortcake": "1.1.19",
     "uglify-js": "2.8.1"
   },
