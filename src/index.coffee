@@ -8,12 +8,12 @@ window?.riot = require 'riot'
 riot.observable = require 'riot-observable'
 
 # patch raf
-requestAnimationFrame = require 'raf'
+window.requestAnimationFrame = require 'raf'
 
 CrowdControl = require 'crowdcontrol'
 Tween        = require 'tween.js'
 
-animate = (time) ->
+animate = (time)->
   requestAnimationFrame animate
   Tween.update time
 
@@ -22,10 +22,19 @@ requestAnimationFrame animate
 reservedTags = {}
 
 # Monkey patch crowdcontrol so all registration can be validated
-CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
+CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ()->
   if reservedTags[@tag]
     throw new Error "#{@tag} is reserved:", reservedTags[@tag]
   r = new @
+  @tag = r.tag
+  reservedTags[@tag] = @
+  return r
+
+Views = require './views'
+Views.register()
+Services = require './services'
+
+module.exports = class Daisho
   @CrowdControl:    CrowdControl
   @Views:           Views
   @Graphics:        Views.Graphics
@@ -44,7 +53,7 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
 
   util: Daisho.util
 
-  constructor: (url, modules, @data, @settings, debug = false) ->
+  constructor: (url, modules, @data, @settings, debug = false)->
     @client = new HanzoJS.Api
       debug:    debug
       endpoint: url
@@ -63,7 +72,7 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
     @client.addBlueprints k,v for k,v of blueprints
     @modules = modules
 
-  start: ->
+  start: ()->
     modules = @modules
 
     for k, module of modules
@@ -74,7 +83,7 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
 
     @services.menu.start()
 
-  mount: (tag, opts = {}) ->
+  mount: (tag, opts = {})->
     isHTML = tag instanceof HTMLElement
     if isHTML
       tagName = tag.tagName.toLowerCase()
@@ -110,5 +119,5 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
       riot.mount tag, tagName, opts
 
   update: ->
-    requestAnimationFrame ->
+    requestAnimationFrame ()->
       riot.update.apply riot, arguments
