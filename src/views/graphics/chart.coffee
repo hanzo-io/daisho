@@ -51,6 +51,7 @@ module.exports = class Chart extends Dynamic
   yAxis: null
   lines: null
   points: null
+  notes: null
   legend: null
 
   lineWidth: 3
@@ -88,6 +89,9 @@ module.exports = class Chart extends Dynamic
 
       @points = @chart.append 'g'
         .classed 'points-group', true
+
+      @notes = @chart.append 'g'
+        .classed 'notes', true
 
       @xAxis = chart.append 'g'
         .classed 'axis', true
@@ -190,89 +194,95 @@ module.exports = class Chart extends Dynamic
       .attr 'opacity', 0
       .remove()
 
+    notes = []
+
     for i, series of serieses
       if series.xs.length == 0 || series.ys.length == 0
         return
 
-      xys = series.xs.map (x, j)->
-        return [x, series.ys[j]]
+      if series.type == 'line'
+        xys = series.xs.map (x, j)->
+          return [x, series.ys[j]]
 
-      lineFn = d3.line()
-        .x (d) => return xScale @parseTime(series.fmt.x(d[0] || 0))
-        .y (d) -> return yScale series.fmt.y(d[1] || 0)
+        lineFn = d3.line()
+          .x (d) => return xScale @parseTime(series.fmt.x(d[0] || 0))
+          .y (d) -> return yScale series.fmt.y(d[1] || 0)
 
-      line = @lines.append 'path'
-        .classed 'line', true
-        .classed 'line-' + series.series, true
+        line = @lines.append 'path'
+          .classed 'line', true
+          .classed 'line-' + series.series, true
 
-      color = @nextColor()
-      @colors.push color
-      line.datum xys
-        .attr 'fill', 'none'
-        .attr 'stroke', color
-        .attr 'stroke-linejoin', 'round'
-        .attr 'stroke-linecap', 'round'
-        .attr 'stroke-width', @lineWidth
-        .attr 'd', lineFn
+        color = @nextColor()
+        @colors.push color
+        line.datum xys
+          .attr 'fill', 'none'
+          .attr 'stroke', color
+          .attr 'stroke-linejoin', 'round'
+          .attr 'stroke-linecap', 'round'
+          .attr 'stroke-width', @lineWidth
+          .attr 'd', lineFn
 
-      # line stroke tween
-      # http://stackoverflow.com/questions/32789314/unrolling-line-in-d3js-linechart
-      point = @points.append 'g'
-        .classed 'points', true
-        .classed 'points-' + series.series, true
+        # line stroke tween
+        # http://stackoverflow.com/questions/32789314/unrolling-line-in-d3js-linechart
+        point = @points.append 'g'
+          .classed 'points', true
+          .classed 'points-' + series.series, true
 
-      do (series, point, line, color)=>
-        lineLength = line.node().getTotalLength()
+        do (series, point, line, color)=>
+          lineLength = line.node().getTotalLength()
 
-        tip = d3.tip()
-          .attr 'class', 'tip tip-' + series.series
-          .offset [-10, 0]
-          .html (d) ->
-            return """
-              <div class='tip-group'>
-                <span class='tip-label'>#{ series.axis.x.name }:</span>
-                <span class='tip-value' style='color:#{ color }'>#{ series.tip.x(series.fmt.x(d[0] || 0)) }</span>
-              </div>
-              <div class='tip-group'>
-                <span class='tip-label'>#{ series.axis.y.name }:</span>
-                <span class='tip-value' style='color:#{ color }'>#{ series.tip.y(series.fmt.y(d[1] || 0)) }</span>
-              </div>
-              """
+          tip = d3.tip()
+            .attr 'class', 'tip tip-' + series.series
+            .offset [-10, 0]
+            .html (d) ->
+              return """
+                <div class='tip-group'>
+                  <span class='tip-label'>#{ series.axis.x.name }:</span>
+                  <span class='tip-value' style='color:#{ color }'>#{ series.tip.x(series.fmt.x(d[0] || 0)) }</span>
+                </div>
+                <div class='tip-group'>
+                  <span class='tip-label'>#{ series.axis.y.name }:</span>
+                  <span class='tip-value' style='color:#{ color }'>#{ series.tip.y(series.fmt.y(d[1] || 0)) }</span>
+                </div>
+                """
 
-        point.call tip
+          point.call tip
 
-        line
-          .attr 'stroke-dashoffset', lineLength
-          .attr 'stroke-dasharray', lineLength + ' ' + lineLength
-          .transition()
-          .duration @interpolationTime
-          .attrTween 'stroke-dashoffset', (ds)=>
-            j = 0
-            len = ds.length
-            lineInterpolator = d3.interpolate lineLength, 0
-            return (t)=>
-              if t >= j / len && ds[j]
-                p = point.append 'circle'
-                  .classed 'point', true
-                  .classed 'point-' + series.series, true
-                  .datum ds[j]
-                  .attr 'stroke', color
-                  .attr 'stroke-width', 0
-                  .attr 'stroke-opacity', 0
-                  .attr 'fill', color
-                  .attr 'cx', (d)=> return xScale @parseTime(series.fmt.x(d[0] || 0))
-                  .attr 'cy', (d)-> yScale series.fmt.y(d[1] || 0)
-                  .on 'mouseover', tip.show
-                  .on 'mouseout', tip.hide
-                p
-                  .transition()
-                  .duration @redrawTime
-                  .attrTween 'r', (d)=>
-                    return d3.interpolate 0, @pointRadius
-                j++
+          line
+            .attr 'stroke-dashoffset', lineLength
+            .attr 'stroke-dasharray', lineLength + ' ' + lineLength
+            .transition()
+            .duration @interpolationTime
+            .attrTween 'stroke-dashoffset', (ds)=>
+              j = 0
+              len = ds.length
+              lineInterpolator = d3.interpolate lineLength, 0
+              return (t)=>
+                if t >= j / len && ds[j]
+                  p = point.append 'circle'
+                    .classed 'point', true
+                    .classed 'point-' + series.series, true
+                    .datum ds[j]
+                    .attr 'stroke', color
+                    .attr 'stroke-width', 0
+                    .attr 'stroke-opacity', 0
+                    .attr 'fill', color
+                    .attr 'cx', (d)=> return xScale @parseTime(series.fmt.x(d[0] || 0))
+                    .attr 'cy', (d)-> yScale series.fmt.y(d[1] || 0)
+                    .on 'mouseover', tip.show
+                    .on 'mouseout', tip.hide
+                  p
+                    .transition()
+                    .duration @redrawTime
+                    .attrTween 'r', (d)=>
+                      return d3.interpolate 0, @pointRadius
+                  j++
 
-              return lineInterpolator t
+                return lineInterpolator t
 
+      else if series.type == 'note'
+        1 == 1
+        # do a thing
 
     ordinal = d3.scaleOrdinal()
       .domain serieses.map((s)-> return s.series)
