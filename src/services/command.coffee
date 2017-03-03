@@ -32,6 +32,12 @@ module.exports = class CommandService
     return found
 
   execute: (command, args)->
+    for i, arg of args
+      # strip quotes
+      if arg[0] == '"'
+        args[i]  = args[i].substr 1
+      if arg.substr(-1) == '"'
+        args[i]  = args[i].slice 0, -1
     command = @commands[command]
     if !command
       console.log '---COMMAND SERVICE---\n' + id + ' not registered'

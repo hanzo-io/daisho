@@ -92,6 +92,6 @@ for model in models
 
 blueprints.note.search =
   method:   'POST'
-  url:      '/note/search'
+  url:      '/search/note'
 
 module.exports = blueprints

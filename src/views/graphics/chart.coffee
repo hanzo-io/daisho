@@ -141,12 +141,13 @@ module.exports = class Chart extends Dynamic
     yScale.rangeRound [height, 0]
 
     for i, series of serieses
-      xs = xs.concat series.xs
-      ys = ys.concat series.ys
+      if series.type == 'line' || series.type == 'bar'
+        xs = xs.concat series.xs
+        ys = ys.concat series.ys
 
-    ysBuf = ys.map(series.fmt.y)
+    ysBuf = ys.map(serieses[0].fmt.y)
     ysBuf.push(@yMin)
-    xScale.domain d3.extent xs.map(series.fmt.x), (x)=> return @parseTime x
+    xScale.domain d3.extent xs.map(serieses[0].fmt.x), (x)=> return @parseTime x
     yScale.domain d3.extent ysBuf, (y)-> return y
 
     # redraw/remove
@@ -194,12 +195,20 @@ module.exports = class Chart extends Dynamic
       .attr 'opacity', 0
       .remove()
 
+    @notes.selectAll '*'
+      .attr 'opacity', 1
+      .transition()
+      .duration @redrawTime
+      .attr 'opacity', 0
+      .remove()
+
     notes = []
 
     for i, series of serieses
       if series.xs.length == 0 || series.ys.length == 0
-        return
+        continue
 
+      # line renderer
       if series.type == 'line'
         xys = series.xs.map (x, j)->
           return [x, series.ys[j]]
@@ -242,7 +251,7 @@ module.exports = class Chart extends Dynamic
                 </div>
                 <div class='tip-group'>
                   <span class='tip-label'>#{ series.axis.y.name }:</span>
-                  <span class='tip-value' style='color:#{ color }'>#{ series.tip.y(series.fmt.y(d[1] || 0)) }</span>
+                  <pre class='tip-value' style='color:#{ color }'>#{ series.tip.y(series.fmt.y(d[1] || 0)) }</pre>
                 </div>
                 """
 
@@ -280,12 +289,74 @@ module.exports = class Chart extends Dynamic
 
                 return lineInterpolator t
 
-      else if series.type == 'note'
-        1 == 1
+      # line renderer
+      # else if series.type == 'bar'
+      # else if series.type == 'note'
+      #   1 == 1
         # do a thing
 
+    # Aggregate data like legends and notes go after here
+    notes = {}
+    maxes = []
+
+    for series in serieses
+      if series.type == 'notes'
+        xs = series.xs
+        ys = series.ys
+        for i, x of xs
+          if notes[x]
+            notes[x].push ys[i]
+          else
+            notes[x] = [ys[i]]
+      else
+        xs = series.xs
+        ys = series.ys
+        for i, x of xs
+          if !maxes[x]? || maxes[x] < ys[i]
+            maxes[x] = ys[i]
+
+    for x, ys of notes
+      datum = [x, maxes[x]]
+
+      do (ys)=>
+        tip = d3.tip()
+          .attr 'class', 'tip tip-notes'
+          .offset [-10, 0]
+          .html (d) ->
+            return """
+              <div class='tip-group'>
+                <span class='tip-label'>#{ serieses[0].axis.x.name }:</span>
+                <span class='tip-value'>#{ serieses[0].tip.x(series.fmt.x(d[0] || 0)) }</span>
+              </div>
+              <div class='tip-group'>
+                <span class='tip-label'>Notes:</span>
+                <pre class='tip-value'>#{ ys.join '\n' }</pre>
+              </div>
+              """
+
+        point = @notes.append 'circle'
+          .classed 'point', true
+          .classed 'point-notes', true
+
+        point.call tip
+
+        point.datum datum
+          .attr 'stroke', '#048ba8'
+          .attr 'stroke-width', 0
+          .attr 'stroke-opacity', 0
+          .attr 'fill', '#048ba8'
+          .attr 'cx', (d)=> return xScale @parseTime(serieses[0].fmt.x(d[0] || 0))
+          .attr 'cy', (d)-> yScale(serieses[0].fmt.y(d[1] || 0)) - 20
+          .on 'mouseover', tip.show
+          .on 'mouseout', tip.hide
+
+        point.transition()
+          .duration @redrawTime
+          .attrTween 'r', (d)=>
+            return d3.interpolate 0, @pointRadius * 1.5
+
     ordinal = d3.scaleOrdinal()
-      .domain serieses.map((s)-> return s.series)
+      .domain serieses.map((s)-> return s.series).filter (s)-> return !!s
       .range @colors
 
     @legend.attr 'transform', 'translate(' + width + ',' + @margin.top + ')'

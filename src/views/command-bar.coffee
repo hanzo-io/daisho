@@ -1,6 +1,8 @@
 Text = require './controls/text'
 Events = require '../events'
 
+regex = /(".*?"|[^"\s]+)+(?=\s*|\s*$)/g
+
 module.exports = class CommandBar extends Text
   tag: 'daisho-command-bar'
   html: require '../templates/command-bar'
@@ -45,7 +47,7 @@ module.exports = class CommandBar extends Text
     cmd = @getValue(target:$(@root).find('input'))
     # commands start with '/'
     if cmd && cmd[0] == '/'
-      args = cmd.split(' ').map (str)->
+      args = cmd.match(regex).map (str)->
         return str.trim()
 
       return @services.command.find args[0].substr 1
@@ -57,7 +59,7 @@ module.exports = class CommandBar extends Text
     cmd = @getValue(target: $el)
     # commands start with '/'
     if cmd && cmd[0] == '/'
-      args = cmd.split(' ').map (str)->
+      args = cmd.match(regex).map (str)->
         return str.trim()
 
       $el.val ''
