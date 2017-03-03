@@ -9,7 +9,8 @@ module.exports = class Main extends CrowdControl.Views.Form
   html: require '../templates/main'
 
   configs:
-    'activeOrg': 0
+    'activeOrg':    []
+    'search':       []
 
   error: null
   orgs: null
@@ -35,7 +36,7 @@ module.exports = class Main extends CrowdControl.Views.Form
         $page = $(@root).find '#page'
         $page.children().detach()
         $page.append $el
-        current?.update?()
+        current.update?()
 
     # if active org is updated, restart the app
     m.on Events.Change, (name, val)=>

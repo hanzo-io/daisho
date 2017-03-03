@@ -1,11 +1,11 @@
-CrowdControl    = require 'crowdcontrol'
+Dynamic         = require '../dynamic'
 Tween           = require 'tween.js'
 
 # --Counter--
 # A counter supports a model with 2 series.  It will display the first
 # datapoint in each series and display a comparison in the two series case or
 # just a single number
-module.exports = class Counter extends CrowdControl.Views.View
+module.exports = class Counter extends Dynamic
   tag: 'daisho-graphics-counter'
   html: require '../../templates/graphics/counter'
   value0: 0
@@ -13,45 +13,46 @@ module.exports = class Counter extends CrowdControl.Views.View
   tween0: null
   tween1: null
   timer: 1000
+
   init: ()->
     super
 
-    @on 'update', =>
-      data = @data
-      self = @
-      if !@tween0 && data.get '0'
-        value0 = data.get(0 + '.ys.0')
-        if value0 && value0 != @value0
-          @tween0 = new Tween.Tween
-            v: @value0
-          .to { v: value0 }, @timer
-          .onUpdate ->
-            self.value0 = @v
-            requestAnimationFrame ->
-              self.update()
-          .onComplete =>
-            @tween0 = null
-            @value0 = value0
-            requestAnimationFrame =>
-              @update()
-          .start()
+  _refresh: ->
+    data = @data
+    self = @
+    if !@tween0 && data.get '0'
+      value0 = data.get(0 + '.ys.0')
+      if value0 && value0 != @value0
+        @tween0 = new Tween.Tween
+          v: @value0
+        .to { v: value0 }, @timer
+        .onUpdate ->
+          self.value0 = @v
+          requestAnimationFrame ->
+            self.update()
+        .onComplete =>
+          @tween0 = null
+          @value0 = value0
+          requestAnimationFrame =>
+            @update()
+        .start()
 
-      if !@tween1 && data.get '1'
-        value1 =  data.get(1 + '.ys.0')
-        if value1 && value1 != @value1
-          @tween1 = new Tween.Tween
-            v: @value1
-          .to { v: value1 }, @timer
-          .onUpdate ->
-            self.value1 = @v
-            requestAnimationFrame ->
-              self.update()
-          .onComplete =>
-            @tween1 = null
-            @value1 = value1
-            requestAnimationFrame =>
-              @update()
-          .start()
+    if !@tween1 && data.get '1'
+      value1 =  data.get(1 + '.ys.0')
+      if value1 && value1 != @value1
+        @tween1 = new Tween.Tween
+          v: @value1
+        .to { v: value1 }, @timer
+        .onUpdate ->
+          self.value1 = @v
+          requestAnimationFrame ->
+            self.update()
+        .onComplete =>
+          @tween1 = null
+          @value1 = value1
+          requestAnimationFrame =>
+            @update()
+        .start()
 
   getNumber: (index)->
     if index == 0

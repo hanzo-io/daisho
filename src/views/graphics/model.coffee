@@ -5,6 +5,7 @@ module.exports =
 
   newSeries: ->
     series: ''      # name of series
+    type:   'line'  # type of series rendering
     xs: []          # x values
     ys: []          # y values
     fmt:            # formatting functions

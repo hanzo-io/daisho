@@ -15,3 +15,8 @@ module.exports =
 
   Logout:
     'daisho.logout'
+
+  Refresh:
+    'daisho.refresh'
+  ForceRefresh:
+    'daisho.refresh.force'
