@@ -1,19 +1,25 @@
-window?.$ = require 'jquery'
-require 'selectize'
+import $ from 'jquery'
+import 'selectize'
 
-HanzoJS = require 'hanzo.js'
-blueprints = require './blueprints'
+import Hanzo      from 'hanzo.js'
+import blueprints from './blueprints'
 
-window?.riot = require 'riot'
-riot.observable = require 'riot-observable'
+import riot from 'riot'
+import observable from 'riot-observable'
 
-# patch raf
-window.requestAnimationFrame = require 'raf'
+import {requestAnimationFrame} from 'esraf'
 
-CrowdControl = require 'crowdcontrol'
-Tween        = require 'tween.js'
+import CrowdControl from 'crowdcontrol'
+import Tween        from 'tween.js'
+import Views        from './views'
+import Services     from './services'
 
-animate = (time)->
+import Events   from './events'
+import mediator from './mediator'
+
+import util from './util'
+
+animate = (time) ->
   requestAnimationFrame animate
   Tween.update time
 
@@ -22,7 +28,7 @@ requestAnimationFrame animate
 reservedTags = {}
 
 # Monkey patch crowdcontrol so all registration can be validated
-CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ()->
+CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
   if reservedTags[@tag]
     throw new Error "#{@tag} is reserved:", reservedTags[@tag]
   r = new @
@@ -30,40 +36,38 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ()->
   reservedTags[@tag] = @
   return r
 
-Views = require './views'
 Views.register()
-Services = require './services'
 
-module.exports = class Daisho
-  @CrowdControl:    CrowdControl
-  @Views:           Views
-  @Graphics:        Views.Graphics
-  @Services:        Services
-  @Events:          require './events'
-  @mediator:        require './mediator'
-  @Riot:            riot
-  @util:            require './util'
+export default class Daisho
+  @CrowdControl: CrowdControl
+  @Views:        Views
+  @Graphics:     Views.Graphics
+  @Services:     Services
+  @Events:       Events
+  @mediator:     mediator
+  @Riot:         riot
+  @util:         util
 
-  client: null
-  data: null
+  client:   null
+  data:     null
   settings: null
-  modules: null
-  debug: false
+  modules:  null
+  debug:    false
   services: null
+  util:     Daisho.util
 
-  util: Daisho.util
-
-  constructor: (url, modules, @data, @settings, debug = false)->
-    @client = new HanzoJS.Api
+  constructor: (url, modules, @data, @settings, debug = false) ->
+    @client = new Hanzo.Api
       debug:    debug
       endpoint: url
 
     @debug = debug
 
     @services =
-      menu:     new Services.Menu @, debug
-      page:     new Services.Page @, debug
+      menu:     new Services.Menu    @, debug
+      page:     new Services.Page    @, debug
       command:  new Services.Command @, debug
+
     @services.page.mount = =>
       @mount.apply @, arguments
     @services.page.update = =>
@@ -72,7 +76,7 @@ module.exports = class Daisho
     @client.addBlueprints k,v for k,v of blueprints
     @modules = modules
 
-  start: ()->
+  start: ->
     modules = @modules
 
     for k, module of modules
@@ -83,7 +87,7 @@ module.exports = class Daisho
 
     @services.menu.start()
 
-  mount: (tag, opts = {})->
+  mount: (tag, opts = {}) ->
     isHTML = tag instanceof HTMLElement
     if isHTML
       tagName = tag.tagName.toLowerCase()
@@ -119,5 +123,5 @@ module.exports = class Daisho
       riot.mount tag, tagName, opts
 
   update: ->
-    requestAnimationFrame ()->
+    requestAnimationFrame ->
       riot.update.apply riot, arguments
