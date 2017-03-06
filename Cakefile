@@ -16,17 +16,15 @@ task 'build', 'build project', ->
   handroll = require 'handroll'
 
   bundle = yield handroll.bundle
-    entry:   'src/index.coffee'
+    entry:    'src/index.coffee'
     commonjs: true
 
   # CommonJS
   bundle.write
-    dest:       pkg.main
     format:     'cjs'
     sourceMap: false
 
   # CommonJS
   bundle.write
-    dest:       pkg.module
     format:     'es'
     sourceMap: false

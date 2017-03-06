@@ -1,5 +1,5 @@
 Dynamic         = require '../dynamic'
-Tween           = require 'tween.js'
+Tween           = require 'es-tween'
 
 # --Counter--
 # A counter supports a model with 2 series.  It will display the first

@@ -10,7 +10,7 @@ import observable from 'riot-observable'
 import {requestAnimationFrame} from 'esraf'
 
 import CrowdControl from 'crowdcontrol'
-import Tween        from 'tween.js'
+import Tween        from 'es-tween'
 import Views        from './views'
 import Services     from './services'
 

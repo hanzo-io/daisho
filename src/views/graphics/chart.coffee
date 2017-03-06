@@ -1,5 +1,5 @@
 Dynamic         = require '../dynamic'
-Tween           = require 'tween.js'
+Tween           = require 'es-tween'
 d3              = require 'd3sho'
 randomColor     = require 'randomcolor'
 
