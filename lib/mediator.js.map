@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "mediator.js",
+  "sourceRoot": "..",
+  "sources": [
+    "src/mediator.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,IAAA;;AAAA,IAAA,GAAO,OAAA,CAAQ,MAAR;;AAEP,MAAM,CAAC,OAAP,GAAiB,IAAI,CAAC,UAAL,CAAgB,EAAhB"
+}

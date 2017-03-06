@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "textarea.js",
+  "sourceRoot": "../../..",
+  "sources": [
+    "src/views/controls/textarea.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,IAAA,cAAA;EAAA;;;AAAA,IAAA,GAAO,OAAA,CAAQ,QAAR;;AAEP,MAAM,CAAC,OAAP,GAAuB;;;;;;;qBACrB,GAAA,GAAM;;qBACN,IAAA,GAAM,OAAA,CAAQ,mCAAR;;qBACN,WAAA,GAAa;;;;GAHyB"
+}
