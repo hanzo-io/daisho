@@ -17,11 +17,7 @@ task 'build', 'build project', ->
 
   bundle = yield handroll.bundle
     entry:    'src/index.coffee'
+    external: true
     commonjs: true
 
-  bundle.write
-    format:    'cjs'
-    sourceMap: true
-  bundle.write
-    format:    'es'
-    sourceMap: true
+  yield bundle.write format: 'es'
