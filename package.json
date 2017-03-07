@@ -46,7 +46,7 @@
     "coffee-script": "1.12.4",
     "coveralls": "2.12.0",
     "es5-shim": "4.5.9",
-    "handroll": "0.2.8",
+    "handroll": "0.2.9",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "mz": "2.6.0",
@@ -55,7 +55,7 @@
     "uglify-js": "2.8.7"
   },
   "dependencies": {
-    "akasha": "0.0.6",
+    "akasha": "0.0.8",
     "broken": "0.1.9",
     "crowdcontrol": "2.0.19",
     "d3sho": "0.1.10",
