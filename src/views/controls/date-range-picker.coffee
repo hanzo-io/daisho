@@ -1,12 +1,14 @@
-Text = require './text'
-$ = require 'jquery'
-moment = require 'moment-timezone'
-Calendar = require '../../vendor/baremetrics-calendar/calendar'
-util = require '../../util'
+import moment from 'moment-timezone'
 
-module.exports = class DateRangePicker extends Text
-  tag: 'date-range-picker-control'
-  html: require '../../templates/controls/date-range-picker'
+import Calendar from '../../vendor/baremetrics-calendar/calendar'
+import Text     from './text'
+import util     from '../../util'
+
+import html from '../../templates/controls/date-range-picker'
+
+export default class DateRangePicker extends Text
+  tag:  'date-range-picker-control'
+  html: html
 
   after: '2015-01-01'
   before: moment()

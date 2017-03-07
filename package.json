@@ -5,7 +5,9 @@
   "main": "dist/daisho.js",
   "module": "dist/daisho.mjs",
   "jsnext:main": "dist/daisho.mjs",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "prepublish": "cake build",
     "test": "cake build && cake test"
@@ -53,7 +55,7 @@
     "uglify-js": "2.8.7"
   },
   "dependencies": {
-    "akasha": "0.0.4",
+    "akasha": "0.0.5",
     "broken": "0.1.9",
     "crowdcontrol": "2.0.19",
     "d3sho": "0.1.10",

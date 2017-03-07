@@ -1,4 +1,3 @@
-import $ from'jquery'
 import CrowdControl from 'crowdcontrol'
 
 import Events from '../events'

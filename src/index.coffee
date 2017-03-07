@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import 'selectize'
 
 import Hanzo      from 'hanzo.js'

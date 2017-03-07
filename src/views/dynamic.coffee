@@ -1,6 +1,5 @@
-CrowdControl    = require 'crowdcontrol'
-Events          = require '../events'
-$               = require 'jquery'
+CrowdControl = require 'crowdcontrol'
+Events       = require '../events'
 
 module.exports = class DynamicView extends CrowdControl.Views.Form
   tag: 'daisho-dynamic'
