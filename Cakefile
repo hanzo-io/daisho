@@ -19,12 +19,9 @@ task 'build', 'build project', ->
     entry:    'src/index.coffee'
     commonjs: true
 
-  # CommonJS
   bundle.write
-    format:     'cjs'
-    sourceMap: false
-
-  # CommonJS
+    format:    'cjs'
+    sourceMap: true
   bundle.write
-    format:     'es'
-    sourceMap: false
+    format:    'es'
+    sourceMap: true
