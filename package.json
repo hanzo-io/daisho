@@ -5,6 +5,7 @@
   "main": "dist/daisho.js",
   "module": "dist/daisho.mjs",
   "jsnext:main": "dist/daisho.mjs",
+  "files": ["dist/"]
   "scripts": {
     "prepublish": "cake build",
     "test": "cake build && cake test"
