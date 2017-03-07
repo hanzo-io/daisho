@@ -1,13 +1,15 @@
-Text = require './text'
-riot = require 'riot'
+import riot from 'riot'
+
+import Text from './text'
+import html from '../../templates/controls/select'
 
 isABrokenBrowser = (window.navigator.userAgent.indexOf('MSIE') > 0 || window.navigator.userAgent.indexOf('Trident') > 0)
 
 coolDown = -1
 
-module.exports = class Select extends Text
+export default class Select extends Text
   tag: 'select-control'
-  html: require '../../templates/controls/select'
+  html: html
   tags: false
   min: 10
 

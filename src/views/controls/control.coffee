@@ -1,11 +1,11 @@
-CrowdControl = require 'crowdcontrol'
-m = require '../../mediator'
-Events = require '../../events'
-riot = require 'riot'
+import CrowdControl from 'crowdcontrol'
+import Events       from  '../../events'
+import m            from  '../../mediator'
+import riot         from 'riot'
 
 scrolling = false
 
-module.exports = class Control extends CrowdControl.Views.Input
+export default class Control extends CrowdControl.Views.Input
   init: ()->
     if !@input? && @inputs?
       @input = @inputs[@lookup]

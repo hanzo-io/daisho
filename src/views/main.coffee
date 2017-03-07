@@ -1,12 +1,14 @@
-CrowdControl    = require 'crowdcontrol'
-$ = require 'jquery'
+import $ from'jquery'
+import CrowdControl from 'crowdcontrol'
 
-m = require '../mediator'
-Events = require '../events'
+import Events from '../events'
+import m      from '../mediator'
 
-module.exports = class Main extends CrowdControl.Views.Form
+import html from '../templates/main'
+
+export default class Main extends CrowdControl.Views.Form
   tag: 'daisho-main'
-  html: require '../templates/main'
+  html: html
 
   configs:
     'activeOrg':    []

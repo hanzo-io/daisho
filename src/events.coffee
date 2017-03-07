@@ -1,4 +1,4 @@
-module.exports =
+Events =
   Change:
     'daisho.change'
   ChangeSuccess:
@@ -20,3 +20,5 @@ module.exports =
     'daisho.refresh'
   ForceRefresh:
     'daisho.refresh.force'
+
+export default Events

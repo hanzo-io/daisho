@@ -1,19 +1,20 @@
-CrowdControl    = require 'crowdcontrol'
+import CrowdControl from 'crowdcontrol'
 
-module.exports = class Menu extends CrowdControl.Views.View
+html = require '../templates/menu'
+
+export default class Menu extends CrowdControl.Views.View
   tag: 'daisho-menu'
-  html: require '../templates/menu'
+  html: html
 
   error: null
 
-  init: ()->
+  init: ->
     super
 
-  items: ()->
+  items:->
     items = []
     for k, v of @services.menu.menu
       items.push
         name: k
         onclick: v
-    return items
-
+    items
