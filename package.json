@@ -57,7 +57,7 @@
   "dependencies": {
     "akasha": "0.0.9",
     "broken": "0.1.9",
-    "crowdcontrol": "2.0.19",
+    "crowdcontrol": "2.1.0",
     "d3sho": "0.1.10",
     "es-raf": "3.3.0",
     "es-tween": "0.1.0",
