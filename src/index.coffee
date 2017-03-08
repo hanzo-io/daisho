@@ -1,10 +1,10 @@
-import 'selectize'
+import 'selectize/dist/js/standalone/selectize.js'
 
 import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
 import riot         from 'riot'
-import {requestAnimationFrame} from 'esraf'
+import {requestAnimationFrame} from 'es-raf'
 
 import Events     from './events'
 import Services   from './services'
