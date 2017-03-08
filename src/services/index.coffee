@@ -1,4 +1,8 @@
-module.exports =
-  Menu:     require './menu'
-  Page:     require './page'
-  Command:  require './command'
+import Menu    from './menu'
+import Page    from './page'
+import Command from './command'
+
+export default Services =
+  Menu:    Menu
+  Page:    Page
+  Command: Command

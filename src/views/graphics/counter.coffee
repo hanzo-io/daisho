@@ -1,20 +1,22 @@
-Dynamic         = require '../dynamic'
-Tween           = require 'es-tween'
+import Tween   from 'es-tween'
+
+import Dynamic from '../dynamic'
+import html from '../../templates/graphics/counter'
 
 # --Counter--
 # A counter supports a model with 2 series.  It will display the first
 # datapoint in each series and display a comparison in the two series case or
 # just a single number
 module.exports = class Counter extends Dynamic
-  tag: 'daisho-graphics-counter'
-  html: require '../../templates/graphics/counter'
+  tag:    'daisho-graphics-counter'
+  html:   html
   value0: 0
   value1: 0
   tween0: null
   tween1: null
-  timer: 1000
+  timer:  1000
 
-  init: ()->
+  init: ->
     super
 
   _refresh: ->
@@ -54,12 +56,10 @@ module.exports = class Counter extends Dynamic
             @update()
         .start()
 
-  getNumber: (index)->
+  getNumber: (index) ->
     if index == 0
-      if !@data.get(0 + '.fmt.y')
-        return @value0
-      return @data.get(0 + '.fmt.y') @value0
+      return @value0 if !@data.get(0 + '.fmt.y')
+      @data.get(0 + '.fmt.y') @value0
     else
-      if !@data.get(1 + '.fmt.y')
-        return @value1
-      return @data.get(1 + '.fmt.y') @value1
+      return @value1 if !@data.get(1 + '.fmt.y')
+      @data.get(1 + '.fmt.y') @value1

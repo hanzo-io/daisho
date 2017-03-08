@@ -1,7 +1,9 @@
-Dynamic         = require '../dynamic'
-Tween           = require 'es-tween'
-d3              = require 'd3sho'
-randomColor     = require 'randomcolor'
+import Dynamic     from '../dynamic'
+import Tween       from 'es-tween'
+import d3          from 'd3sho'
+import randomColor from 'randomcolor'
+
+import html from '../../templates/graphics/chart'
 
 # # http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
 # getSmoothInterpolation = (lineFn, data) ->
@@ -24,9 +26,9 @@ randomColor     = require 'randomcolor'
 
 # --Chart--
 # A chart supports a model with many series with x/y values.
-module.exports = class Chart extends Dynamic
+class Chart extends Dynamic
   tag: 'daisho-graphics-chart'
-  html: require '../../templates/graphics/chart'
+  html: html
 
   margin:
     top: 40
@@ -368,3 +370,5 @@ module.exports = class Chart extends Dynamic
       .scale ordinal
 
     @legend.call legendOrdinal
+
+export default Chart

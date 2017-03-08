@@ -1,17 +1,19 @@
-CrowdControl    = require 'crowdcontrol'
+import CrowdControl from 'crowdcontrol'
 
-{
+import Events from '../events'
+import m      from '../mediator'
+import {
   isRequired,
   isEmail,
   isPassword,
-} = require './middleware'
+} from './middleware'
 
-m = require '../mediator'
-Events = require '../events'
+import html from '../templates/login'
 
-module.exports = class Login extends CrowdControl.Views.Form
+
+class Login extends CrowdControl.Views.Form
   tag: 'daisho-login'
-  html: require '../templates/login'
+  html: html
 
   configs:
     'account.email':    [ isRequired, isEmail ]
@@ -28,12 +30,12 @@ module.exports = class Login extends CrowdControl.Views.Form
 
     super
 
-  _submit: (event)->
+  _submit: (event) ->
     opts =
-      email:        @data.get 'account.email'
-      password:     @data.get 'account.password'
-      # client_id:    @data.get 'organization'
-      # grant_type:   'password'
+      email:      @data.get 'account.email'
+      password:   @data.get 'account.password'
+      # client_id:  @data.get 'organization'
+      # grant_type: 'password'
 
     @error = null
 
@@ -41,7 +43,7 @@ module.exports = class Login extends CrowdControl.Views.Form
     @disabled = true
     @update()
 
-    @client.dashv2.login(opts).then((res)=>
+    @client.dashv2.login(opts).then (res) =>
       @disabled = false
       @data.set 'account.password', ''
       @data.set 'account', res.user
@@ -49,8 +51,10 @@ module.exports = class Login extends CrowdControl.Views.Form
       @data.set 'activeOrg', 0
       m.trigger Events.LoginSuccess, res
       @update()
-    ).catch (err)=>
+    .catch (err) =>
       @disabled = false
-      @error = err.message
+      @error    = err.message
       m.trigger Events.LoginFailed, err
       @update()
+
+export default Login

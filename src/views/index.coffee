@@ -1,15 +1,27 @@
-module.exports =
-  Controls: require './controls'
-  Graphics: require './graphics'
+import Controls   from './controls'
+import Graphics   from './graphics'
 
-  List:     require './list'
-  ListItem: require './list-item'
+import List       from './list'
+import ListItem   from './list-item'
 
-  CommandBar:   require './command-bar'
-  Dynamic:      require './dynamic'
-  Login:        require './login'
-  Main:         require './main'
-  Menu:         require './menu'
+import CommandBar from './command-bar'
+import Dynamic    from './dynamic'
+import Login      from './login'
+import Main       from './main'
+import Menu       from './menu'
+
+export default Views =
+  Controls:   Controls
+  Graphics:   Graphics
+
+  List:       List
+  ListItem:   ListItem
+
+  CommandBar: CommandBar
+  Dynamic:    Dynamic
+  Login:      Login
+  Main:       Main
+  Menu:       Menu
 
   register: ->
     @Controls.register()
@@ -22,4 +34,3 @@ module.exports =
     @Login.register()
     @Main.register()
     @Menu.register()
-

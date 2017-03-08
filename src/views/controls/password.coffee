@@ -1,5 +1,7 @@
-Text = require './text'
+import Text from './text'
 
-module.exports = class Password extends Text
-  tag:      'password-control'
-  type:     'password'
+class Password extends Text
+  tag:  'password-control'
+  type: 'password'
+
+export default Password

@@ -1,13 +1,17 @@
-Control = require './control'
+import Control from './control'
+import html    from '../../templates/controls/text'
 
-module.exports = class Text extends Control
+class Text extends Control
   tag:          'text-control'
-  html:         require '../../templates/controls/text'
+  html:         html
   type:         'text'
   formElement:  'input'
   autoComplete: 'on'
-  init: ()->
+
+  init: ->
     super
 
     @on 'updated', =>
       el = @root.getElementsByTagName(@formElement)[0]
+
+export default Text

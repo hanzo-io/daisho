@@ -1,7 +1,10 @@
-CrowdControl = require 'crowdcontrol'
+import CrowdControl from 'crowdcontrol'
 
-module.exports = class List extends CrowdControl.Views.View
+import html from '../templates/list'
+
+class List extends CrowdControl.Views.View
   tag:  'list'
-  html: require '../templates/list'
-  init: ()->
-    super
+  html: html
+  init: -> super
+
+export default List

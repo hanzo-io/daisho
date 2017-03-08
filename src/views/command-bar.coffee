@@ -1,11 +1,13 @@
-Text = require './controls/text'
-Events = require '../events'
+import Text   from './controls/text'
+import Events from '../events'
 
 regex = /(".*?"|[^"\s]+)+(?=\s*|\s*$)/g
 
-module.exports = class CommandBar extends Text
-  tag: 'daisho-command-bar'
-  html: require '../templates/command-bar'
+import html from '../templates/command-bar'
+
+class CommandBar extends Text
+  tag:    'daisho-command-bar'
+  html:   html
   lookup: 'search'
 
   init: ->
@@ -18,7 +20,7 @@ module.exports = class CommandBar extends Text
     @on 'update', ->
       # stuff
 
-  keydown: (event)->
+  keydown: (event) ->
     if event.which == 9
       cmd = @getValue event
       # commands start with '/'
@@ -38,8 +40,8 @@ module.exports = class CommandBar extends Text
 
     return true
 
-  pick: (command)->
-    return ()=>
+  pick: (command) ->
+    =>
       $(@root).find('input').val '/' + command
 
 
@@ -50,11 +52,11 @@ module.exports = class CommandBar extends Text
       args = cmd.match(regex).map (str)->
         return str.trim()
 
-      return @services.command.find args[0].substr 1
+      @services.command.find args[0].substr 1
     else
-      return []
+      []
 
-  execute: ()->
+  execute: ->
     $el = $(@root).find('input')
     cmd = @getValue(target: $el)
     # commands start with '/'
@@ -71,4 +73,6 @@ module.exports = class CommandBar extends Text
       catch e
         console.log e
 
-    return true
+    true
+
+exports default CommandBar

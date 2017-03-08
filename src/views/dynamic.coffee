@@ -1,5 +1,5 @@
-CrowdControl = require 'crowdcontrol'
-Events       = require '../events'
+import CrowdControl from 'crowdcontrol'
+import Events       from '../events'
 
 module.exports = class DynamicView extends CrowdControl.Views.Form
   tag: 'daisho-dynamic'

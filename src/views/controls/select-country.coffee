@@ -1,16 +1,17 @@
-Select = require './select'
-countries = require('../../data/countries')
+import Select    from './select'
+import countries from '../../data/countries'
 
-module.exports = class SelectCountry extends Select
-  tag: 'select-country-control'
-  options: ->
-    return countries.data
+class SelectCountry extends Select
+  tag:    'select-country-control'
   lookup: 'country'
 
-  init: ()->
+  options: ->
+    countries.data
+
+  init: ->
     super
 
-    @on 'update', ()=>
+    @on 'update', =>
       country = @input.ref.get @lookup
       if country
         country = country.toLowerCase()
@@ -21,3 +22,5 @@ module.exports = class SelectCountry extends Select
             if v.toLowerCase() == country
               @input.ref.set @lookup, k
               return
+
+export default SelectCountry

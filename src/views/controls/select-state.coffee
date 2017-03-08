@@ -1,18 +1,20 @@
-Select = require './select'
-states = require('../../data/states')
+import Select from './select'
+import states from '../../data/states'
+import html   from '../../templates/controls/select-state'
 
-module.exports = class SelectState extends Select
-  tag: 'select-state-control'
-  html: require '../../templates/controls/select-state'
-  options: ->
-    return states.data
+class SelectState extends Select
+  tag:  'select-state-control'
+  html: html
+
+  options: -> states.data
+
   countryField: 'country'
-  lookup: 'state'
+  lookup:       'state'
 
-  init: ()->
+  init: ->
     super
 
-    @on 'update', ()=>
+    @on 'update', =>
       if !@input?
         return
 
@@ -27,9 +29,8 @@ module.exports = class SelectState extends Select
               @input.ref.set @lookup, k
               return
 
-  onUpdated: ()->
-    if !@input?
-      return
+  onUpdated: ->
+    return if !@input?
 
     if @input.ref.get(@countryField) == 'us'
       $(@root).find('.selectize-control').show()
@@ -38,3 +39,5 @@ module.exports = class SelectState extends Select
       value = @input.ref.get(@input.name)
       @input.ref.set(@input.name, value.toUpperCase()) if value
     super
+
+export default SelectState

@@ -1,6 +1,6 @@
 import CrowdControl from 'crowdcontrol'
 
-html = require '../templates/menu'
+import html from '../templates/menu'
 
 export default class Menu extends CrowdControl.Views.View
   tag: 'daisho-menu'
