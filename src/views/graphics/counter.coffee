@@ -7,7 +7,7 @@ import html from '../../templates/graphics/counter'
 # A counter supports a model with 2 series.  It will display the first
 # datapoint in each series and display a comparison in the two series case or
 # just a single number
-module.exports = class Counter extends Dynamic
+class Counter extends Dynamic
   tag:    'daisho-graphics-counter'
   html:   html
   value0: 0
@@ -63,3 +63,5 @@ module.exports = class Counter extends Dynamic
     else
       return @value1 if !@data.get(1 + '.fmt.y')
       @data.get(1 + '.fmt.y') @value1
+
+export default Counter

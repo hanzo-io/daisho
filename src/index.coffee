@@ -1,22 +1,17 @@
 import 'selectize'
 
-import Hanzo      from 'hanzo.js'
-import blueprints from './blueprints'
-
-import riot from 'riot'
-import observable from 'riot-observable'
-
+import CrowdControl from 'crowdcontrol'
+import Hanzo        from 'hanzo.js'
+import Tween        from 'es-tween'
+import riot         from 'riot'
 import {requestAnimationFrame} from 'esraf'
 
-import CrowdControl from 'crowdcontrol'
-import Tween        from 'es-tween'
-import Views        from './views'
-import Services     from './services'
-
-import Events   from './events'
-import mediator from './mediator'
-
-import util from './util'
+import Events     from './events'
+import Services   from './services'
+import Views      from './views'
+import blueprints from './blueprints'
+import mediator   from './mediator'
+import util       from './util'
 
 animate = (time) ->
   requestAnimationFrame animate

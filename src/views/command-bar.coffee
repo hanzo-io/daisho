@@ -75,4 +75,4 @@ class CommandBar extends Text
 
     true
 
-exports default CommandBar
+export default CommandBar

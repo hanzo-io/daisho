@@ -1,7 +1,7 @@
 import CrowdControl from 'crowdcontrol'
 import Events       from '../events'
 
-module.exports = class DynamicView extends CrowdControl.Views.Form
+class DynamicView extends CrowdControl.Views.Form
   tag: 'daisho-dynamic'
   html: ''
 
@@ -73,3 +73,5 @@ module.exports = class DynamicView extends CrowdControl.Views.Form
     return @_refresh.apply @, arguments
 
   _refresh: ->
+
+export default DynamicView
