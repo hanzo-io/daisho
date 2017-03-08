@@ -4,7 +4,7 @@ import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
 import riot         from 'riot'
-import {requestAnimationFrame} from 'es-raf'
+import {raf}        from 'es-raf'
 
 import Events     from './events'
 import Services   from './services'
@@ -14,10 +14,10 @@ import mediator   from './mediator'
 import util       from './util'
 
 animate = (time) ->
-  requestAnimationFrame animate
+  raf animate
   Tween.update time
 
-requestAnimationFrame animate
+raf animate
 
 reservedTags = {}
 
@@ -117,5 +117,5 @@ export default class Daisho
       riot.mount tag, tagName, opts
 
   update: ->
-    requestAnimationFrame ->
+    raf ->
       riot.update.apply riot, arguments
