@@ -1,28 +1,27 @@
-module.exports = class PageService
-  cache: null
-  daisho: null
-  debug: false
-
+class PageService
+  cache:   null
+  daisho:  null
+  debug:   false
   current: null
 
   constructor: (@daisho, @debug)->
     @cache = {}
 
-  mount: ->
+  mount:  ->
   update: ->
 
-  register: (id, enterFn, startFn, stopFn)->
+  register: (id, enterFn, startFn, stopFn) ->
     if @cache[id]
       console.log '---PAGE SERVICE---\nCollision for ' + id
 
     @cache[id] =
-      id:       id
-      enter:    enterFn
-      start:    startFn
-      stop:     stopFn
-      root:     null
+      id:    id
+      enter: enterFn
+      start: startFn
+      stop:  stopFn
+      root:  null
 
-  show: (id)->
+  show: (id) ->
     page = @cache[id]
 
     if !page?
@@ -42,5 +41,6 @@ module.exports = class PageService
         console.log '---PAGE SERVICE---\nDone serving page ' + id
 
     @current = page.root
-    return @current
+    @current
 
+export default PageService

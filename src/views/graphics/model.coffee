@@ -1,4 +1,4 @@
-module.exports =
+export default Model =
   new: ->
     # multi-series model
     return [@newSeries()]
@@ -6,24 +6,29 @@ module.exports =
   newSeries: ->
     series: ''      # name of series
     type:   'line'  # type of series rendering
-    xs: []          # x values
-    ys: []          # y values
-    fmt:            # formatting functions
-      x: (n)-> return n
-      y: (n)-> return n
+    xs:     []      # x values
+    ys:     []      # y values
+
+    # formatting functions
+    fmt:
+      x: (n)-> n
+      y: (n)-> n
+
     tip:
-      x: (n)-> return n
-      y: (n)-> return n
-    axis:           # axis configuration
+      x: (n)-> n
+      y: (n)-> n
+
+    # axis configuration
+    axis:
       x:
-        name: ''
-        fmt: (n)-> return n
+        name:  ''
         scale: null
-        ticks: (n)->   #return a d3 tick object
-          return n
+        fmt:   (n) -> n
+        ticks: (n) ->
+          n # return a d3 tick object
       y:
-        name: ''
-        fmt: (n)-> return n
+        name:  ''
         scale: null
-        ticks: (n)->   #return a d3 tick object
-          return (n)
+        fmt:   (n) -> n
+        ticks: (n) ->
+          n # return a d3 tick object

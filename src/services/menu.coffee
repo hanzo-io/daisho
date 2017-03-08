@@ -1,13 +1,13 @@
-module.exports = class MenuService
-  menu: null
+class MenuService
+  menu:   null
   initFn: null
   daisho: null
-  debug: false
+  debug:  false
 
-  constructor: (@daisho, @debug)->
+  constructor: (@daisho, @debug) ->
     @menu = {}
 
-  register: (name, fn)->
+  register: (name, fn) ->
     if @menu[name]
       console.log '---MENU SERVICE---\nCollision for ' + name
 
@@ -15,7 +15,7 @@ module.exports = class MenuService
     if !@initFn?
       @initFn = fn
 
-  run: (name)->
+  run: (name) ->
     fn = @menu[name]
     if !fn && @debug
       console.log '---MENU SERVICE---\n' + name + ' not registered'
@@ -26,3 +26,5 @@ module.exports = class MenuService
       console.log '---MENU SERVICE---\nnothing registered'
       return
     @initFn()
+
+export default MenuService

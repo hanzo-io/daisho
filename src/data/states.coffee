@@ -1,4 +1,4 @@
-module.exports =
+export default states =
   data:
     ak: 'Alaska'
     al: 'Alabama'

@@ -1,4 +1,4 @@
-module.exports =
+export default countries =
   data:
     af: "Afghanistan"
     ax: "Åland Islands"

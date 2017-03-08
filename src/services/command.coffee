@@ -1,11 +1,11 @@
-module.exports = class CommandService
+class CommandService
   commands: null
-  daisho: null
+  daisho:   null
 
-  constructor: (@daisho, @debug)->
+  constructor: (@daisho, @debug) ->
     @commands = {}
 
-  register: (command, hint, fn)->
+  register: (command, hint, fn) ->
     if @commands[command]
       console.log '---CMD SERVICE---\nCollision for ' + name
 
@@ -14,13 +14,13 @@ module.exports = class CommandService
       hint: hint
       fn: fn
 
-  find: (command)->
+  find: (command) ->
     found = []
     for cmd, opts of @commands
       if opts.command.indexOf(command)== 0
         found.push opts
 
-    found.sort (a,b)->
+    found.sort (a,b) ->
       nameA = a.command.toLowerCase()
       nameB = b.command.toLowerCase()
       if (nameA < nameB)
@@ -29,9 +29,9 @@ module.exports = class CommandService
         return 1
       return 0
 
-    return found
+    found
 
-  execute: (command, args)->
+  execute: (command, args) ->
     for i, arg of args
       # strip quotes
       if arg[0] == '"'
@@ -42,3 +42,5 @@ module.exports = class CommandService
     if !command
       console.log '---COMMAND SERVICE---\n' + id + ' not registered'
     command.fn.apply @, args
+
+export default CommandService

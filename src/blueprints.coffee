@@ -62,23 +62,23 @@ blueprints =
   oauth:
     auth:
       # expects: statusOk
-      method:   'POST'
-      url:      '/auth'
+      method: 'POST'
+      url:    '/auth'
 
   account:
     organization:
-      method:   'GET'
-      url:      '/_/account/organizations'
+      method: 'GET'
+      url:    '/_/account/organizations'
 
   dashv2:
     login:
-      method:   'POST'
-      url:      '/dashv2/login'
+      method: 'POST'
+      url:    '/dashv2/login'
 
   counter:
     search:
-      method:   'POST'
-      url:      '/counter'
+      method: 'POST'
+      url:    '/counter'
 
 models = [
   'user'
@@ -91,7 +91,7 @@ for model in models
     blueprints[model] = createBlueprint model
 
 blueprints.note.search =
-  method:   'POST'
-  url:      '/search/note'
+  method: 'POST'
+  url:    '/search/note'
 
-module.exports = blueprints
+export default blueprints
