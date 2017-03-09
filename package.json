@@ -1,6 +1,6 @@
 {
   "name": "daisho",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Modular Dashboard Framework",
   "main": "dist/daisho.js",
   "module": "dist/daisho.mjs",
