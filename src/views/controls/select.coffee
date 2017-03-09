@@ -11,8 +11,6 @@ coolDown = -1
 export default class Select extends Text
   tag: 'select-control'
   html: html
-  tags: false
-  min: 10
 
   selectOptions: {}
 
