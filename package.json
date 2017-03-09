@@ -70,6 +70,7 @@
     "es-selectize": "0.12.4",
     "es-tween": "0.1.0",
     "hanzo.js": "2.3.3",
+    "jquery": "3.1.1",
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
     "riot": "3.3.2",

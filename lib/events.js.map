@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "events.js",
+  "sourceRoot": "..",
+  "sources": [
+    "src/events.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,MAAM,CAAC,OAAP,GACE;EAAA,MAAA,EACE,eADF;EAEA,aAAA,EACE,uBAHF;EAIA,YAAA,EACE,sBALF;EAOA,KAAA,EACE,cARF;EASA,YAAA,EACE,sBAVF;EAWA,WAAA,EACE,qBAZF;EAcA,MAAA,EACE,eAfF;EAiBA,OAAA,EACE,gBAlBF;EAmBA,YAAA,EACE,sBApBF"
+}
