@@ -1,7 +1,6 @@
 import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
-import riot         from 'riot'
 import {raf}        from 'es-raf'
 
 import Events     from './events'

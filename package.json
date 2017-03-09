@@ -56,7 +56,7 @@
     "uglify-js": "2.8.10"
   },
   "dependencies": {
-    "akasha": "0.0.10",
+    "akasha": "0.0.11",
     "broken": "0.1.9",
     "crowdcontrol": "2.1.2",
     "d3-array": "1.1.0",
