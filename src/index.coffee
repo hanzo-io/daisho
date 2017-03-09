@@ -2,7 +2,7 @@ import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
 import riot         from 'riot'
-import selectize    from 'selectize/dist/js/standalone/selectize.js'
+import selectize    from 'es-selectize'
 import {raf}        from 'es-raf'
 
 import Events     from './events'
