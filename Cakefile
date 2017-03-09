@@ -15,8 +15,10 @@ task 'clean', 'clean project', ->
 task 'build', 'build project', ->
   handroll = require 'handroll'
 
-  bundle = yield handroll.bundle
+  yield handroll.write
     entry:    'src/index.coffee'
+    format:   'es'
     external: true
 
-  yield bundle.write format: 'es'
+task 'watch', 'watch project for changes and rebuild', ->
+  watch 'src/*', -> invoke 'build'
