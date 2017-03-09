@@ -1,7 +1,3 @@
-import $            from 'jquery'
-
-window.$ = $
-
 import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
