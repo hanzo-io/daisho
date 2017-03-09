@@ -1,3 +1,6 @@
+import selectize from 'es-selectize'
+import {raf}     from 'es-raf'
+
 import Text from './text'
 import html from '../../templates/controls/select'
 
@@ -42,24 +45,24 @@ export default class Select extends Text
 
       invertedOptions[name] = value
 
-    $select.selectize(
+    selectize
       dropdownParent: 'body'
       # valueField: 'value'
       # labelField: 'text'
       # searchField: 'text'
-    ).on 'change', (event)=>
+    .on 'change', (event) =>
       # This isn't working right, sometimes you have one change firing events on unrelated fields
       if coolDown != -1
         return
 
-      coolDown = setTimeout ()->
+      coolDown = setTimeout ->
         coolDown = -1
       , 100
 
-      @change(event)
+      @change event
       event.preventDefault()
       event.stopPropagation()
-      return false
+      false
 
     select = $select[0]
     select.selectize.addOption options
@@ -68,11 +71,10 @@ export default class Select extends Text
 
     #support auto fill
     $input = $select.parent().find('.selectize-input input:first')
-    $input.on('change', (event)->
+    $input.on 'change', (event) ->
       val = $(event.target).val()
       if invertedOptions[val]?
         $select[0].selectize.setValue(invertedOptions[val])
-    )
 
     #support read only
     if @readOnly
@@ -92,7 +94,7 @@ export default class Select extends Text
     if select?
       v = @input.ref.get @input.name
       if !@initialized
-        requestAnimationFrame ()=>
+        raf =>
           @initSelect $select
           @initialized = true
       else if select.selectize? && v != select.selectize.getValue()
@@ -101,7 +103,7 @@ export default class Select extends Text
     else
       $control = $(@root).find('.selectize-control')
       if !$control[0]?
-        requestAnimationFrame ()=>
+        raf =>
           @update()
 
     # @on 'unmount', ()=>

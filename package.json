@@ -67,7 +67,7 @@
     "d3-tip": "0.8.0-alpha.1",
     "d3-transition": "1.0.3",
     "es-raf": "3.3.1",
-    "es-selectize": "0.12.4",
+    "es-selectize": "0.12.5",
     "es-tween": "0.1.0",
     "hanzo.js": "2.3.3",
     "moment-timezone": "0.5.11",
