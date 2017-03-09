@@ -43,7 +43,7 @@ export default class Select extends Text
 
       invertedOptions[name] = value
 
-    selectize
+    selectize $select,
       dropdownParent: 'body'
       # valueField: 'value'
       # labelField: 'text'
