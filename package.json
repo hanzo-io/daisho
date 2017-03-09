@@ -56,7 +56,7 @@
     "uglify-js": "2.8.10"
   },
   "dependencies": {
-    "akasha": "0.0.11",
+    "akasha": "0.0.12",
     "broken": "0.1.9",
     "crowdcontrol": "2.1.2",
     "d3-array": "1.1.0",
@@ -70,7 +70,7 @@
     "es-raf": "3.3.1",
     "es-selectize": "0.12.6",
     "es-tween": "0.1.0",
-    "hanzo.js": "2.3.3",
+    "hanzo.js": "2.3.4",
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
     "riot": "3.3.2",
