@@ -1,6 +1,6 @@
+import extent         from 'd3-array/src/extent'
 import {axisBottom}   from 'd3-axis'
 import {axisLeft}     from 'd3-axis'
-import {extent}       from 'd3-array'
 import {interpolate}  from 'd3-interpolate'
 import {line}         from 'd3-shape'
 import {scaleLinear}  from 'd3-scale'
