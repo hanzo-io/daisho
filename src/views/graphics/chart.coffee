@@ -1,9 +1,9 @@
-import Dynamic     from '../dynamic'
 import Tween       from 'es-tween'
-import d3          from 'd3sho'
 import randomColor from 'randomcolor'
 
-import html from '../../templates/graphics/chart'
+import Dynamic from '../dynamic'
+import d3      from './d3'
+import html    from '../../templates/graphics/chart'
 
 # # http://big-elephants.com/2014-06/unrolling-line-charts-d3js/
 # getSmoothInterpolation = (lineFn, data) ->
