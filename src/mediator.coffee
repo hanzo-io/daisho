@@ -1,3 +1,3 @@
-import riot from 'riot'
+import observable from 'riot-observable'
 
-export default riot.observable {}
+export default observable {}

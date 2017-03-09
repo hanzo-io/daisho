@@ -1,5 +1,8 @@
-import 'selectize/dist/js/standalone/selectize.js'
+import $            from 'jquery'
 
+window.$ = $
+
+import 'selectize/dist/js/standalone/selectize.js'
 import CrowdControl from 'crowdcontrol'
 import Hanzo        from 'hanzo.js'
 import Tween        from 'es-tween'
@@ -39,7 +42,6 @@ export default class Daisho
   @Services:     Services
   @Events:       Events
   @mediator:     mediator
-  @Riot:         riot
   @util:         util
 
   client:   null
@@ -112,10 +114,9 @@ export default class Daisho
       opts.daisho = @
 
     if typeof tag == 'string'
-      riot.mount tag, opts
+      CrowdControl.mount tag, opts
     else if isHTML
-      riot.mount tag, tagName, opts
+      CrowdControl.mount tag, tagName, opts
 
   update: ->
-    raf ->
-      riot.update.apply riot, arguments
+    CrowdControl.update.apply CrowdControl, arguments

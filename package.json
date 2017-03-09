@@ -57,14 +57,14 @@
   "dependencies": {
     "akasha": "0.0.9",
     "broken": "0.1.9",
-    "crowdcontrol": "2.1.0",
+    "crowdcontrol": "2.1.2",
     "d3sho": "0.1.10",
     "es-raf": "3.3.1",
     "es-tween": "0.1.0",
     "hanzo.js": "2.3.3",
+    "jquery": "3.1.1",
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
-    "riot": "3.3.2",
     "riot-observable": "3.0.0",
     "selectize": "0.12.4"
   }

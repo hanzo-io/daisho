@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "list-item.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "src/views/list-item.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,IAAA,kBAAA;EAAA;;;AAAA,YAAA,GAAe,OAAA,CAAQ,cAAR;;AAEf,MAAM,CAAC,OAAP,GAAuB;;;;;;;iBACrB,GAAA,GAAM;;iBACN,IAAA,GAAM,OAAA,CAAQ,wBAAR;;iBACN,IAAA,GAAM,SAAA;WACJ,gCAAA,SAAA;EADI;;;;GAH4B,YAAY,CAAC,KAAK,CAAC"
+}

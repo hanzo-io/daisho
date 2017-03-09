@@ -1,18 +1,28 @@
 import CrowdControl from 'crowdcontrol'
 import Events       from  '../../events'
 import m            from  '../../mediator'
-import riot         from 'riot'
 
 scrolling = false
 
 export default class Control extends CrowdControl.Views.Input
   init: ()->
+    if !@input? && !@lookup?
+      throw new Error 'No input or lookup provided'
+
     if !@input? && @inputs?
       @input = @inputs[@lookup]
+
+    if !@input?
+      @input =
+        name:       @lookup
+        ref:        @data.ref @lookup
+        validate:   (ref, name)->
+          return Promise.resolve [ref, name]
 
     # prevent weird yield bug
     if @input?
       super
+
   getValue: (event)->
     return $(event.target).val()?.trim()
 
@@ -40,7 +50,7 @@ export default class Control extends CrowdControl.Views.Input
 
   changed: (value)->
     m.trigger Events.ChangeSuccess, @input.name, value
-    riot.update()
+    CrowdControl.update()
 
   value: ()->
     return @input.ref @input.name

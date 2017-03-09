@@ -1,5 +1,3 @@
-import riot from 'riot'
-
 import Text from './text'
 import html from '../../templates/controls/select'
 
@@ -32,7 +30,7 @@ export default class Select extends Text
 
   change: ()->
     super
-    riot.update()
+    CrowdControl.update()
 
   initSelect: ($select)->
     options = []
