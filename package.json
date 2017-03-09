@@ -26,7 +26,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/hanzo/hanzo.js/blob/master/LICENSE"
+      "url": "https://github.com/hanzo/daisho/blob/master/LICENSE"
     }
   ],
   "license": "MIT",
@@ -47,7 +47,7 @@
     "coveralls": "2.12.0",
     "es-selectize": "0.12.6",
     "es5-shim": "4.5.9",
-    "handroll": "0.4.0",
+    "handroll": "0.4.5",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "mz": "2.6.0",
@@ -56,7 +56,7 @@
     "uglify-js": "2.8.10"
   },
   "dependencies": {
-    "akasha": "0.0.9",
+    "akasha": "0.0.10",
     "broken": "0.1.9",
     "crowdcontrol": "2.1.2",
     "d3-array": "1.1.0",
@@ -68,7 +68,7 @@
     "d3-tip": "0.8.0-alpha.1",
     "d3-transition": "1.0.3",
     "es-raf": "3.3.1",
-    "es-selectize": "0.12.5",
+    "es-selectize": "0.12.6",
     "es-tween": "0.1.0",
     "hanzo.js": "2.3.3",
     "moment-timezone": "0.5.11",
