@@ -270,6 +270,7 @@ class Chart extends Dynamic
               lineInterpolator = d3.interpolate lineLength, 0
               return (t)=>
                 if t >= j / len && ds[j]
+                  show = false
                   p = point.append 'circle'
                     .classed 'point', true
                     .classed 'point-' + series.series, true
@@ -281,7 +282,15 @@ class Chart extends Dynamic
                     .attr 'cx', (d)=> return xScale @parseTime(series.fmt.x(d[0] || 0))
                     .attr 'cy', (d)-> yScale series.fmt.y(d[1] || 0)
                     .on 'mouseover', tip.show
-                    .on 'mouseout', tip.hide
+                    .on 'mouseout', (e)->
+                      if !show
+                        tip.hide(e)
+                    .on 'click', (e)->
+                      show = !show
+                      if show
+                        tip.show(e)
+                      else
+                        tip.hide(e)
                   p
                     .transition()
                     .duration @redrawTime
@@ -342,6 +351,7 @@ class Chart extends Dynamic
 
         point.call tip
 
+        show = false
         point.datum datum
           .attr 'stroke', '#048ba8'
           .attr 'stroke-width', 0
@@ -350,7 +360,15 @@ class Chart extends Dynamic
           .attr 'cx', (d)=> return xScale @parseTime(serieses[0].fmt.x(d[0] || 0))
           .attr 'cy', (d)-> yScale(serieses[0].fmt.y(d[1] || 0)) - 20
           .on 'mouseover', tip.show
-          .on 'mouseout', tip.hide
+          .on 'mouseout', (e)->
+            if !show
+              tip.hide(e)
+          .on 'click', (e)->
+            show = !show
+            if show
+              tip.show(e)
+            else
+              tip.hide(e)
 
         point.transition()
           .duration @redrawTime

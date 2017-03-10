@@ -38,9 +38,9 @@ class CommandService
         args[i]  = args[i].substr 1
       if arg.substr(-1) == '"'
         args[i]  = args[i].slice 0, -1
-    command = @commands[command]
-    if !command
-      console.log '---COMMAND SERVICE---\n' + id + ' not registered'
+    cmd = @commands[command]
+    if !cmd
+      console.log '---COMMAND SERVICE---\n' + command + ' not registered'
     command.fn.apply @, args
 
 export default CommandService
