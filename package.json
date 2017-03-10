@@ -45,15 +45,13 @@
     "coffee-coverage": "2.0.1",
     "coffee-script": "1.12.4",
     "coveralls": "2.12.0",
-    "es-selectize": "0.12.6",
     "es5-shim": "4.5.9",
     "handroll": "0.6.4",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "mz": "2.6.0",
     "postmortem": "0.2.4",
-    "shortcake": "1.2.5",
-    "uglify-js": "2.8.10"
+    "shortcake": "1.2.5"
   },
   "dependencies": {
     "akasha": "0.0.13",
