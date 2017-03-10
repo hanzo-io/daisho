@@ -1,6 +1,7 @@
 # Design by Chris Meeks
 # Code by Tyler van der Hoeven
 # https://github.com/Baremetrics/calendar
+import moment  from 'moment-timezone'
 
 Calendar = (settings) ->
   self = this
