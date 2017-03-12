@@ -4,7 +4,7 @@ import m            from  '../../mediator'
 
 scrolling = false
 
-export default class Control extends CrowdControl.Views.Input
+export default class Control extends CrowdControl.Input
   init: ()->
     if !@input? && !@lookup?
       throw new Error 'No input or lookup provided'
@@ -50,7 +50,7 @@ export default class Control extends CrowdControl.Views.Input
 
   changed: (value)->
     m.trigger Events.ChangeSuccess, @input.name, value
-    CrowdControl.update()
+    CrowdControl.scheduleUpdate()
 
   value: ()->
     return @input.ref @input.name

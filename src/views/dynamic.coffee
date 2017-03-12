@@ -1,7 +1,7 @@
 import CrowdControl from 'crowdcontrol'
 import Events       from '../events'
 
-class DynamicView extends CrowdControl.Views.Form
+class DynamicView extends CrowdControl.Form
   tag: 'daisho-dynamic'
   html: ''
 

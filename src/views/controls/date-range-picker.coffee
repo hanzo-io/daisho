@@ -13,29 +13,36 @@ export default class DateRangePicker extends Text
   after: '2015-01-01'
   before: moment()
 
+  events:
+    updated: ()->
+      @onUpdated()
+    mount: ()->
+      @onUpdated()
+
   init: ->
     super
 
-    @on 'updated', =>
-      if !@calendar
-        filter = @data.get 'filter'
-        self = @
-        @calendar = new Calendar
-          element: $(@root).find('.daterange')
-          earliest_date: moment @after
-          latest_date: moment @before
-          start_date: filter[0]
-          end_date: filter[1]
-          callback: ->
-            start = moment(@start_date).format util.rfc3339
-            end = moment(@end_date).format util.rfc3339
+  onUpdated: ()->
+    if !@calendar
+      filter = @data.get 'filter'
+      self = @
+      @calendar = new Calendar
+        element: $(@root).find('.daterange')
+        earliest_date: moment @after
+        latest_date: moment @before
+        start_date: filter[0]
+        end_date: filter[1]
+        callback: ->
+          start = moment(@start_date).format util.rfc3339
+          end = moment(@end_date).format util.rfc3339
 
-            console.log 'Start Date: ' + start + '\nEnd Date: ' + end
+          console.log 'Start Date: ' + start + '\nEnd Date: ' + end
 
-            self.data.set 'filter', [start, end]
+          val = [start, end]
+          self.data.set 'filter', val
 
-            self.change()
-            self.daisho.update()
+          self.change()
+          self.changed val
 
   getValue: (e)->
     return @data.get 'filter'

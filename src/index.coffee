@@ -112,5 +112,5 @@ export default class Daisho
     else if isHTML
       CrowdControl.mount tag, tagName, opts
 
-  update: ->
-    CrowdControl.update.apply CrowdControl, arguments
+  scheduleUpdate: ->
+    CrowdControl.scheduleUpdate.apply CrowdControl, arguments

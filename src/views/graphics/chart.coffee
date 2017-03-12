@@ -63,10 +63,11 @@ class Chart extends Dynamic
   dataHash: ''
 
   colorSeed: 10
-  colors: []
+  colors: null
 
   # from Dynamic
   refreshTiming: 'after'
+  tips: null
 
   nextColor: ()->
     x = Math.sin(@_colorSeed++) * 10000
@@ -76,6 +77,7 @@ class Chart extends Dynamic
     super
 
     @colors = []
+    @tips   = []
 
     @on 'mount', =>
       @svg = svg = d3.select @root
@@ -206,6 +208,11 @@ class Chart extends Dynamic
 
     notes = []
 
+    for tip in @tips
+      tip.hide()
+
+    @tips = []
+
     for i, series of serieses
       if series.xs.length == 0 || series.ys.length == 0
         continue
@@ -256,6 +263,8 @@ class Chart extends Dynamic
                   <pre class='tip-value' style='color:#{ color }'>#{ series.tip.y(series.fmt.y(d[1] || 0)) }</pre>
                 </div>
                 """
+
+          @tips.push tip
 
           point.call tip
 
@@ -345,6 +354,8 @@ class Chart extends Dynamic
               </div>
               """
 
+        @tips.push tip
+
         point = @notes.append 'circle'
           .classed 'point', true
           .classed 'point-notes', true
@@ -360,15 +371,16 @@ class Chart extends Dynamic
           .attr 'cx', (d)=> return xScale @parseTime(serieses[0].fmt.x(d[0] || 0))
           .attr 'cy', (d)-> yScale(serieses[0].fmt.y(d[1] || 0)) - 20
           .on 'mouseover', tip.show
-          .on 'mouseout', (e)->
-            if !show
-              tip.hide(e)
-          .on 'click', (e)->
-            show = !show
-            if show
-              tip.show(e)
-            else
-              tip.hide(e)
+          .on 'mouseout', tip.hide
+          # .on 'mouseout', (e)->
+          #   # if !show
+          #   tip.hide(e)
+          # .on 'click', (e)->
+          #   show = !show
+          #   if show
+          #     tip.show(e)
+          #   else
+          #     tip.hide(e)
 
         point.transition()
           .duration @redrawTime

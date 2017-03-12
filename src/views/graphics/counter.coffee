@@ -30,13 +30,12 @@ class Counter extends Dynamic
         .to { v: value0 }, @timer
         .onUpdate ->
           self.value0 = @v
-          requestAnimationFrame ->
-            self.update()
+          #needs to be update since its already in a RAF
+          self.update()
         .onComplete =>
           @tween0 = null
           @value0 = value0
-          requestAnimationFrame =>
-            @update()
+          @scheduleUpdate()
         .start()
 
     if !@tween1 && data.get '1'
@@ -47,13 +46,12 @@ class Counter extends Dynamic
         .to { v: value1 }, @timer
         .onUpdate ->
           self.value1 = @v
-          requestAnimationFrame ->
-            self.update()
+          #needs to be update since its already in a RAF
+          self.update()
         .onComplete =>
           @tween1 = null
           @value1 = value1
-          requestAnimationFrame =>
-            @update()
+          @scheduleUpdate()
         .start()
 
   getNumber: (index) ->

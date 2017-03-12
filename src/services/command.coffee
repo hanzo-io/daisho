@@ -41,6 +41,6 @@ class CommandService
     cmd = @commands[command]
     if !cmd
       console.log '---COMMAND SERVICE---\n' + command + ' not registered'
-    command.fn.apply @, args
+    cmd.fn.apply @, args
 
 export default CommandService

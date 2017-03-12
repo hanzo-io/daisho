@@ -56,7 +56,7 @@
   "dependencies": {
     "akasha": "0.1.0",
     "broken": "0.1.10",
-    "crowdcontrol": "2.1.12",
+    "crowdcontrol": "2.1.13",
     "d3-array": "1.1.0",
     "d3-axis": "1.0.5",
     "d3-interpolate": "1.1.3",

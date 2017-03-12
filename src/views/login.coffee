@@ -41,7 +41,7 @@ class Login extends CrowdControl.Views.Form
 
     m.trigger Events.Login
     @disabled = true
-    @update()
+    @scheduleUpdate()
 
     @client.dashv2.login(opts).then (res) =>
       @disabled = false
@@ -50,11 +50,11 @@ class Login extends CrowdControl.Views.Form
       @data.set 'orgs', res.organizations
       @data.set 'activeOrg', 0
       m.trigger Events.LoginSuccess, res
-      @update()
+      @scheduleUpdate()
     .catch (err) =>
       @disabled = false
       @error    = err.message
       m.trigger Events.LoginFailed, err
-      @update()
+      @scheduleUpdate()
 
 export default Login

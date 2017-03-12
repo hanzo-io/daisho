@@ -36,7 +36,7 @@ class CommandBar extends Text
       @execute()
       return false
 
-    @update()
+    @scheduleUpdate()
 
     return true
 

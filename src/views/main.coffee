@@ -37,7 +37,7 @@ export default class Main extends CrowdControl.Views.Form
         $page = $(@root).find '#page'
         $page.children().detach()
         $page.append $el
-        current.update?()
+        current.scheduleUpdate?()
 
     # if active org is updated, restart the app
     m.on Events.Change, (name, val)=>

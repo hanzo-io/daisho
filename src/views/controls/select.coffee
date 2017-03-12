@@ -29,10 +29,6 @@ export default class Select extends Text
   getValue: (event)->
     return $(event.target).val()?.trim().toLowerCase()
 
-  change: ()->
-    super
-    CrowdControl.update()
-
   initSelect: ($select)->
     options = []
     invertedOptions = {}
@@ -102,7 +98,7 @@ export default class Select extends Text
       $control = $(@root).find('.selectize-control')
       if !$control[0]?
         raf =>
-          @update()
+          @scheduleUpdate()
 
     # @on 'unmount', ()=>
     #   $select = $(@root).find('select')
