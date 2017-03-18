@@ -1,6 +1,7 @@
 require 'shortcake'
 
 use 'cake-bundle'
+use 'cake-linked'
 use 'cake-outdated'
 use 'cake-publish'
 use 'cake-test'
