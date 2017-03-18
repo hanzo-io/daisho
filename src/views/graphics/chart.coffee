@@ -74,7 +74,7 @@ class Chart extends Dynamic
     return randomColor(seed: Math.floor((x - Math.floor(x)) * 1000))#.replace new RegExp('-', 'g'), ''
 
   init: ->
-    super
+    super()
 
     @colors = []
     @tips   = []
@@ -101,6 +101,7 @@ class Chart extends Dynamic
         .classed 'axis', true
         .classed 'x-axis', true
       @xAxis.append 'text'
+
       @yAxis = chart.append 'g'
         .classed 'axis', true
         .classed 'y-axis', true
@@ -114,25 +115,24 @@ class Chart extends Dynamic
       @yScale = d3.scaleLinear()
 
   _refresh: ->
-    width = @width || $(@root).parent().width()
+    width  = @width || $(@root).parent().width()
     height = @height
 
     if width <= 0 || height <= 0
       return
 
     @svg
-      .attr 'width', width
+      .attr 'width',  width
       .attr 'height', height
 
     serieses = @data.get()
-    if !serieses[0]
-      return
+    return if !serieses[0]
 
     @_colorSeed =  @colorSeed
     @colors.length = 0
 
-    width -= @margin.left + @margin.right
-    height -= @margin.top + @margin.bottom
+    width  -= @margin.left + @margin.right
+    height -= @margin.top  + @margin.bottom
 
     xs = []
     ys = []
@@ -149,8 +149,8 @@ class Chart extends Dynamic
         xs = xs.concat series.xs
         ys = ys.concat series.ys
 
-    ysBuf = ys.map(serieses[0].fmt.y)
-    ysBuf.push(@yMin)
+    ysBuf = ys.map serieses[0].fmt.y
+    ysBuf.push @yMin
     xScale.domain d3.extent xs.map(serieses[0].fmt.x), (x)=> return @parseTime x
     yScale.domain d3.extent ysBuf, (y)-> return y
 

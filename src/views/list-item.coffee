@@ -5,7 +5,6 @@ import html from '../templates/list-item'
 class List extends CrowdControl.Views.Form
   tag:  'list-item'
   html: html
-  init: ->
-    super
+  init: -> super()
 
 export default List

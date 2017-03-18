@@ -11,7 +11,7 @@ class CommandBar extends Text
   lookup: 'search'
 
   init: ->
-    super
+    super()
 
     @on 'mount', =>
       $(@root).find('input').on 'keydown', (e)=>

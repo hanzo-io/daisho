@@ -16,8 +16,7 @@ class Counter extends Dynamic
   tween1: null
   timer:  1000
 
-  init: ->
-    super
+  init: -> super()
 
   _refresh: ->
     data = @data

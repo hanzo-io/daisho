@@ -14,22 +14,19 @@ export default class Select extends Text
 
   selectOptions: {}
 
-  options: ->
-    return @selectOptions
+  options: -> @selectOptions
 
   readOnly: false
-  ignore: false
+  ignore:   false
 
   events:
-    updated: ()->
-      @onUpdated()
-    mount: ()->
-      @onUpdated()
+    updated: -> @onUpdated()
+    mount:   -> @onUpdated()
 
-  getValue: (event)->
-    return $(event.target).val()?.trim().toLowerCase()
+  getValue: (event) ->
+    $(event.target).val()?.trim().toLowerCase()
 
-  initSelect: ($select)->
+  initSelect: ($select) ->
     options = []
     invertedOptions = {}
     for value, name of @options()
@@ -74,14 +71,13 @@ export default class Select extends Text
     if @readOnly
       $input.attr('readonly', true)
 
-  init:(opts)->
-    super
+  init: (opts) ->
+    super()
 
     @style = @style || 'width:100%'
 
-  onUpdated: ()->
-    if !@input?
-      return
+  onUpdated: ->
+    return if !@input?
 
     $select = $(@root).find('select')
     select = $select[0]

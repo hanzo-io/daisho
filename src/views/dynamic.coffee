@@ -57,7 +57,7 @@ class DynamicView extends CrowdControl.Form
       @mediator.on Events.ForceRefresh, =>
         return @_refresh.apply @, arguments
 
-    super
+    super()
 
   # refresh checks if something is stale
   refresh: ->

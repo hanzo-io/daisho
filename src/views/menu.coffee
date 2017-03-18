@@ -8,8 +8,7 @@ export default class Menu extends CrowdControl.Views.View
 
   error: null
 
-  init: ->
-    super
+  init: -> super()
 
   items:->
     items = []

@@ -14,13 +14,13 @@ export default class Main extends CrowdControl.Views.Form
     'search':       []
 
   error: null
-  orgs: null
+  orgs:  null
 
-  init: ()->
+  init: ->
     # use the parent data as data, this is special case
     @data = @parentData
 
-    super
+    super()
 
     # should have logged in by now do grab the orgs and look up active org key
     @orgs = {}
@@ -45,9 +45,8 @@ export default class Main extends CrowdControl.Views.Form
         @client.setKey @data.get('orgs')[val]['live-secret-key']
         window.location.reload()
 
-  logout: ()->
+  logout: ->
     m.trigger Events.Logout, res
     window.location.reload()
 
-  _submit: (event)->
-
+  _submit: (event) ->

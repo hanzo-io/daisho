@@ -5,7 +5,7 @@ import m            from  '../../mediator'
 scrolling = false
 
 export default class Control extends CrowdControl.Input
-  init: ()->
+  init: ->
     if !@input? && !@lookup?
       throw new Error 'No input or lookup provided'
 
@@ -20,37 +20,35 @@ export default class Control extends CrowdControl.Input
           return Promise.resolve [ref, name]
 
     # prevent weird yield bug
-    if @input?
-      super
+    super() if @inputs?
 
-  getValue: (event)->
+  getValue: (event) ->
     return $(event.target).val()?.trim()
 
-  error: (err)->
+  error: (err) ->
     if err instanceof DOMException
-      console.log('WARNING: Error in riot dom manipulation ignored.', err)
+      console.log 'WARNING: Error in riot dom manipulation ignored:', err
       return
 
-    super
+    super()
 
     if !scrolling
       scrolling = true
-      $('html, body').animate(
+      $('html, body').animate
         scrollTop: $(@root).offset().top - $(window).height()/2
       ,
         complete: ->
           scrolling = false
         duration: 500
-      )
     m.trigger Events.ChangeFailed, @input.name, @input.ref.get @input.name
 
-  change: ()->
-    super
+  change: ->
+    super()
     m.trigger Events.Change, @input.name, @input.ref.get @input.name
 
-  changed: (value)->
+  changed: (value) ->
     m.trigger Events.ChangeSuccess, @input.name, value
     CrowdControl.scheduleUpdate()
 
-  value: ()->
+  value: ->
     return @input.ref @input.name

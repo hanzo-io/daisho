@@ -14,24 +14,24 @@ export default class DateRangePicker extends Text
   before: moment()
 
   events:
-    updated: ()->
-      @onUpdated()
-    mount: ()->
+    updated: ->
       @onUpdated()
 
-  init: ->
-    super
+    mount: ->
+      @onUpdated()
 
-  onUpdated: ()->
+  init: -> super()
+
+  onUpdated: ->
     if !@calendar
       filter = @data.get 'filter'
       self = @
       @calendar = new Calendar
-        element: $(@root).find('.daterange')
+        element:       $(@root).find('.daterange')
         earliest_date: moment @after
-        latest_date: moment @before
-        start_date: filter[0]
-        end_date: filter[1]
+        latest_date:   moment @before
+        start_date:    filter[0]
+        end_date:      filter[1]
         callback: ->
           start = moment(@start_date).format util.rfc3339
           end = moment(@end_date).format util.rfc3339
@@ -44,5 +44,4 @@ export default class DateRangePicker extends Text
           self.change()
           self.changed val
 
-  getValue: (e)->
-    return @data.get 'filter'
+  getValue: (e) -> @data.get 'filter'

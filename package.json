@@ -35,6 +35,8 @@
   },
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
+    "cake-bundle": "0.1.6",
+    "cake-outdated": "0.1.8",
     "cake-publish": "0.1.5",
     "cake-test": "0.1.0",
     "cake-version": "0.1.9",
@@ -46,7 +48,6 @@
     "coffee-script": "1.12.4",
     "coveralls": "2.12.0",
     "es5-shim": "4.5.9",
-    "handroll": "0.7.1",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
     "mz": "2.6.0",

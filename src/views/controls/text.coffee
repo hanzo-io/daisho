@@ -9,7 +9,7 @@ class Text extends Control
   autoComplete: 'on'
 
   init: ->
-    super
+    super()
 
     @on 'updated', =>
       el = @root.getElementsByTagName(@formElement)[0]

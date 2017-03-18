@@ -28,7 +28,7 @@ class Login extends CrowdControl.Views.Form
         email: ''
         password: ''
 
-    super
+    super()
 
   _submit: (event) ->
     opts =

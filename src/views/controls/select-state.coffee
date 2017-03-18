@@ -12,11 +12,10 @@ class SelectState extends Select
   lookup:       'state'
 
   init: ->
-    super
+    super()
 
     @on 'update', =>
-      if !@input?
-        return
+      return if !@input?
 
       state = @input.ref.get @lookup
       if state
@@ -38,6 +37,7 @@ class SelectState extends Select
       $(@root).find('.selectize-control').hide()
       value = @input.ref.get(@input.name)
       @input.ref.set(@input.name, value.toUpperCase()) if value
-    super
+
+    super()
 
 export default SelectState

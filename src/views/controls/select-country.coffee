@@ -9,7 +9,7 @@ class SelectCountry extends Select
     countries.data
 
   init: ->
-    super
+    super()
 
     @on 'update', =>
       country = @input.ref.get @lookup
