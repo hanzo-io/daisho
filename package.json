@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
-    "cake-bundle": "0.2.2",
+    "cake-bundle": "0.2.3",
     "cake-linked": "0.1.0",
     "cake-outdated": "0.1.13",
     "cake-publish": "0.1.5",
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "akasha": "0.1.0",
-    "broken": "0.1.10",
+    "broken": "0.1.11",
     "d3-array": "1.1.1",
     "d3-axis": "1.0.6",
     "d3-interpolate": "1.1.4",
@@ -70,7 +70,7 @@
     "es-raf": "3.3.1",
     "es-selectize": "0.12.8",
     "es-tween": "0.1.0",
-    "hanzo.js": "2.3.6",
+    "hanzo.js": "2.3.7",
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
     "referential": "0.5.15",
