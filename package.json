@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
-    "cake-bundle": "0.2.1",
+    "cake-bundle": "0.2.2",
     "cake-linked": "0.1.0",
     "cake-outdated": "0.1.13",
     "cake-publish": "0.1.5",
