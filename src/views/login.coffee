@@ -1,4 +1,4 @@
-import CrowdControl from 'crowdcontrol'
+import El from 'el.js'
 
 import Events from '../events'
 import m      from '../mediator'
@@ -11,7 +11,7 @@ import {
 import html from '../templates/login'
 
 
-class Login extends CrowdControl.Views.Form
+class Login extends El.Views.Form
   tag: 'daisho-login'
   html: html
 

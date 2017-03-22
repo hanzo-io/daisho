@@ -1,11 +1,11 @@
-import CrowdControl from 'crowdcontrol'
+import El from 'el.js'
 
 import Events from '../events'
 import m      from '../mediator'
 
 import html from '../templates/main'
 
-export default class Main extends CrowdControl.Views.Form
+export default class Main extends El.Views.Form
   tag: 'daisho-main'
   html: html
 

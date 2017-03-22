@@ -1,7 +1,7 @@
-import CrowdControl from 'crowdcontrol'
+import El from 'el.js'
 import Events       from '../events'
 
-class DynamicView extends CrowdControl.Form
+class DynamicView extends El.Form
   tag: 'daisho-dynamic'
   html: ''
 

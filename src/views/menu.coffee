@@ -1,8 +1,8 @@
-import CrowdControl from 'crowdcontrol'
+import El from 'el.js'
 
 import html from '../templates/menu'
 
-export default class Menu extends CrowdControl.Views.View
+export default class Menu extends El.Views.View
   tag: 'daisho-menu'
   html: html
 

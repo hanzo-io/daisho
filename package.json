@@ -58,7 +58,6 @@
   "dependencies": {
     "akasha": "0.1.0",
     "broken": "0.1.10",
-    "crowdcontrol": "2.1.13",
     "d3-array": "1.1.1",
     "d3-axis": "1.0.6",
     "d3-interpolate": "1.1.4",
@@ -67,6 +66,7 @@
     "d3-svg-legend": "2.22.0",
     "d3-tip": "0.8.0-alpha.1",
     "d3-transition": "1.0.4",
+    "el.js": "2.1.14",
     "es-raf": "3.3.1",
     "es-selectize": "0.12.8",
     "es-tween": "0.1.0",

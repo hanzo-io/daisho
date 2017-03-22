@@ -1,10 +1,10 @@
-import CrowdControl from 'crowdcontrol'
+import El from 'el.js'
 import Events       from  '../../events'
 import m            from  '../../mediator'
 
 scrolling = false
 
-export default class Control extends CrowdControl.Input
+export default class Control extends El.Input
   init: ->
     if !@input? && !@lookup?
       throw new Error 'No input or lookup provided'
@@ -48,7 +48,7 @@ export default class Control extends CrowdControl.Input
 
   changed: (value) ->
     m.trigger Events.ChangeSuccess, @input.name, value
-    CrowdControl.scheduleUpdate()
+    El.scheduleUpdate()
 
   value: ->
     return @input.ref @input.name

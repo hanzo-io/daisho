@@ -1,7 +1,7 @@
-import CrowdControl from 'crowdcontrol'
-import Hanzo        from 'hanzo.js'
-import Tween        from 'es-tween'
-import {raf}        from 'es-raf'
+import El    from 'el.js'
+import Hanzo from 'hanzo.js'
+import Tween from 'es-tween'
+import {raf} from 'es-raf'
 
 import Events     from './events'
 import Services   from './services'
@@ -18,8 +18,8 @@ raf animate
 
 reservedTags = {}
 
-# Monkey patch crowdcontrol so all registration can be validated
-CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
+# Monkey patch el.js so all registration can be validated
+El.Views.Form.register = El.Views.View.register = ->
   if reservedTags[@tag]
     throw new Error "#{@tag} is reserved:", reservedTags[@tag]
   r = new @
@@ -30,7 +30,7 @@ CrowdControl.Views.Form.register = CrowdControl.Views.View.register = ->
 Views.register()
 
 export default class Daisho
-  @CrowdControl: CrowdControl
+  @El:           El
   @Views:        Views
   @Graphics:     Views.Graphics
   @Services:     Services
@@ -108,9 +108,9 @@ export default class Daisho
       opts.daisho = @
 
     if typeof tag == 'string'
-      CrowdControl.mount tag, opts
+      El.mount tag, opts
     else if isHTML
-      CrowdControl.mount tag, tagName, opts
+      El.mount tag, tagName, opts
 
   scheduleUpdate: ->
-    CrowdControl.scheduleUpdate.apply CrowdControl, arguments
+    El.scheduleUpdate.apply El, arguments
