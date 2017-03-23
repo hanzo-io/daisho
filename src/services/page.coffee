@@ -40,7 +40,9 @@ class PageService
       if @debug
         console.log '---PAGE SERVICE---\nDone serving page ' + id
 
-    @current = page.root
+    @daisho.scheduleUpdate()
+
+    @current = page
     @current
 
 export default PageService

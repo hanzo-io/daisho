@@ -1,4 +1,4 @@
-module.exports =
+export default currencies =
   data:
     'aud':'$'
     'cad':'$'

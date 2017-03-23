@@ -18,11 +18,11 @@ export default Controls =
   TextArea:        TextArea
 
   register: ->
-    @Checkbox.register()
-    @DateRangePicker.register()
-    @Password.register()
-    @Select.register()
-    @SelectCountry.register()
-    @SelectState.register()
-    @Text.register()
-    @TextArea.register()
+    Checkbox.register()
+    DateRangePicker.register()
+    Password.register()
+    Select.register()
+    SelectCountry.register()
+    SelectState.register()
+    Text.register()
+    TextArea.register()

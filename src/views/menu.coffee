@@ -11,9 +11,4 @@ export default class Menu extends El.Views.View
   init: -> super()
 
   items:->
-    items = []
-    for k, v of @services.menu.menu
-      items.push
-        name: k
-        onclick: v
-    items
+    return @services.menu.menu

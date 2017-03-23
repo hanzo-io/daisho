@@ -30,8 +30,8 @@ export default class Main extends El.Views.Form
     @client.setKey @data.get('orgs')[@data.get('activeOrg')]['live-secret-key']
 
     # when things are updated, update to latest page
-    @on 'updated', =>
-      current = @services.page.current
+    @on 'update', =>
+      current = @services.page.current.root
       if current?
         $el = $(current)
         $page = $(@root).find '#page'
