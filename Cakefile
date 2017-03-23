@@ -16,7 +16,7 @@ task 'build', 'build project', ->
     format: 'es'
     compilers:
       coffee:
-        version: 2
+        version: 1
 
 task 'watch', 'watch project for changes and rebuild', ->
   watch 'src/*', -> invoke 'build'
