@@ -1,25 +1,33 @@
 class MenuService
   menu:   null
+  menuHash: null
   initFn: null
   daisho: null
   debug:  false
 
   constructor: (@daisho, @debug) ->
-    @menu = {}
+    @menu = []
+    @menuHash = {}
 
   register: (name, fn) ->
-    if @menu[name]
+    if @menuHash[name]
       console.log '---MENU SERVICE---\nCollision for ' + name
 
-    @menu[name] = fn
+    @menuHash[name] =
+      name: name
+      action: fn
+    @menu.push @menuHash[name]
+
     if !@initFn?
-      @initFn = fn
+      @initFn = history?.state?.fn ? fn
 
   run: (name) ->
-    fn = @menu[name]
-    if !fn && @debug
+    data = @menu[name]
+    if !data.fn && @debug
       console.log '---MENU SERVICE---\n' + name + ' not registered'
-    fn()
+
+    history.pushState data, data.name, data.name.toLowerCase()
+    data.fn()
 
   start: ->
     if !@initFn && @debug

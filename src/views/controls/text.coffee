@@ -11,7 +11,7 @@ class Text extends Control
   init: ->
     super()
 
-    @on 'updated', =>
-      el = @root.getElementsByTagName(@formElement)[0]
+    # @on 'updated', =>
+    #   el = @root.getElementsByTagName(@formElement)[0]
 
 export default Text
