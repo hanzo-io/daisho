@@ -23,12 +23,6 @@
     "ecommerce"
   ],
   "author": "Hanzo, Inc <hi@hanzo.io> (http://hanzo.io)",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/hanzo/daisho/blob/master/LICENSE"
-    }
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hanzo-io/daisho/issues"
