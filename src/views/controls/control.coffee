@@ -20,7 +20,8 @@ export default class Control extends El.Input
           return Promise.resolve [ref, name]
 
     # prevent weird yield bug
-    super() if @inputs?
+    if @inputs?
+      super
 
   getValue: (event) ->
     return $(event.target).val()?.trim()
@@ -30,7 +31,7 @@ export default class Control extends El.Input
       console.log 'WARNING: Error in riot dom manipulation ignored:', err
       return
 
-    super()
+    super
 
     if !scrolling
       scrolling = true
@@ -43,7 +44,7 @@ export default class Control extends El.Input
     m.trigger Events.ChangeFailed, @input.name, @input.ref.get @input.name
 
   change: ->
-    super()
+    super
     m.trigger Events.Change, @input.name, @input.ref.get @input.name
 
   changed: (value) ->

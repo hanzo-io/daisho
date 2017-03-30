@@ -68,7 +68,6 @@
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
     "referential": "0.5.15",
-    "riot": "3.4.0",
     "riot-observable": "3.0.0"
   }
 }

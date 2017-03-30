@@ -11,7 +11,7 @@ import {
 import html from '../templates/login'
 
 
-class Login extends El.Views.Form
+class Login extends El.Form
   tag: 'daisho-login'
   html: html
 

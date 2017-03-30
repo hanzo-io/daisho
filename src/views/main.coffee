@@ -5,7 +5,7 @@ import m      from '../mediator'
 
 import html from '../templates/main'
 
-export default class Main extends El.Views.Form
+export default class Main extends El.Form
   tag: 'daisho-main'
   html: html
 
