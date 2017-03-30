@@ -50,8 +50,8 @@
     "shortcake": "1.2.5"
   },
   "dependencies": {
-    "akasha": "0.1.1",
-    "broken": "0.1.11",
+    "akasha": "0.1.0",
+    "broken": "0.1.10",
     "d3-array": "1.1.1",
     "d3-axis": "1.0.6",
     "d3-interpolate": "1.1.4",
@@ -64,11 +64,10 @@
     "es-raf": "3.3.1",
     "es-selectize": "0.12.8",
     "es-tween": "0.1.0",
-    "hanzo.js": "2.3.10",
+    "hanzo.js": "2.3.6",
     "moment-timezone": "0.5.11",
     "randomcolor": "0.4.4",
     "referential": "0.5.15",
-    "riot": "3.4.0",
     "riot-observable": "3.0.0"
   }
 }
