@@ -1,12 +1,13 @@
 {
   "name": "daisho",
   "version": "1.2.16",
-  "description": "Modular Dashboard Framework",
-  "main": "dist/daisho.js",
-  "module": "dist/daisho.mjs",
-  "jsnext:main": "dist/daisho.mjs",
+  "description": "Modular dashboard framework",
+  "main": "lib/daisho.js",
+  "module": "lib/daisho.mjs",
+  "jsnext:main": "lib/daisho.mjs",
   "files": [
-    "dist/"
+    "lib/",
+    "src/"
   ],
   "scripts": {
     "prepublish": "cake build",
@@ -17,12 +18,13 @@
     "url": "git+https://github.com/hanzo-io/daisho.git"
   },
   "keywords": [
-    "hanzo",
     "dash",
     "dashboard",
-    "ecommerce"
+    "ecommerce",
+    "hanzo",
+    "modular"
   ],
-  "author": "Hanzo, Inc <hi@hanzo.io> (http://hanzo.io)",
+  "author": "Hanzo, Inc <hi@hanzo.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hanzo-io/daisho/issues"
