@@ -13,21 +13,29 @@ class MenuService
     if @menuHash[name]
       console.log '---MENU SERVICE---\nCollision for ' + name
 
+    action = @run name
     @menuHash[name] =
       name: name
-      action: fn
+      action: action
+      fn: fn
     @menu.push @menuHash[name]
 
     if !@initFn?
-      @initFn = history?.state?.fn ? fn
+      json = null
+      try
+        json = JSON.parse history?.state
+      catch e
+        console.log '---MENU SERVICE---\nno history state'
+      @initFn = if json then @run(json.name) else action
 
   run: (name) ->
-    data = @menu[name]
-    if !data.fn && @debug
-      console.log '---MENU SERVICE---\n' + name + ' not registered'
+    return =>
+      data = @menuHash[name]
+      if !data.action && @debug
+        console.log '---MENU SERVICE---\n' + name + ' not registered'
 
-    history.pushState data, data.name, data.name.toLowerCase()
-    data.fn()
+      history.pushState JSON.stringify(data), data.name, '/'
+      data.fn()
 
   start: ->
     if !@initFn && @debug
