@@ -1,3 +1,6 @@
+import isFunction from 'es-is/function'
+
+
 class MenuService
   menu:   null
   menuHash: null
@@ -9,15 +12,16 @@ class MenuService
     @menu = []
     @menuHash = {}
 
-  register: (name, fn) ->
+  register: (name, opts) ->
     if @menuHash[name]
       console.log '---MENU SERVICE---\nCollision for ' + name
 
     action = @run name
     @menuHash[name] =
-      name: name
+      name:   name
       action: action
-      fn: fn
+      icon:   opts.icon
+      fn:     if isFunction opts then opts else opts.action
     @menu.push @menuHash[name]
 
     if !@initFn?
