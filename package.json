@@ -54,7 +54,7 @@
     "sake-version": "0.1.19"
   },
   "dependencies": {
-    "akasha": "0.1.7",
+    "akasha": "0.1.8",
     "broken": "0.1.13",
     "d3-array": "1.2.0",
     "d3-axis": "1.0.6",
