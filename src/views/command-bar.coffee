@@ -14,7 +14,7 @@ class CommandBar extends Text
     super()
 
     @on 'mount', =>
-      $(@root).find('input').on 'keydown', (e)=>
+      $(@root).find('input').on 'keydown', (e) =>
         @keydown.apply @, arguments
 
     @on 'update', ->
@@ -25,7 +25,7 @@ class CommandBar extends Text
       cmd = @getValue event
       # commands start with '/'
       if cmd && cmd[0] == '/'
-        #autoComplete
+        # autoComplete
         found = @found()
         if found[0]?
           if cmd.indexOf(found[0].command) != 1
@@ -45,7 +45,7 @@ class CommandBar extends Text
       $(@root).find('input').val '/' + command
 
 
-  found: ()->
+  found: ->
     cmd = @getValue(target:$(@root).find('input'))
     # commands start with '/'
     if cmd && cmd[0] == '/'

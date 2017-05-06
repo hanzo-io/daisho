@@ -14,9 +14,9 @@ export default class Control extends El.Input
 
     if !@input?
       @input =
-        name:       @lookup
-        ref:        @data.ref @lookup
-        validate:   (ref, name)->
+        name:     @lookup
+        ref:      @data.ref @lookup
+        validate: (ref, name)->
           return Promise.resolve [ref, name]
 
     # prevent weird yield bug

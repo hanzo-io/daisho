@@ -1,8 +1,10 @@
-import El from 'el.js'
-import Events       from '../events'
+import El     from 'el.js'
+import Events from '../events'
 
+# View with built-in caching for optimizing frequently updated data-driven
+# views.
 class DynamicView extends El.Form
-  tag: 'daisho-dynamic'
+  tag:  'daisho-dynamic'
   html: ''
 
   # data.get field for caching staleness
