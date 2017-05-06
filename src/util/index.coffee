@@ -2,6 +2,8 @@ import currencies from '../data/currencies'
 import moment from 'moment-timezone'
 
 currencySeparator = '.'
+currencySigns = currencies.data
+
 digitsOnlyRe = new RegExp('[^\\d.-]', 'g')
 
 export default util =
