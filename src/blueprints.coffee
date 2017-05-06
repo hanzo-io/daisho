@@ -83,6 +83,7 @@ blueprints =
 models = [
   'user'
   'order'
+  'product'
   'note'
 ]
 
