@@ -31,12 +31,6 @@
   },
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
-    "cake-bundle": "0.2.21",
-    "cake-linked": "0.1.0",
-    "cake-outdated": "0.1.18",
-    "cake-publish": "0.1.10",
-    "cake-test": "0.1.0",
-    "cake-version": "0.1.15",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
@@ -49,7 +43,13 @@
     "mocha": "3.2.0",
     "mz": "2.6.0",
     "postmortem": "0.2.6",
-    "shortcake": "1.2.8"
+    "sake-bundle": "0.4.21",
+    "sake-cli": "0.5.5",
+    "sake-linked": "0.1.2",
+    "sake-outdated": "0.1.22",
+    "sake-publish": "0.1.12",
+    "sake-test": "0.1.5",
+    "sake-version": "0.1.19"
   },
   "dependencies": {
     "akasha": "0.1.1",
@@ -63,6 +63,7 @@
     "d3-tip": "0.8.0-alpha.1",
     "d3-transition": "1.0.4",
     "el.js": "2.1.21",
+    "es-is": "3.3.10",
     "es-raf": "3.3.1",
     "es-selectize": "0.12.8",
     "es-tween": "0.1.0",

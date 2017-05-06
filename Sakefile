@@ -1,11 +1,9 @@
-require 'shortcake'
-
-use 'cake-bundle'
-use 'cake-linked'
-use 'cake-outdated'
-use 'cake-publish'
-use 'cake-test'
-use 'cake-version'
+use 'sake-bundle'
+use 'sake-linked'
+use 'sake-outdated'
+use 'sake-publish'
+use 'sake-test'
+use 'sake-version'
 
 task 'clean', 'clean project', ->
   exec 'rm -rf lib'
