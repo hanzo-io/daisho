@@ -10,8 +10,10 @@
     "src/"
   ],
   "scripts": {
-    "prepublish": "cake build",
-    "test": "cake build && cake test"
+    "build": "sake build",
+    "prepublishOnly": "sake build",
+    "pretest": "sake build",
+    "test": "sake test"
   },
   "repository": {
     "type": "git",
