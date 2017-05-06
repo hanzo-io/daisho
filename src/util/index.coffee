@@ -1,4 +1,5 @@
 import currencies from '../data/currencies'
+import moment from 'moment-timezone'
 
 currencySeparator = '.'
 digitsOnlyRe = new RegExp('[^\\d.-]', 'g')
@@ -7,6 +8,7 @@ export default util =
   time:
     rfc3339:    'YYYY-MM-DDTHH:mm:ssZ'
     yyyymmdd:   'YYYY-MM-DD'
+    moment:     moment
 
   currency:
     isZeroDecimal: (code)->
