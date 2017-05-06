@@ -1,2 +1,2 @@
-daisho-list-item(each="{ item, k in data.get(listField) }", data="{ this.parent.data.ref(listField + '.' + k) }")
+daisho-list-item(each="{ item, k in data.get(listField) }", data="{ parent.data.ref(listField ? listField + '.' + k : k) }")
   #{ 'yield' }
