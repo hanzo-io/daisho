@@ -21,22 +21,22 @@ class PageService
       stop:  stopFn
       root:  null
 
-  show: (id) ->
+  show: (id, opts = {}) ->
     page = @cache[id]
 
     if !page?
       console.log '---PAGE SERVICE---\n' + id + ' not registered'
 
     if @current?
-      page.root = @current.stop @
+      page.root = @current.stop @, opts
 
     if !page.root
-      page.root = page.enter @
-      page.root = page.start @
+      page.root = page.enter @, opts
+      page.root = page.start @, opts
       if @debug
         console.log '---PAGE SERVICE---\nDone serving page ' + id
     else
-      page.root = page.start @
+      page.root = page.start @, opts
       if @debug
         console.log '---PAGE SERVICE---\nDone serving page ' + id
 

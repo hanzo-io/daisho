@@ -43,7 +43,8 @@ export default class Main extends El.Form
     m.on Events.Change, (name, val)=>
       if name == 'activeOrg'
         @client.setKey @data.get('orgs')[val]['live-secret-key']
-        window.location.reload()
+        requestAnimationFrame ->
+          window.location.reload()
 
   logout: ->
     m.trigger Events.Logout, res
