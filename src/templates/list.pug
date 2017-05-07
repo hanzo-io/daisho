@@ -1,4 +1,4 @@
 .list-header
   .list-cell(each='{ h, k in listColumns }') { h }
-daisho-list-item.list-row(each='{ item, k in data.get(listField) }', data='{ parent.data.ref(parent.listField ? parent.listField + '.' + k : k) }')
+daisho-list-item.list-row(each='{ item, k in data.get(listField) }', data='{ parent.data.ref(parent.listField ? parent.listField + "." + k : k) }')
   #{ 'yield' }
