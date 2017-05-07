@@ -1,8 +1,8 @@
 import Controls   from './controls'
 import Graphics   from './graphics'
 
-import List       from './list'
-import ListItem   from './list-item'
+import Table      from './table'
+import TableRow   from './table-row'
 
 import CommandBar from './command-bar'
 import Dynamic    from './dynamic'
@@ -14,8 +14,8 @@ export default Views =
   Controls:   Controls
   Graphics:   Graphics
 
-  List:       List
-  ListItem:   ListItem
+  Table:      Table
+  TableRow:   TableRow
 
   CommandBar: CommandBar
   Dynamic:    Dynamic
@@ -27,8 +27,8 @@ export default Views =
     @Controls.register()
     @Graphics.register()
 
-    @List.register()
-    @ListItem.register()
+    @Table.register()
+    @TableRow.register()
 
     @CommandBar.register()
     @Login.register()
