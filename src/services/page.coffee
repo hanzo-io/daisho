@@ -28,7 +28,7 @@ class PageService
       console.log '---PAGE SERVICE---\n' + id + ' not registered'
 
     if @current?
-      page.root = @current.stop @, opts
+      page.root = @current.stop @
 
     if !page.root
       page.root = page.enter @, opts
