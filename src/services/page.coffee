@@ -20,9 +20,12 @@ class PageService
       start: startFn
       stop:  stopFn
       root:  null
+      opts:  null
 
   show: (id, opts = {}) ->
     page = @cache[id]
+    page.opts = opts if opts?
+    opts = page.opts
 
     if !page?
       console.log '---PAGE SERVICE---\n' + id + ' not registered'

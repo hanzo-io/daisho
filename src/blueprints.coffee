@@ -1,3 +1,5 @@
+import isFunction from 'es-is/function'
+
 sp = (u) ->
   (x) ->
     if isFunction u
