@@ -1,4 +1,4 @@
 .table-header
-  .table-cell(each='{ h, k in listColumns }') { h }
-daisho-table-row.table-row(each='{ item, k in data.get(listField) }', data='{ parent.data.ref(parent.listField ? parent.listField + "." + k : k) }')
+  .table-cell(each='{ h, k in tableColumns }') { h }
+daisho-table-row.table-row(each='{ item, k in data.get(tableField) }', data='{ parent.data.ref(parent.tableField ? parent.tableField + "." + k : k) }')
   #{ 'yield' }
