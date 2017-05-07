@@ -6,7 +6,8 @@ class List extends El.View
   tag:  'daisho-list'
   html: html
 
-  listField: undefined
+  # listColumns: []
+  # listField: undefined
 
   init: -> super()
 
