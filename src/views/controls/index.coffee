@@ -1,4 +1,5 @@
 import Checkbox        from './checkbox'
+import Currency        from './currency'
 import DateRangePicker from './date-range-picker'
 import Password        from './password'
 import Select          from './select'
@@ -9,6 +10,7 @@ import TextArea        from './textarea'
 
 export default Controls =
   Checkbox:        Checkbox
+  Currency:        Currency
   DateRangePicker: DateRangePicker
   Password:        Password
   Select:          Select
@@ -19,6 +21,7 @@ export default Controls =
 
   register: ->
     Checkbox.register()
+    Currency.register()
     DateRangePicker.register()
     Password.register()
     Select.register()
