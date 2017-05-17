@@ -54,9 +54,10 @@ export default class Daisho
     @debug = debug
 
     @services =
-      menu:     new Services.Menu    @, debug
-      page:     new Services.Page    @, debug
-      command:  new Services.Command @, debug
+      menu:       new Services.Menu       @, debug
+      page:       new Services.Page       @, debug
+      command:    new Services.Command    @, debug
+      navigation: new Services.Navigation @, debug
 
     @services.page.mount = =>
       @mount.apply @, arguments
@@ -73,9 +74,9 @@ export default class Daisho
       if typeof module == 'string'
         # do something
       else
-        new module @, @services.page, @services.menu, @services.command
+        new module @, @services.page, @services.menu, @services.command, @services.navigation
 
-    @services.menu.start()
+    @services.page.start()
 
   mount: (tag, opts = {}) ->
     isHTML = tag instanceof HTMLElement
