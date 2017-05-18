@@ -208,10 +208,11 @@ class Chart extends Dynamic
 
     notes = []
 
-    for tip in @tips
-      tip.hide()
+    do =>
+      for tip in @tips
+        tip.hide()
 
-    @tips = []
+      @tips = []
 
     for i, series of serieses
       if series.xs.length == 0 || series.ys.length == 0
@@ -240,13 +241,7 @@ class Chart extends Dynamic
           .attr 'stroke-width', @lineWidth
           .attr 'd', lineFn
 
-        # line stroke tween
-        # http://stackoverflow.com/questions/32789314/unrolling-line-in-d3js-linechart
-        point = @points.append 'g'
-          .classed 'points', true
-          .classed 'points-' + series.series, true
-
-        do (series, point, line, color)=>
+        do (series, line, color)=>
           lineLength = line.node().getTotalLength()
 
           tip = d3.tip()
@@ -265,6 +260,12 @@ class Chart extends Dynamic
                 """
 
           @tips.push tip
+
+          # line stroke tween
+          # http://stackoverflow.com/questions/32789314/unrolling-line-in-d3js-linechart
+          point = @points.append 'g'
+            .classed 'points', true
+            .classed 'points-' + series.series, true
 
           point.call tip
 
@@ -338,7 +339,7 @@ class Chart extends Dynamic
     for x, ys of notes
       datum = [x, maxes[x]]
 
-      do (ys)=>
+      do (datum, ys)=>
         tip = d3.tip()
           .attr 'class', 'tip tip-notes'
           .offset [-10, 0]

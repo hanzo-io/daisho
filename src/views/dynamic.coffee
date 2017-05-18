@@ -14,6 +14,10 @@ class DynamicView extends El.Form
   # last version of data cached for staleness check
   _dataStaleCached: ''
 
+  # refresh lock
+  _locked: false
+
+  # should automatically refresh on an update call?
   autoRefresh: true
 
   # can be before or after
@@ -26,13 +30,19 @@ class DynamicView extends El.Form
     # make @_refresh automatically save the stale data
     r = @_refresh
     @_refresh = =>
+      if @_locked
+        return @locked
+
+      @_locked = true
       p = r.apply @, arguments
+      @_locked = p
       if p?.then?
         p.then =>
           try
             @_dataStaleCached = JSON.stringify @data.get @_dataStaleField
           catch e
             console.error 'could not save stale data', e
+          @_locked = false
         .catch (e)->
           console.error 'count not save stale data', e
       else
@@ -40,6 +50,7 @@ class DynamicView extends El.Form
           @_dataStaleCached = JSON.stringify @data.get @_dataStaleField
         catch e
           console.error 'could not save stale data'
+        @_locked = false
       return p
 
     if @autoRefresh
@@ -63,7 +74,7 @@ class DynamicView extends El.Form
 
   # refresh checks if something is stale
   refresh: ->
-    # abort if things aren't attached to the dom
+    # abort if root isn't attached to the dom
     if !$(@root).closest('body')[0]?
       return
 
