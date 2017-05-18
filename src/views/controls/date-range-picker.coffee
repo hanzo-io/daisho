@@ -1,7 +1,7 @@
 import moment from 'moment-timezone'
 
 import Calendar from '../../vendor/baremetrics-calendar/calendar'
-import Text     from './text'
+import { Text } from 'el-controls'
 import util     from '../../util'
 
 import html from '../../templates/controls/date-range-picker'

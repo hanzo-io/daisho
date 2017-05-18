@@ -1,10 +1,10 @@
-import Text from './text'
+import { Text } from 'el-controls'
 import util     from '../../util'
 
 import html from '../../templates/controls/currency'
 
 class Currency extends Text
-  tag:  'currency-control'
+  tag:  'currency'
   html: html
 
   currencyValue: ()->

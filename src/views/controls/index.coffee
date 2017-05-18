@@ -1,31 +1,11 @@
-import Checkbox        from './checkbox'
-import Currency        from './currency'
+import Currency from './currency'
 import DateRangePicker from './date-range-picker'
-import Password        from './password'
-import Select          from './select'
-import SelectCountry   from './select-country'
-import SelectState     from './select-state'
-import Text            from './text'
-import TextArea        from './textarea'
+import * as ElControls from 'el-controls'
 
 export default Controls =
-  Checkbox:        Checkbox
   Currency:        Currency
   DateRangePicker: DateRangePicker
-  Password:        Password
-  Select:          Select
-  SelectCountry:   SelectCountry
-  SelectState:     SelectState
-  Text:            Text
-  TextArea:        TextArea
 
   register: ->
-    Checkbox.register()
     Currency.register()
     DateRangePicker.register()
-    Password.register()
-    Select.register()
-    SelectCountry.register()
-    SelectState.register()
-    Text.register()
-    TextArea.register()

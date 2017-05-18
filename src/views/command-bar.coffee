@@ -1,4 +1,4 @@
-import Text   from './controls/text'
+import { Text } from 'el-controls'
 import Events from '../events'
 
 regex = /(".*?"|[^"\s]+)+(?=\s*|\s*$)/g
