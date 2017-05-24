@@ -15,6 +15,7 @@ export default class Main extends El.Form
 
   error: null
   orgs:  null
+  lastRoot: null
 
   init: ->
     # use the parent data as data, this is special case
@@ -32,12 +33,13 @@ export default class Main extends El.Form
     # when things are updated, update to latest page
     @on 'update', =>
       current = @services.page.current.root
-      if current?
+      if current? && current != @lastRoot
         $el = $(current)
         $page = $(@root).find '#page'
         $page.children().detach()
         $page.append $el
         current.scheduleUpdate?()
+        @lastRoot = current
 
     # if active org is updated, restart the app
     m.on Events.Change, (name, val)=>

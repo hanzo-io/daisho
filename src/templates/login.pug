@@ -1,6 +1,6 @@
 #{ 'yield' }
-  text-control.input(lookup='account.email', placeholder='Email')
-  password-control.input(lookup='account.password', placeholder='Password')
+  text.input(lookup='account.email', placeholder='Email')
+  text.input(type='password', lookup='account.password', placeholder='Password')
   .error.message(if='{ error }')
     | { error }
   div(onclick='{ submit }',class='{ disabled: disabled, button: true, submit: true }')

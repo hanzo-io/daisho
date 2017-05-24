@@ -1,0 +1,5 @@
+input(id='{ input.name }',name='{ name || input.name }',type='checkbox',onchange='{ change }',onblur='{ change }',checked='{ input.ref.get(input.name) }',class='{invalid: errorMessage, valid: valid}')
+label.switch(for='{ name || input.name }')
+  .switch-slider
+label.label(for='{ name || input.name }') { label }
+#{ 'yield' }

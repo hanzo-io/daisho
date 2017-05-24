@@ -9,6 +9,7 @@ import Dynamic    from './dynamic'
 import Login      from './login'
 import Main       from './main'
 import Menu       from './menu'
+import Modal      from './modal'
 
 export default Views =
   Controls:   Controls
@@ -22,6 +23,7 @@ export default Views =
   Login:      Login
   Main:       Main
   Menu:       Menu
+  Modal:      Modal
 
   register: ->
     @Controls.register()

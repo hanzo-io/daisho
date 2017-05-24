@@ -42,7 +42,9 @@ centsFromDecimal = (code, uiCurrency) ->
       parts[1] += '0'
   else
     parts[1] = '00'
-  return parseInt(parseFloat(parts[0].replace(digitsOnlyRe, '')) * 100 + parseFloat(parts[1].replace(digitsOnlyRe, '')), 10)
+  value = parseInt(parseFloat(parts[0].replace(digitsOnlyRe, '')) * 100 + parseFloat(parts[1].replace(digitsOnlyRe, '')), 10)
+  value = 0 if isNaN value
+  return value
 
 export default util =
   time:
