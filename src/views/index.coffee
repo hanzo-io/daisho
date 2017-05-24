@@ -36,3 +36,4 @@ export default Views =
     @Login.register()
     @Main.register()
     @Menu.register()
+    @Modal.register()

@@ -58,7 +58,6 @@ export default class Daisho
       page:       new Services.Page       @, debug
       command:    new Services.Command    @, debug
       navigation: new Services.Navigation @, debug
-      modal:      new Services.Modal      @, debug
 
     @services.page.mount = =>
       @mount.apply @, arguments
@@ -75,7 +74,7 @@ export default class Daisho
       if typeof module == 'string'
         # do something
       else
-        new module @, @services.page, @services.menu, @services.command, @services.navigation, @services.modal
+        new module @, @services.page, @services.menu, @services.command, @services.navigation
 
     @services.page.start()
 
