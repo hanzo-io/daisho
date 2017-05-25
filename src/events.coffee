@@ -1,10 +1,10 @@
 Events =
   Change:
-    'daisho.change'
+    'change'
   ChangeSuccess:
-    'daisho.change.success'
+    'change.success'
   ChangeFailed:
-    'daisho.change.failed'
+    'change.failed'
 
   Login:
     'daisho.login'

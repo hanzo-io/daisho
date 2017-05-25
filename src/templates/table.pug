@@ -1,4 +1,4 @@
 .table-header
-  .table-cell(each='{ h, k in tableColumns }') { h }
+  .table-cell(each='{ h, k in tableColumns }', onclick='{ parent.onheader(h) }') { k }
 daisho-table-row.table-row(each='{ item, k in data.get(tableField) }', data='{ parent.data.ref(parent.tableField ? parent.tableField + "." + k : k) }')
   #{ 'yield' }
