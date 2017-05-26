@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/hanzo-io/daisho#readme",
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.0.0",
     "chai-as-promised": "6.0.0",
     "co-mocha": "1.2.0",
     "codecov.io": "0.1.6",
@@ -73,7 +73,7 @@
     "hanzo.js": "^2.3.23",
     "moment-timezone": "0.5.13",
     "randomcolor": "0.5.2",
-    "referential": "^0.5.18",
+    "referential": "^0.5.21",
     "riot-observable": "3.0.0"
   }
 }
