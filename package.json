@@ -73,7 +73,7 @@
     "hanzo.js": "^2.3.23",
     "moment-timezone": "0.5.13",
     "randomcolor": "0.5.2",
-    "referential": "^0.5.22",
+    "referential": "^0.5.23",
     "riot-observable": "3.0.0"
   }
 }
