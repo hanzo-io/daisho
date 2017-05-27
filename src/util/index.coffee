@@ -12,6 +12,8 @@ isZeroDecimal = (code)->
   return false
 
 decimalFromCents = (code, jsonCurrency)->
+  code = code.toLowerCase()
+
   if isNaN jsonCurrency
     jsonCurrency = 0
 
@@ -29,6 +31,8 @@ decimalFromCents = (code, jsonCurrency)->
   return currentCurrencySign + jsonCurrency.substr(0, jsonCurrency.length - 2) + '.' + jsonCurrency.substr(-2)
 
 centsFromDecimal = (code, uiCurrency) ->
+  code = code.toLowerCase()
+
   currentCurrencySign = currencySigns[code]
 
   if isZeroDecimal code
