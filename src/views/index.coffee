@@ -11,6 +11,8 @@ import Main       from './main'
 import Menu       from './menu'
 import Modal      from './modal'
 
+import FilterFacets from './filter-facets'
+
 export default Views =
   Controls:   Controls
   Graphics:   Graphics
@@ -25,6 +27,8 @@ export default Views =
   Menu:       Menu
   Modal:      Modal
 
+  FilterFacets: FilterFacets
+
   register: ->
     @Controls.register()
     @Graphics.register()
@@ -37,3 +41,4 @@ export default Views =
     @Main.register()
     @Menu.register()
     @Modal.register()
+    @FilterFacets.register()

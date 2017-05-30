@@ -28,7 +28,7 @@ class Login extends El.Form
         email: ''
         password: ''
 
-    super()
+    super
 
   _submit: (event) ->
     opts =

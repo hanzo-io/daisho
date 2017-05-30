@@ -1,0 +1,40 @@
+.filter-query
+  text.input(bind='query', placeholder='Search')
+  button.reset(onclick='{ reset }') Reset
+  button.submit(onclick='{ search }') Search
+
+.filter-facet(
+  each='{ r, k in data.get("options.string") }'
+  if='{ !hasResult(k) }')
+  .string-facet-label { parent.facetNames[k] || createName(k) }
+  .string-facet
+    checkbox.checkbox.string-facet-option(
+      each='{ o, k2 in r }'
+      bind='{ "options.string." + k + "." + k2 }'
+      label='{ k2 == k ? "yes" : k2 }')
+
+.filter-facet(
+  each='{ r, k in data.get("options.range") }'
+  if='{ !hasResult(k) }')
+  .range-facet-label { parent.facetNames[k] || createName(k) }
+  .range-facet(if='{ parent.facetCurrency[k] }')
+    currency.input(bind='{ "options.range." + k + ".from" }', placeholder='From')
+    currency.input(bind='{ "options.range." + k + ".to"  }', placeholder='To')
+  .range-facet(if='{ !parent.facetCurrency[k] }')
+    numeric.input(bind='{ "options.range." + k + ".from" }', placeholder='From')
+    numeric.input(bind='{ "options.range." + k + ".to"  }', placeholder='To')
+
+.filter-facet(each='{ r, k in data.get("results") }', if='{ !loading }')
+  .string-facet-label(if='{ parent.isStringFacet(r) }') { parent.facetNames[r[0].Name] || createName(r[0].Name) }
+  .string-facet(if='{ parent.isStringFacet(r) }')
+    checkbox.checkbox.string-facet-option(
+      each='{ o, k in r }'
+      bind='{ "options.string." + o.Name + "." + o.Value }'
+      label='{ o.Value == o.Name ? "yes" : o.Value }')
+  .range-facet-label(if='{ parent.isRangeFacet(r) }') { parent.facetNames[r[0].Name] || createName(r[0].Name) }
+  .range-facet(if='{ parent.isRangeFacet(r) && parent.facetCurrency[r[0].Name] }')
+    currency.input(bind='{ "options.range." + r[0].Name + ".from" }', placeholder='From')
+    currency.input(bind='{ "options.range." + r[0].Name + ".to"  }', placeholder='To')
+  .range-facet(if='{ parent.isRangeFacet(r) && !parent.facetCurrency[r[0].Name] }')
+    numeric.input(bind='{ "options.range." + r[0].Name + ".from" }', placeholder='From')
+    numeric.input(bind='{ "options.range." + r[0].Name + ".to"  }', placeholder='To')
