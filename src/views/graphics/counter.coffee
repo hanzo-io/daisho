@@ -23,7 +23,7 @@ class Counter extends Dynamic
     self = @
     if !@tween0 && data.get '0'
       value0 = data.get(0 + '.ys.0')
-      if value0 && value0 != @value0
+      if value0? && value0 != @value0
         @tween0 = new Tween.Tween
           v: @value0
         .to { v: value0 }, @timer
@@ -39,7 +39,7 @@ class Counter extends Dynamic
 
     if !@tween1 && data.get '1'
       value1 =  data.get(1 + '.ys.0')
-      if value1 && value1 != @value1
+      if value1? && value1 != @value1
         @tween1 = new Tween.Tween
           v: @value1
         .to { v: value1 }, @timer

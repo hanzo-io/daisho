@@ -70,7 +70,7 @@
     "es-raf": "^3.3.1",
     "es-selectize": "^0.12.9",
     "es-tween": "^0.1.0",
-    "hanzo.js": "^2.3.23",
+    "hanzo.js": "2.4.2",
     "moment-timezone": "0.5.13",
     "randomcolor": "0.5.2",
     "referential": "^0.5.23",
