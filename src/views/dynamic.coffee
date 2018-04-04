@@ -8,7 +8,7 @@ class DynamicView extends El.Form
   html: ''
 
   # data.get field for caching staleness
-  # null means we cache on the entire date object
+  # null means we cache on the entire data object
   _dataStaleField: null
 
   # last version of data cached for staleness check

@@ -74,6 +74,7 @@
     "moment-timezone": "0.5.13",
     "randomcolor": "0.5.2",
     "referential": "^0.5.23",
-    "riot-observable": "3.0.0"
+    "riot-observable": "3.0.0",
+    "shop.js-util": "0.0.5"
   }
 }

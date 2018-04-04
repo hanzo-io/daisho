@@ -1,10 +1,7 @@
-import moment from 'moment-timezone'
-
 import Calendar from '../../vendor/baremetrics-calendar/calendar'
-import { Text } from 'el-controls'
-import util     from '../../util'
-
-import html from '../../templates/controls/date-range-picker'
+import Text     from 'el-controls/src/text'
+import utils    from '../../utils'
+import html     from '../../templates/controls/date-range-picker'
 
 export default class DateRangePicker extends Text
   tag:  'date-range-picker-control'
@@ -33,8 +30,8 @@ export default class DateRangePicker extends Text
         start_date:    filter[0]
         end_date:      filter[1]
         callback: ->
-          start = moment(@start_date).format util.rfc3339
-          end = moment(@end_date).format util.rfc3339
+          start = utils.renderJSONDate @start_date, rfc3339
+          end   = utils.renderJSONDate @end_date, rfc3339
 
           console.log 'Start Date: ' + start + '\nEnd Date: ' + end
 
