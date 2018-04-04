@@ -82,6 +82,11 @@ blueprints =
       method: 'POST'
       url:    '/counter'
 
+  library:
+    daisho:
+      method: 'GET'
+      url:    '/library/daisho'
+
 models = [
   'user'
   'order'

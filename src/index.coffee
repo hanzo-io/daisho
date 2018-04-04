@@ -8,7 +8,7 @@ import Services   from './services'
 import Views      from './views'
 import blueprints from './blueprints'
 import mediator   from './mediator'
-import util       from './util'
+import utils      from './utils'
 
 animate = (time) ->
   raf animate
@@ -36,7 +36,7 @@ export default class Daisho
   @Services:     Services
   @Events:       Events
   @mediator:     mediator
-  @util:         util
+  @utils:        utils
 
   client:   null
   data:     null
@@ -44,7 +44,7 @@ export default class Daisho
   modules:  null
   debug:    false
   services: null
-  util:     Daisho.util
+  utils:    Daisho.utils
 
   constructor: (url, modules, @data, @settings, debug = false) ->
     @client = new Hanzo.Api

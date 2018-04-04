@@ -1,4 +1,4 @@
-import { Checkbox } from 'el-controls'
+import Checkbox from 'el-controls/src/controls/checkbox'
 
 import html from '../../templates/controls/switch'
 

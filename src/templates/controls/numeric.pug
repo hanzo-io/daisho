@@ -1,5 +1,29 @@
-input(id="{ input.name }",name="{ name || input.name }",type="{ type }",onchange="{ change }",riot-value="{ numericValue() }",autocomplete="{ autoComplete }",class="{invalid: errorMessage, valid: valid}")
-.placeholder(class='{ small: numericValue() || numericValue() == 0 }')
-  | { placeholder }
+#{ 'yield' }(from='input')
+  input(
+    id='{ getId() }'
+    name='{ getName() }'
+    type='{ type }'
+    onchange='{ change }'
+    onblur='{ change }'
+    riot-value='{ input.ref.get(input.name) }'
+    class='{invalid: errorMessage, valid: valid, labeled: label}'
+    autocomplete='{ autocomplete }'
+    autofocus='{ autofocus }'
+    disabled='{ disabled }'
+    maxlength='{ maxlength }'
+    readonly='{ readonly }'
+    placeholder='{ placeholder }'
+  )
+#{ 'yield' }(from='label')
+  .label(
+    class='{ active: numericValue() || numericValue() == 0 || placeholder }'
+    if='{ label }'
+  )
+    | { label }
+#{ 'yield' }(from='error')
+  .error(if='{ errorMessage }')
+    | { errorMessage }
+#{ 'yield' }(from='instructions')
+  .helper(if='{ instructions && !errorMessage }')
+    | { instructions }
 #{ 'yield' }
-
