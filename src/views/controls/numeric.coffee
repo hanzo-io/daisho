@@ -1,4 +1,4 @@
-import Text from 'el-controls/src/text'
+import Text from 'el-controls/src/controls/text'
 
 import html from '../../templates/controls/numeric'
 

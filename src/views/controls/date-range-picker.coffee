@@ -1,5 +1,5 @@
 import Calendar from '../../vendor/baremetrics-calendar/calendar'
-import Text     from 'el-controls/src/text'
+import Text     from 'el-controls/src/controls/text'
 import utils    from '../../utils'
 import html     from '../../templates/controls/date-range-picker'
 
