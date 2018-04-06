@@ -1,3 +1,4 @@
+import moment    from 'moment-timezone'
 import analytics from 'shop.js-util/src/analytics'
 
 import {
@@ -44,7 +45,7 @@ import {
   getMCIds
 } from 'shop.js-util/src/uri'
 
-export default util =
+export default utils =
   analytics:    analytics
 
   country:
@@ -57,11 +58,6 @@ export default util =
     cardType:           cardType
     restrictNumeric:    restrictNumeric
 
-  time:
-    rfc3339:    'YYYY-MM-DDTHH:mm:ssZ'
-    yyyymmdd:   'YYYY-MM-DD'
-    moment:     moment
-
   currency:
     isZeroDecimal:  isZeroDecimal
     isCrypto:       isCrypto
@@ -70,7 +66,7 @@ export default util =
     renderUICurrencyFromJSON:   renderUICurrencyFromJSON
     renderJSONCurrencyFromUI:   renderJSONCurrencyFromUI
 
-    renderCurrency: renderUpdatedUICurrency
+    renderCurrency: renderUICurrencyFromJSON
 
   date:
     rfc3339:    rfc3339
@@ -79,8 +75,9 @@ export default util =
     ddmmyyyy:   ddmmyyyy
 
     renderDate:     renderDate
-    renderUIDate:   renderDate
-    renderJSONDate: renderDate
+    renderUIDate:   renderUIDate
+    renderJSONDate: renderJSONDate
+    moment:         moment
 
   language:
     getLanguage: getLanguage
@@ -93,3 +90,5 @@ export default util =
     getReferrer:    getReferrer
     getMCIds:       getMCIds
 
+# alias incase you don't remember
+utils.time = utils.date

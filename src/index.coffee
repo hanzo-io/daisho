@@ -103,7 +103,7 @@ export default class Daisho
       opts.services = @services
 
     if !opts.util
-      opts.util = @util
+      opts.utils = @utils
 
     if !opts.mediator
       opts.mediator = Daisho.mediator

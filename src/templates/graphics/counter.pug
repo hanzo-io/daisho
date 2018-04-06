@@ -1,22 +1,22 @@
-.display
-  .numbers
-    .number
+.counter-display
+  .counter-numbers
+    .counter-number
       | { getNumber(0) }
-    .divider(if="{ data.get('1') }")
+    .counter-divider(if="{ data.get('1') }")
       | /
-    .number(if="{ data.get('1') }")
+    .counter-number(if="{ data.get('1') }")
       | { getNumber(1) }
-  .names
-    .name
+  .counter-names
+    .counter-name
       | { data.get('0.fmt.x')(data.get('0.xs.0')) || '&nbsp;' }
-    .name(if="{ data.get('1') }")
+    .counter-name(if="{ data.get('1') }")
       | { data.get('1.fmt.x')(data.get('1.xs.0')) || '&nbsp;' }
-.label(if="{ !data.get('1') }")
+.counter-label(if="{ !data.get('1') }")
   | { data.get('0.series') || '&nbsp;' }
-.label(if="{ data.get('1') }")
+.counter-label(if="{ data.get('1') }")
   | { data.get('0.series') || '&nbsp;' }
-.divider(if="{ data.get('1') }")
+.counter-divider(if="{ data.get('1') }")
   | vs
-.label(if="{ data.get('1') }")
+.counter-label(if="{ data.get('1') }")
   | { data.get('1.series') || '&nbsp;' }
 

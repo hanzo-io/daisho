@@ -8,14 +8,14 @@ class Numeric extends Text
 
   numericValue: ()->
     val = parseFloat @input.ref.get(@input.name)
-    val = 0 if isNaN val
+    val = null if isNaN val
 
     return val
 
   getValue: ()->
     val = super
     val = parseFloat val
-    val = 0 if isNaN val
+    val = null if isNaN val
 
     return val
 

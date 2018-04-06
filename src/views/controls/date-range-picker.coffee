@@ -3,6 +3,8 @@ import Text     from 'el-controls/src/controls/text'
 import utils    from '../../utils'
 import html     from '../../templates/controls/date-range-picker'
 
+moment = utils.date.moment
+
 export default class DateRangePicker extends Text
   tag:  'date-range-picker-control'
   html: html
@@ -30,8 +32,8 @@ export default class DateRangePicker extends Text
         start_date:    filter[0]
         end_date:      filter[1]
         callback: ->
-          start = utils.renderJSONDate @start_date, rfc3339
-          end   = utils.renderJSONDate @end_date, rfc3339
+          start = utils.date.renderJSONDate @start_date
+          end   = utils.date.renderJSONDate @end_date
 
           console.log 'Start Date: ' + start + '\nEnd Date: ' + end
 

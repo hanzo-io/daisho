@@ -46,7 +46,10 @@ class CommandBar extends Text
 
 
   found: ->
-    cmd = @getValue(target:$(@root).find('input'))
+    target = $(@root).find('input')[0]
+    return [] if !target
+
+    cmd = @getValue(target: target)
     # commands start with '/'
     if cmd && cmd[0] == '/'
       args = cmd.match(regex).map (str)->
@@ -58,7 +61,10 @@ class CommandBar extends Text
 
   execute: ->
     $el = $(@root).find('input')
-    cmd = @getValue(target: $el)
+    target = $el[0]
+    return false if !target
+
+    cmd = @getValue(target: target)
     # commands start with '/'
     if cmd && cmd[0] == '/'
       args = cmd.match(regex).map (str)->
