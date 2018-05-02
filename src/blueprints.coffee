@@ -102,4 +102,29 @@ blueprints.note.search =
   method: 'POST'
   url:    '/search/note'
 
+blueprints.user.orders =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/orders"
+  expects:  statusOk
+
+blueprints.user.transactions =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/transactions"
+  expects:  statusOk
+
+blueprints.user.referrals =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/referrals"
+  expects:  statusOk
+
+blueprints.user.referrers =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/referrers"
+  expects:  statusOk
+
+blueprints.user.resetPassword =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/password/reset"
+  expects:  statusOk
+
 export default blueprints

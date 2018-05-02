@@ -1,31 +1,35 @@
-import Controls   from './controls'
-import Graphics   from './graphics'
+import Controls     from './controls'
+import Graphics     from './graphics'
 
-import Table      from './table'
-import TableRow   from './table-row'
+import Table        from './table'
+import TableRow     from './table-row'
 
-import CommandBar from './command-bar'
-import Dynamic    from './dynamic'
-import Login      from './login'
-import Main       from './main'
-import Menu       from './menu'
-import Modal      from './modal'
+import CommandBar        from './command-bar'
+import Dynamic           from './dynamic'
+import DynamicTable      from './dynamic-table'
+import HanzoDynamicTable from './hanzo-dynamic-table'
+import Login             from './login'
+import Main              from './main'
+import Menu              from './menu'
+import Modal             from './modal'
 
 import FilterFacets from './filter-facets'
 
 export default Views =
-  Controls:   Controls
-  Graphics:   Graphics
+  Controls:     Controls
+  Graphics:     Graphics
 
-  Table:      Table
-  TableRow:   TableRow
+  Table:        Table
+  TableRow:     TableRow
 
-  CommandBar: CommandBar
-  Dynamic:    Dynamic
-  Login:      Login
-  Main:       Main
-  Menu:       Menu
-  Modal:      Modal
+  CommandBar:        CommandBar
+  Dynamic:           Dynamic
+  DynamicTable:      DynamicTable
+  HanzoDynamicTable: HanzoDynamicTable
+  Login:             Login
+  Main:              Main
+  Menu:              Menu
+  Modal:             Modal
 
   FilterFacets: FilterFacets
 

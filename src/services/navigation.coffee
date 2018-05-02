@@ -1,17 +1,24 @@
+# encode key value pairs
+import utils from '../utils'
+
 class NavService
   constructor: (@daisho, @debug)->
 
   replaceState: (id, opts)->
+    url = utils.nav.encode id, opts
+
     history.replaceState JSON.stringify(
       id:   id
       opts: opts
-    ), id, '/'
+    ), id, url
 
   pushState: (id, opts)->
+    url = utils.nav.encode id, opts
+
     history.pushState JSON.stringify(
       id:   id
       opts: opts
-    ), id, '/'
+    ), id, url
 
   getState: ()->
     json = null

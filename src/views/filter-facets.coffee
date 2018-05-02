@@ -1,5 +1,6 @@
 import El from 'el.js'
 import html from '../templates/filter-facets'
+import Events from '../events'
 
 class FilterFacets extends El.Form
   tag: 'daisho-filter-facets'
@@ -75,12 +76,17 @@ class FilterFacets extends El.Form
     return !@isStringFacet(facet) && facet[0].Name != 'Kind' && facet[0].Count > 1
 
   reset: (e)->
+    # investigate why Events.Change must be called manually
     if @onreset?
       if @onreset(e) != false
+        @mediator.trigger Events.Change
+
         @data.set 'options', undefined
         @data.set 'query', undefined
         @search(e)
     else
+      @mediator.trigger Events.Change
+
       @data.set 'options', undefined
       @data.set 'query', undefined
       @search(e)

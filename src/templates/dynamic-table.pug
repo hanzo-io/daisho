@@ -1,0 +1,15 @@
+#{ 'yield' }(from='table')
+  daisho-table.table(
+    table-columns='{ tableColumns }'
+    table-field='{ tableField }'
+  )
+    #{ 'yield' }
+#{ 'yield' }(from='table-load-more')
+  div.m-card.table-load-more
+    .button(
+      class='{ loading: loading }'
+      onclick='{ loadMore }'
+      if='{ hasMore }'
+      disabled='{ loading }'
+    )
+      | { loading ? 'Loading...' : hasMore() ? ('Next ' + moreCount() + ' Results') : 'No More Results' }

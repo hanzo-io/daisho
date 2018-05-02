@@ -85,6 +85,13 @@ class DynamicView extends El.Form
 
     return @_refresh.apply @, arguments
 
-  _refresh: ->
+  # overwrite with refresh implementation
+  # _refresh: ->
+
+  # simple page change api
+  show: (id, opts) ->
+    return ()=>
+      @services.page.show id, opts
+
 
 export default DynamicView

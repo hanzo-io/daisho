@@ -92,3 +92,41 @@ export default utils =
 
 # alias incase you don't remember
 utils.time = utils.date
+
+utils.nav =
+  encode: (id, opts) ->
+    str = '/' + id + '/'
+    if !opts?
+      return str
+
+    if typeof opts == 'string'
+      if opts != ''
+        return str + opts + '/'
+
+      return str
+
+    for k, v in opts
+      str += k + ':' + v + '/'
+
+    return str
+
+  decode: (str) ->
+    opts = {}
+
+    parts = str.split '/'
+    id = parts.shift()
+
+    for k, v in parts
+      if v == ''
+        continue
+
+      vs = v.split ':'
+
+      if vs.length == 1
+        return [id, vs[0]]
+
+      opts[k] = v
+
+    return [id, opts]
+
+
