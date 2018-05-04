@@ -9,6 +9,7 @@ import Views      from './views'
 import blueprints from './blueprints'
 import mediator   from './mediator'
 import utils      from './utils'
+import currencies from 'shop.js-util/src/data/currencies'
 
 animate = (time) ->
   raf animate
@@ -30,21 +31,23 @@ El.Views.Form.register = El.Views.View.register = ->
 Views.register()
 
 export default class Daisho
-  @El:           El
-  @Views:        Views
-  @Graphics:     Views.Graphics
-  @Services:     Services
-  @Events:       Events
-  @mediator:     mediator
-  @utils:        utils
+  @El:          El
+  @Views:       Views
+  @Graphics:    Views.Graphics
+  @Services:    Services
+  @Events:      Events
+  @mediator:    mediator
+  @utils:       utils
+  @currencies:  currencies
 
-  client:   null
-  data:     null
-  settings: null
-  modules:  null
-  debug:    false
-  services: null
-  utils:    Daisho.utils
+  client:       null
+  data:         null
+  settings:     null
+  modules:      null
+  debug:        false
+  services:     null
+  utils:        Daisho.utils
+  currencies:   currencies
 
   constructor: (url, modules, @data, @settings, debug = false) ->
     @client = new Hanzo.Api
@@ -104,6 +107,9 @@ export default class Daisho
 
     if !opts.util
       opts.utils = @utils
+
+    if !opts.currencies
+      opts.currencies = @currencies
 
     if !opts.mediator
       opts.mediator = Daisho.mediator

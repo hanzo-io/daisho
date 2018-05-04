@@ -105,7 +105,7 @@ utils.nav =
 
       return str
 
-    for k, v in opts
+    for k, v of opts
       str += k + ':' + v + '/'
 
     return str
@@ -116,7 +116,7 @@ utils.nav =
     parts = str.split '/'
     id = parts.shift()
 
-    for k, v in parts
+    for k, v of parts
       if v == ''
         continue
 
