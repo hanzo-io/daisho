@@ -127,4 +127,10 @@ blueprints.user.resetPassword =
   url:    (x) -> "/user/#{x.id ? x}/password/reset"
   expects:  statusOk
 
+blueprints.transaction =
+  create:
+    url:     '/transaction'
+    method:  'POST'
+    expects: statusCreated
+
 export default blueprints
