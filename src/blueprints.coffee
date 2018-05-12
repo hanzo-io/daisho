@@ -127,10 +127,20 @@ blueprints.user.resetPassword =
   url:    (x) -> "/user/#{x.id ? x}/password/reset"
   expects:  statusOk
 
+blueprints.user.wallet =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/wallet"
+  expects:  statusOk
+
 blueprints.transaction =
   create:
     url:     '/transaction'
     method:  'POST'
     expects: statusCreated
+
+blueprints.library.daisho =
+  url:     '/library/daisho'
+  method:  'POST'
+  expects: statusOk
 
 export default blueprints

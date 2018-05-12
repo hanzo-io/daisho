@@ -1,7 +1,8 @@
-import El    from 'el.js'
-import Hanzo from 'hanzo.js'
-import Tween from 'es-tween'
-import {raf} from 'es-raf'
+import El     from 'el.js'
+import Hanzo  from 'hanzo.js'
+import Tween  from 'es-tween'
+import {raf}  from 'es-raf'
+import akasha from 'akasha'
 
 import Events     from './events'
 import Services   from './services'
@@ -48,6 +49,7 @@ export default class Daisho
   services:     null
   utils:        Daisho.utils
   currencies:   currencies
+  countries:    []
 
   constructor: (url, modules, @data, @settings, debug = false) ->
     @client = new Hanzo.Api
@@ -69,6 +71,29 @@ export default class Daisho
 
     @client.addBlueprints k,v for k,v of blueprints
     @modules = modules
+
+    lastChecked   = akasha.get 'lastChecked'
+    countries     = akasha.get 'countries'
+    @countries.push.apply @countries, countries
+    Daisho.countries = @countries
+
+    lastChecked = utils.date.renderDate(new Date(), utils.date.rfc3339)
+
+    @client.library.daisho(
+      hasCountries: !!countries && countries.length != 0
+      lastChecked:  utils.date.renderDate(lastChecked || '2000-01-01', utils.date.rfc3339)
+    ).then (res) =>
+      if res.countries?
+        @countries.length = 0
+        @countries.push.apply @countries, res.countries
+
+      akasha.set 'countries', @countries
+      akasha.set 'lastChecked', lastChecked
+
+      @data.set 'countries', @countries
+      @scheduleUpdate()
+    .catch (err) =>
+      console.log 'Could not load countries data.', err
 
   start: ->
     modules = @modules
@@ -110,6 +135,9 @@ export default class Daisho
 
     if !opts.currencies
       opts.currencies = @currencies
+
+    if !opts.countries
+      opts.countries = @countries
 
     if !opts.mediator
       opts.mediator = Daisho.mediator
