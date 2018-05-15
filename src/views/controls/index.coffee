@@ -3,7 +3,7 @@ import DateRangePicker from './date-range-picker'
 import Numeric from './numeric'
 import Switch from './switch'
 
-import * as ElControls from 'el-controls'
+import * as ElControls from 'el-controls/src'
 
 export default Controls =
   Checkbox:        Checkbox
