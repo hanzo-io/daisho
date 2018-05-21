@@ -143,4 +143,24 @@ blueprints.library.daisho =
   method:  'POST'
   expects: statusOk
 
+blueprints.order.sendOrderConfirmation =
+  method: 'GET'
+  url:    (x) -> "/order/#{x.id ? x}/sendorderconfirmation"
+  expects:  statusNoContent
+
+blueprints.order.sendRefundConfirmation =
+  method: 'GET'
+  url:    (x) -> "/order/#{x.id ? x}/sendrefundconfirmation"
+  expects:  statusNoContent
+
+blueprints.order.sendFulfillmentConfirmation =
+  method: 'GET'
+  url:    (x) -> "/order/#{x.id ? x}/sendfulfillmentconfirmation"
+  expects:  statusNoContent
+
+blueprints.order.payments =
+  method: 'GET'
+  url:    (x) -> "/order/#{x.id ? x}/payments"
+  expects:  statusOk
+
 export default blueprints

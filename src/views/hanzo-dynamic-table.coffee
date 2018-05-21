@@ -48,10 +48,13 @@ export default class HanzoDynamicTable extends Dynamic
   loading: false
 
   # a map of all the range facets that should use currency instead of numeric
-  facetCurrency:
-    price: true
-    listPrice: true
-    inventoryCost: true
+  # for example
+  # facetCurrency:
+  #   price: true
+  #   listPrice: true
+  #   inventoryCost: true
+
+  facetCurrency: {}
 
   openFilter: false
 
@@ -119,8 +122,13 @@ export default class HanzoDynamicTable extends Dynamic
     if facets = getFacets options
       opts.facets = JSON.stringify facets
 
-    return @list(opts).then (res) =>
-      if fn? then fn(res) else @onload(res)
+    p = @list(opts)
+
+    if p.then
+      p.then (res) =>
+        if fn? then fn(res) else @onload(res)
+    else
+      if fn? then fn(p) else @onload(p)
 
   _loadMore: ->
     org = @daisho.akasha.get('orgs')[@daisho.akasha.get('activeOrg')]
@@ -147,8 +155,13 @@ export default class HanzoDynamicTable extends Dynamic
     if facets = getFacets options
       opts.facets = JSON.stringify facets
 
-    return @list(opts).then (res) =>
-      if fn? then fn(res) else @onloadMore(res)
+    p = @list(opts)
+
+    if p.then
+      p.then (res) =>
+        if fn? then fn(res) else @onloadMore(res)
+    else
+      if fn? then fn(p) else @onloadMore(p)
 
   toggleFilterMenu: ()->
     @openFilter = !@openFilter

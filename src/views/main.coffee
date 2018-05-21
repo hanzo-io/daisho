@@ -32,7 +32,7 @@ export default class Main extends El.Form
 
     # when things are updated, update to latest page
     @on 'update', =>
-      current = @services.page.current.root
+      current = @services?.page?.current?.root
       if current? && current != @lastRoot
         $el = $(current)
         $page = $(@root).find '#page'

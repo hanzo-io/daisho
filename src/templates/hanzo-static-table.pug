@@ -1,0 +1,8 @@
+#{ 'yield' }(from='table-body')
+  p(if='{ !data.get(countField) }') No { name } Found
+  .tables(if='{ data.get(countField) }')
+    daisho-table.table(
+    table-columns='{ headers }'
+    table-field='{ resultsField }')
+      #{ 'yield' }
+

@@ -2,6 +2,8 @@ import Dynamic from './dynamic'
 import html from '../templates/dynamic-table'
 import Events from '../events'
 
+tables = 0
+
 export default class DynamicTable extends Dynamic
   tag:  'daisho-dynamic-table'
   html: html
@@ -31,6 +33,13 @@ export default class DynamicTable extends Dynamic
   facetsResultsField: 'facets.results'
 
   init: ->
+    # generate unique ids for each of the fields
+    @countField         += tables
+    @resultsField       += tables
+    @facetsResultsField += tables
+
+    tables++
+
     super arguments...
 
     for header in @headers

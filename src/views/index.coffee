@@ -8,6 +8,7 @@ import CommandBar        from './command-bar'
 import Dynamic           from './dynamic'
 import DynamicTable      from './dynamic-table'
 import HanzoDynamicTable from './hanzo-dynamic-table'
+import HanzoStaticTable  from './hanzo-static-table'
 import Login             from './login'
 import Main              from './main'
 import Menu              from './menu'
@@ -26,6 +27,7 @@ export default Views =
   Dynamic:           Dynamic
   DynamicTable:      DynamicTable
   HanzoDynamicTable: HanzoDynamicTable
+  HanzoStaticTable:  HanzoStaticTable
   Login:             Login
   Main:              Main
   Menu:              Menu
