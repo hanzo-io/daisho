@@ -122,7 +122,7 @@ export default class HanzoDynamicTable extends Dynamic
     if facets = getFacets options
       opts.facets = JSON.stringify facets
 
-    p = @list(opts)
+    p = @list(opts) ? []
 
     if p.then
       p.then (res) =>
@@ -155,7 +155,7 @@ export default class HanzoDynamicTable extends Dynamic
     if facets = getFacets options
       opts.facets = JSON.stringify facets
 
-    p = @list(opts)
+    p = @list(opts) ? []
 
     if p.then
       p.then (res) =>

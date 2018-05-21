@@ -143,11 +143,11 @@ export default class DynamicTable extends Dynamic
         page:    1
 
     # TODO: investigate why Events.Change must be called manually
-    products = @data.get(@resultsField) ? []
+    results = @data.get(@resultsField) ? []
 
     @count = res.count
     @data.set @countField, res.count
-    @data.set @resultsField, products.concat res.models
+    @data.set @resultsField, results.concat res.models
 
     @data.set @facetsResultsField, undefined
     @data.set @facetsResultsField, res.facets
