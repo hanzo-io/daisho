@@ -92,6 +92,7 @@ models = [
   'order'
   'product'
   'note'
+  'wallet'
 ]
 
 for model in models
