@@ -1,6 +1,7 @@
 import Dynamic from './dynamic'
 import html from '../templates/dynamic-table'
 import Events from '../events'
+import ref from 'referential'
 
 tables = 0
 

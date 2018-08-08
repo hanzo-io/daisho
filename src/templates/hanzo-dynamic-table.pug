@@ -1,7 +1,7 @@
 #{ 'yield' }(from='table-header')
   .header.content.m-card
     div
-      h2 { data.get('count') || 'No' } { name } { data.get('count') ? '' : 'Found'  }
+      h2 { data.get(countField) || 'No' } { name } { data.get(countField) ? '' : 'Found'  }
       div.filter
         daisho-filter-facets(
           data='{ data.ref("facets") }'
@@ -14,7 +14,7 @@
         onclick='{ toggleFilterMenu }') Filter
 
 #{ 'yield' }(from='table-body')
-  .tables(if='{ data.get("count") }')
+  .tables(if='{ data.get(countField) }')
     daisho-table.m-card.table(
     table-columns='{ headers }'
     table-field='{ resultsField }')
