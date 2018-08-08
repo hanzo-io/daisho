@@ -91,7 +91,7 @@ models = [
   'order'
   'note'
   'product'
-  'subscribers'
+  'subscriber'
   'user'
   'wallet'
 ]
