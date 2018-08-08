@@ -88,10 +88,11 @@ blueprints =
       url:    '/library/daisho'
 
 models = [
-  'user'
   'order'
-  'product'
   'note'
+  'product'
+  'subscribers'
+  'user'
   'wallet'
 ]
 
