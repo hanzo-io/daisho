@@ -43,6 +43,7 @@
         stop:  opts.stopFn
         root:  null
         opts:  null
+        state: {}
 
       # set the initial state
       if !@initState?
@@ -69,15 +70,15 @@
         console.log '---PAGE SERVICE---\n' + id + ' not registered'
 
       if @current?
-        page.root = @current.stop @
+        @current.root = @current.stop.call page.state, @
 
       if !page.root
-        page.root = page.enter @, opts
-        page.root = page.start @, opts
+        page.root = page.enter.call page.state, @, opts
+        page.root = page.start.call page.state, @, opts
         if @debug
           console.log '---PAGE SERVICE---\nDone serving page ' + id
       else
-        page.root = page.start @, opts
+        page.root = page.start.call page.state, @, opts
         if @debug
           console.log '---PAGE SERVICE---\nDone serving page ' + id
 

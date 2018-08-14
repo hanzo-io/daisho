@@ -125,6 +125,7 @@ export default class DynamicTable extends Dynamic
     # TODO: investigate why Events.Change must be called manually
     @count = res.count
     @data.set @countField, res.count
+    @data.set @resultsField, undefined
     @data.set @resultsField, res.models
 
     @data.set @facetsResultsField, undefined
@@ -148,6 +149,7 @@ export default class DynamicTable extends Dynamic
 
     @count = res.count
     @data.set @countField, res.count
+    @data.set @resultsField, undefined
     @data.set @resultsField, results.concat res.models
 
     @data.set @facetsResultsField, undefined
