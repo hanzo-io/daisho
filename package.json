@@ -1,6 +1,6 @@
 {
   "name": "daisho",
-  "version": "1.2.65",
+  "version": "1.2.66",
   "description": "Modular dashboard framework",
   "main": "lib/daisho.js",
   "module": "lib/daisho.mjs",
