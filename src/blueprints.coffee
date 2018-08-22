@@ -165,4 +165,14 @@ blueprints.order.payments =
   url:    (x) -> "/order/#{x.id ? x}/payments"
   expects:  statusOk
 
+blueprints.organization =
+  get:
+    url:     (x) -> "/c/organization/#{x.id ? x}"
+    method:  'GET'
+    expects: statusOk
+  update:
+    url:     (x) -> "/c/organization/#{x.id ? x}"
+    method:  'PATCH'
+    expects: statusOk
+
 export default blueprints
