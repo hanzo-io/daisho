@@ -1,6 +1,11 @@
 import El from 'el.js'
 import html from '../templates/filter-facets'
 import Events from '../events'
+import utils    from '../utils'
+
+moment = utils.date.moment
+
+yyyymmdd =  utils.date.yyyymmdd
 
 class FilterFacets extends El.Form
   tag: 'daisho-filter-facets'
@@ -43,6 +48,8 @@ class FilterFacets extends El.Form
             @data.set 'options.range.' + k + '.from', range.to
             @data.set 'options.range.' + k + '.to', z
             @scheduleUpdate()
+
+    @data.set 'filter', [moment('2015-01-01').format(yyyymmdd), moment().format(yyyymmdd)]
 
   loading: false
 

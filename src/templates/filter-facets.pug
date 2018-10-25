@@ -3,6 +3,11 @@
   button.reset(onclick='{ reset }') Reset
   button.submit(onclick='{ search }') Search
 
+.filter-between
+  strong Created Between
+  .controls
+    date-range-picker-control(bind='filter', after="{ parentData.get('orgs')[parentData.get('activeOrg')].createdAt }")
+
 .filter-facet(
   each='{ r, k in data.get("options.string") }'
   if='{ !hasResult(k) }')
