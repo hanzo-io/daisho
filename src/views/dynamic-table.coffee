@@ -55,7 +55,7 @@ export default class DynamicTable extends Dynamic
 
   # check if there's more results
   hasMore: ->
-    return @page * @display <= @count
+    return @page * @display < @count
 
   moreCount: ->
     return Math.min @remaining(), @display
