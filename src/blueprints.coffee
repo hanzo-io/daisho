@@ -94,6 +94,7 @@ models = [
   'subscriber'
   'user'
   'wallet'
+  'tokentransaction'
 ]
 
 for model in models
