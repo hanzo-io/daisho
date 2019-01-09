@@ -115,6 +115,11 @@ blueprints.user.transactions =
   url:    (x) -> "/user/#{x.id ? x}/transactions"
   expects:  statusOk
 
+blueprints.user.tokentransactions =
+  method: 'GET'
+  url:    (x) -> "/user/#{x.id ? x}/tokentransactions"
+  expects:  statusOk
+
 blueprints.user.referrals =
   method: 'GET'
   url:    (x) -> "/user/#{x.id ? x}/referrals"
